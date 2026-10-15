@@ -21,6 +21,19 @@ Done by Harsh Thakur.
 | `rnd/algorithms` | `research/algorithms/` | §4.2, §4.3, §5 — activity, calories, sleep, HRV and other P1 algorithms |
 | `rnd/validation` | `research/validation/` | §13–15 — test plan, compliance, mechanical, RF, water and sweat |
 
+## Headline findings (details on each branch)
+
+1. **Battery life is a PPG-settings decision.** Same hardware: ≈ 5 / 10 / 29 mAh per day for lean / typical / continuous-100-sps profiles → 5 days needs ≈ 32 / 61 / 184 mAh. Suggested target: 5 days on ≈ 150 mAh with adaptive PPG (`rnd/power-battery`).
+2. **SoC: nRF54L15** (CSP if HDI is available) instead of nRF5340 — saves ≈ 50 mm²; battery difference ≈ 2 µA (`rnd/mcu-ble`).
+3. **One 1.8 V digital rail.** MAX86141 is 1.8 V SPI, so swap the 3 V-only W25Q32RV flash for Macronix MX25R3235F (`rnd/storage-nfc-dft`).
+4. **PPG LED supply needs ≥ 3.1 V** and cannot come from the nPM1300 bucks — VBAT direct (HR pauses near empty) or a small boost (`rnd/power-battery`, `rnd/optical-ppg`).
+5. **Drop the active NFC reader** (no use case, ≈ 400 mA peak); the SoC's passive NFC tag gives tap-to-pair for free (`rnd/storage-nfc-dft`).
+6. **BMI270 always-on accel (≈ 210 µA, verify) is a top load**, and it cannot do wrist-raise and tap at the same time — consider a low-power wake accelerometer (`rnd/sensors`, `rnd/display-haptics`).
+7. **Stealth dead-front is not readable in direct sun**; an AR coating is the biggest improvement (`rnd/display-haptics`).
+8. **SpO2 skin-tone bias is documented** — validate per Monk skin-tone group + ITA following FDA's 2025 draft study design (`rnd/optical-ppg`).
+9. **Calories are the weakest output industry-wide** (27–93 % median error in published tests) — label as estimates (`rnd/algorithms`).
+10. **§13 gates → 25 concrete tests**; wellness position depends on claims; water target at least IPX7 (`rnd/validation`).
+
 ## R&D map: what actually needs research
 
 Legend: **R&D** = open question, needs study or experiment · **Design** = known engineering, needs careful execution · **Owner** = client decision, not engineering.
