@@ -7,19 +7,19 @@ Done by Harsh Thakur.
 
 ## How this repo is organised
 
-`main` holds the brief, this index and the R&D map. Each R&D topic lives on its **own branch**, in its own folder under `research/`, so branches merge without conflicts.
+`main` holds the brief, this index, the R&D map **and all research merged in** (folders below). Each topic also stays on its **own `rnd/*` branch** for a separate view.
 
 | Branch | Folder | Covers (brief §) |
 |---|---|---|
-| `rnd/components` | `research/components/` | §8 — every candidate part plus alternatives, full detail (`COMPONENTS.md`) |
-| `rnd/mcu-ble` | `research/mcu-ble/` | §4.6, §8 — nRF5340 vs nRF54, BLE security, DFU, antenna |
-| `rnd/storage-nfc-dft` | `research/storage-nfc-dft/` | §4.6, §8 — external flash, active NFC, SWD, production test |
-| `rnd/power-battery` | `research/power-battery/` | §4.7, §8 — power tree, battery sizing, battery-life model, pogo charging, peaks |
-| `rnd/display-haptics` | `research/display-haptics/` | §4.4, §4.5 — OLED module, dead-front, back-power, LRA and driver |
-| `rnd/optical-ppg` | `research/optical-ppg/` | §4.1, §8 — PPG HR, SpO2, optical stack, crosstalk |
-| `rnd/sensors` | `research/sensors/` | §4.1 — IMU, pressure and vent, skin temperature, time sync |
-| `rnd/algorithms` | `research/algorithms/` | §4.2, §4.3, §5 — activity, calories, sleep, HRV and other P1 algorithms |
-| `rnd/validation` | `research/validation/` | §13–15 — test plan, compliance, mechanical, RF, water and sweat |
+| `rnd/components` | [`research/components/`](research/components/) | §8 — every candidate part plus alternatives, full detail (`COMPONENTS.md`) |
+| `rnd/mcu-ble` | [`research/mcu-ble/`](research/mcu-ble/) | §4.6, §8 — nRF5340 vs nRF54, BLE security, DFU, antenna |
+| `rnd/storage-nfc-dft` | [`research/storage-nfc-dft/`](research/storage-nfc-dft/) | §4.6, §8 — external flash, active NFC, SWD, production test |
+| `rnd/power-battery` | [`research/power-battery/`](research/power-battery/) | §4.7, §8 — power tree, battery sizing, battery-life model, pogo charging, peaks |
+| `rnd/display-haptics` | [`research/display-haptics/`](research/display-haptics/) | §4.4, §4.5 — OLED module, dead-front, back-power, LRA and driver |
+| `rnd/optical-ppg` | [`research/optical-ppg/`](research/optical-ppg/) | §4.1, §8 — PPG HR, SpO2, optical stack, crosstalk |
+| `rnd/sensors` | [`research/sensors/`](research/sensors/) | §4.1 — IMU, pressure and vent, skin temperature, time sync |
+| `rnd/algorithms` | [`research/algorithms/`](research/algorithms/) | §4.2, §4.3, §5 — activity, calories, sleep, HRV and other P1 algorithms |
+| `rnd/validation` | [`research/validation/`](research/validation/) | §13–15 — test plan, compliance, mechanical, RF, water and sweat |
 
 ## Headline findings (details on each branch)
 
