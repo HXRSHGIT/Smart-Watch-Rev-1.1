@@ -1,0 +1,65 @@
+
+=== Lean: 25 sps HR, light use ===
+  IMU accel (always on)               116.1 uA   54.1 %
+  PPG green LED                        29.3 uA   13.7 %
+  BLE link + sync                      12.8 uA    6.0 %
+  SoC CPU (DSP, sensor FIFO)           12.0 uA    5.6 %
+  SpO2 red + IR LEDs                    7.8 uA    3.6 %
+  Haptic events (0.6 s each)            6.2 uA    2.9 %
+  PMIC + cell protection                6.0 uA    2.8 %
+  PPG AFE (MAX86141)                    5.5 uA    2.6 %
+  IMU gyro (workouts)                   5.5 uA    2.5 %
+  OLED wakes (3 s each)                 5.2 uA    2.4 %
+  Haptic driver shutdown                4.0 uA    1.9 %
+  SoC sleep floor                       1.8 uA    0.9 %
+  Pressure (BMP390 1 Hz)                1.8 uA    0.8 %
+  Skin temp (1/min)                     0.3 uA    0.1 %
+  Flash deep power-down                 0.2 uA    0.1 %
+  TOTAL                               214.6 uA  = 5.2 mAh/day
+  Life (days): 100 mAh: 15.5  150 mAh: 23.3  200 mAh: 31.1  250 mAh: 38.8  300 mAh: 46.6
+  Cell needed for 5 days: 32 mAh
+  Cell needed for 7 days: 45 mAh
+
+=== Typical: 50 sps HR, 1 h workout ===
+  PPG green LED                       175.9 uA   43.6 %
+  IMU accel (always on)               116.1 uA   28.7 %
+  SoC CPU (DSP, sensor FIFO)           24.0 uA    5.9 %
+  BLE link + sync                      18.0 uA    4.5 %
+  SpO2 red + IR LEDs                   15.6 uA    3.9 %
+  PPG AFE (MAX86141)                   11.1 uA    2.7 %
+  IMU gyro (workouts)                  10.9 uA    2.7 %
+  Haptic events (0.6 s each)            9.4 uA    2.3 %
+  OLED wakes (3 s each)                 8.7 uA    2.1 %
+  PMIC + cell protection                6.0 uA    1.5 %
+  Haptic driver shutdown                4.0 uA    1.0 %
+  SoC sleep floor                       1.8 uA    0.5 %
+  Pressure (BMP390 1 Hz)                1.8 uA    0.4 %
+  Skin temp (1/min)                     0.3 uA    0.1 %
+  Flash deep power-down                 0.2 uA    0.0 %
+  TOTAL                               403.8 uA  = 9.7 mAh/day
+  Life (days): 100 mAh:  8.3  150 mAh: 12.4  200 mAh: 16.5  250 mAh: 20.6  300 mAh: 24.8
+  Cell needed for 5 days: 61 mAh
+  Cell needed for 7 days: 85 mAh
+
+=== WHOOP-like: 100 sps continuous (HRV grade) ===
+  PPG green LED                       938.4 uA   76.5 %
+  IMU accel (always on)               116.1 uA    9.5 %
+  SoC CPU (DSP, sensor FIFO)           47.9 uA    3.9 %
+  SpO2 red + IR LEDs                   31.3 uA    2.5 %
+  BLE link + sync                      23.3 uA    1.9 %
+  PPG AFE (MAX86141)                   22.1 uA    1.8 %
+  Haptic events (0.6 s each)           12.5 uA    1.0 %
+  IMU gyro (workouts)                  10.9 uA    0.9 %
+  OLED wakes (3 s each)                10.4 uA    0.8 %
+  PMIC + cell protection                6.0 uA    0.5 %
+  Haptic driver shutdown                4.0 uA    0.3 %
+  SoC sleep floor                       1.8 uA    0.2 %
+  Pressure (BMP390 1 Hz)                1.8 uA    0.1 %
+  Skin temp (1/min)                     0.3 uA    0.0 %
+  Flash deep power-down                 0.2 uA    0.0 %
+  TOTAL                              1227.0 uA  = 29.4 mAh/day
+  Life (days): 100 mAh:  2.7  150 mAh:  4.1  200 mAh:  5.4  250 mAh:  6.8  300 mAh:  8.1
+  Cell needed for 5 days: 184 mAh
+  Cell needed for 7 days: 258 mAh
+
+self-check passed
