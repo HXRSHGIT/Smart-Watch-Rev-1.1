@@ -5,6 +5,14 @@ Source brief: [`docs/HARDWARE_ENGINEER_HANDOFF_REQUIREMENTS.md`](docs/HARDWARE_E
 
 Done by Harsh Thakur.
 
+## Current decision - Iteration 1
+
+**Approved 2026-10-18:** build a USB-powered custom sensor-test PCB using **ESP32-C3-MINI-1-N4 + MAX30102 + MAX30208**. A board larger than the final band is acceptable. Use USB for raw-data logging and test BLE; the module's 4 MB flash is sufficient for firmware/settings and limited logs, so **no external flash is fitted**.
+
+The authoritative scope, selected parts, power/interface circuits, deferred features and bring-up gates are in **[Iteration 1 decision](docs/ITERATION_1_DECISION.md)**. Temperature sensing is included; battery charging, display, haptics, motion/pressure sensors and NFC are deferred. This freezes the iteration's direction, not a fabrication-ready or sourcing-verified BOM.
+
+The documents under `research/` describe the earlier full-wearable investigations. Their parts and performance estimates are **not the current Iteration 1 BOM**. The original client brief remains intact as the longer-term product reference.
+
 ## How this repo is organised
 
 `main` holds the brief, this index, the R&D map **and all research merged in** (folders below). Each topic also stays on its **own `rnd/*` branch** for a separate view.
@@ -21,7 +29,9 @@ Done by Harsh Thakur.
 | `rnd/algorithms` | [`research/algorithms/`](research/algorithms/) | §4.2, §4.3, §5 — activity, calories, sleep, HRV and other P1 algorithms |
 | `rnd/validation` | [`research/validation/`](research/validation/) | §13–15 — test plan, compliance, mechanical, RF, water and sweat |
 
-## Headline findings (details on each branch)
+## Earlier wearable R&D findings (historical, not the Iteration 1 baseline)
+
+These findings are retained as research history, including assumptions and claims requiring further verification. In particular, the original PPG pulse limits, PVLED headroom reasoning, BMI270 current, NFC power assumptions and battery estimates must be rechecked before reuse. See the current decision above for what will actually be fitted now.
 
 1. **Battery life is a PPG-settings decision.** Same hardware: ≈ 5 / 10 / 29 mAh per day for lean / typical / continuous-100-sps profiles → 5 days needs ≈ 32 / 61 / 184 mAh. Suggested target: 5 days on ≈ 150 mAh with adaptive PPG (`rnd/power-battery`).
 2. **SoC: nRF54L15** (CSP if HDI is available) instead of nRF5340 — saves ≈ 50 mm²; battery difference ≈ 2 µA (`rnd/mcu-ble`).
@@ -34,7 +44,7 @@ Done by Harsh Thakur.
 9. **Calories are the weakest output industry-wide** (27–93 % median error in published tests) — label as estimates (`rnd/algorithms`).
 10. **§13 gates → 25 concrete tests**; wellness position depends on claims; water target at least IPX7 (`rnd/validation`).
 
-## R&D map: what actually needs research
+## Longer-term wearable R&D map
 
 Legend: **R&D** = open question, needs study or experiment · **Design** = known engineering, needs careful execution · **Owner** = client decision, not engineering.
 
