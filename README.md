@@ -11,6 +11,10 @@ Done by Harsh Thakur.
 
 The authoritative scope, selected parts, power/interface circuits, deferred features and bring-up gates are in **[Iteration 1 decision](docs/ITERATION_1_DECISION.md)**. Temperature sensing is included; battery charging, display, haptics, motion/pressure sensors and NFC are deferred. This freezes the iteration's direction, not a fabrication-ready or sourcing-verified BOM.
 
+For the next engineering stage, see **[Iteration 1 schematic connection plan](docs/ITERATION_1_SCHEMATIC_FLOW.md)**: power and signal flow, proposed GPIO map, sensor interfaces, USB/boot/debug wiring and the checks required before schematic/layout release.
+
+The client-facing **[Component Selection](docs/COMPONENT_SELECTION.md)** explains every selected part, its purpose, implementation considerations and the features deferred from the first board.
+
 The documents under `research/` describe the earlier full-wearable investigations. Their parts and performance estimates are **not the current Iteration 1 BOM**. The original client brief remains intact as the longer-term product reference.
 
 ## How this repo is organised
