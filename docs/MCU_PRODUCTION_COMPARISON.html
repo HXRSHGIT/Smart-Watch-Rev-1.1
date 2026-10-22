@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>MCU Production Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6f5;--surface:#fcfcfb;--surface-2:#eef2f0;--line:#dde3e0;--ink:#0d1714;--ink-2:#46524d;--ink-3:#6b7672;
+--accent:#0f8a5f;--accent-soft:#e2f3ec;--esp:#b4531f;--esp-soft:#fbeee6;--nrf-soft:#e6f0fb;--nrf:#1d63b8;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--shadow:0 1px 2px rgba(13,23,20,.05),0 8px 24px -12px rgba(13,23,20,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1311;--surface:#151b19;--surface-2:#1b2320;--line:#27312d;
+--ink:#eef3f1;--ink-2:#b9c4bf;--ink-3:#8b9792;--accent:#35c48d;--accent-soft:#15302a;--esp:#f08a55;--esp-soft:#2e1d14;
+--nrf-soft:#132338;--nrf:#7fb2f0;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0e1311;--surface:#151b19;--surface-2:#1b2320;--line:#27312d;--ink:#eef3f1;--ink-2:#b9c4bf;--ink-3:#8b9792;
+--accent:#35c48d;--accent-soft:#15302a;--esp:#f08a55;--esp-soft:#2e1d14;--nrf-soft:#132338;--nrf:#7fb2f0;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--shadow:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;max-width:1280px;margin:0 auto;padding:32px 28px 80px}
+nav.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:13.5px}
+nav.toc .brand{font:600 12px/1.2 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:4px 0 14px}
+nav.toc a{display:block;padding:7px 12px;border-left:2px solid var(--line);color:var(--ink-2);text-decoration:none;line-height:1.35}
+nav.toc a:hover{color:var(--ink)}nav.toc a.on{border-color:var(--accent);color:var(--ink);font-weight:600;background:var(--accent-soft)}
+header.hero{background:linear-gradient(135deg,#0c3b2e 0%,#0f5a44 55%,#13775a 100%);color:#fff;border-radius:20px;padding:40px 40px 34px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+header.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;border:38px solid rgba(255,255,255,.06)}
+.kicker{font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin:0 0 14px}
+header.hero h1{font:700 clamp(28px,4vw,40px)/1.12 "Inter Tight",Inter,sans-serif;letter-spacing:-.02em;margin:0 0 18px;max-width:22ch}
+header.hero p{margin:4px 0;color:rgba(255,255,255,.86);max-width:70ch}header.hero strong{color:#fff}
+main{min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:22px;box-shadow:var(--shadow)}
+h2{font:700 24px/1.25 "Inter Tight",Inter,sans-serif;letter-spacing:-.015em;margin:0 0 16px;display:flex;gap:12px;align-items:baseline}
+h3{font:650 17px/1.35 "Inter Tight",Inter,sans-serif;margin:28px 0 10px}
+p,li{color:var(--ink-2);max-width:78ch}p strong,li strong{color:var(--ink)}
+ul,ol{padding-left:22px}li{margin:5px 0}
+a{color:var(--accent)}code{font:13px/1 "JetBrains Mono",ui-monospace,monospace;background:var(--surface-2);border:1px solid var(--line);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.tbl{overflow-x:auto;margin:14px 0 6px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th{text-align:left;font:600 12px/1.3 Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2);padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}td:first-child{color:var(--ink);font-weight:600;min-width:150px}
+tbody tr:hover td{background:color-mix(in srgb,var(--surface-2) 70%,transparent)}
+th.nrf{color:var(--nrf);box-shadow:inset 0 -2px 0 var(--nrf)}th.esp{color:var(--esp);box-shadow:inset 0 -2px 0 var(--esp)}
+td.nrf{background:color-mix(in srgb,var(--nrf-soft) 55%,transparent)}td.esp{background:color-mix(in srgb,var(--esp-soft) 55%,transparent)}
+td strong{color:var(--ink)}
+section.card:first-of-type{border-top:4px solid var(--accent)}
+.chart{margin:22px 0 4px;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);position:relative}
+.chart figcaption{display:flex;flex-direction:column;gap:2px;margin-bottom:12px}.chart figcaption b{font-size:15px;color:var(--ink)}
+.chart figcaption span{font-size:13px;color:var(--ink-3)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2);margin-bottom:16px}.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}.s1{background:var(--s1)}.s2{background:var(--s2)}.s3{background:var(--s3)}
+.grp{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.grp-name{font-weight:600;font-size:14px}.grp-bars{display:flex;flex-direction:column;gap:2px}
+.bar-row{display:flex;align-items:center;gap:10px;height:18px}
+.bar{height:14px;width:var(--w);min-width:3px;border-radius:0 4px 4px 0;cursor:default}
+.bar:hover{filter:brightness(1.1);outline:2px solid var(--ink);outline-offset:1px}
+.bar-val{white-space:nowrap;font:600 12.5px/1 "JetBrains Mono",ui-monospace,monospace;color:var(--ink-2)}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;padding:6px 10px;border-radius:8px;opacity:0;transition:opacity .12s;white-space:nowrap}
+footer{margin-top:28px;color:var(--ink-3);font-size:13px;text-align:center}
+.theme{position:fixed;right:18px;bottom:18px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:600 12.5px Inter,sans-serif;cursor:pointer;box-shadow:var(--shadow)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);padding:16px}header.hero h1{overflow-wrap:anywhere}nav.toc{display:none}.card{padding:22px 18px}header.hero{padding:28px 22px}.grp{grid-template-columns:1fr}}
+@media print{nav.toc,.theme{display:none}.wrap{display:block}.card{box-shadow:none;break-inside:avoid-page}header.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body><div class="wrap">
+<nav class="toc" aria-label="Contents"><div class="brand">HealthOS Band · MCU</div><a href="#1-bottom-line">1. Bottom line</a><a href="#2-the-parts-being-compared">2. The parts being compared</a><a href="#3-battery-life--the-deciding-difference">3. Battery life — the deciding difference</a><a href="#4-power-system--esp32-forces-a-different-pmic">4. Power system — ESP32 forces a different PMIC</a><a href="#5-board-area-thickness-and-rf">5. Board area, thickness and RF</a><a href="#6-sensor-interfaces">6. Sensor interfaces</a><a href="#7-firmware-phone-app-and-updates">7. Firmware, phone app and updates</a><a href="#8-security-and-privacy-health-data-gdpr--dpdp">8. Security and privacy (health data, GDPR / DPDP)</a><a href="#9-known-silicon-issues-that-affect-this-product">9. Known silicon issues that affect this product</a><a href="#10-certification-and-manufacturing">10. Certification and manufacturing</a><a href="#11-what-the-nrf54l15-adds-in-flashing-debugging-and-day-to-day-development">11. What the nRF54L15 adds in flashing, debugging and day-to-day development</a><a href="#12-pros-and-cons-summary">12. Pros and cons summary</a><a href="#13-sources">13. Sources</a></nav>
+<main><header class="hero"><p class="kicker">Processor decision · production impact</p><h1>ESP32-C3 vs nRF54L15 — What Each Choice Means in Production</h1>
+<p><strong>Project:</strong> HealthOS Band (WHOOP-style band, 5–7 day battery target, hidden 64×32 OLED)
+<strong>Question:</strong> If the processor chosen now goes into the production band, how does each choice affect the product?</p>
+<p>Done by Harsh Thakur.</p>
+</header>
+
+<section class="card"><h2 id="1-bottom-line">1. Bottom line</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iteration 1 (USB-powered sensor board)</td>
+<td><strong>Best fit</strong>: one cable, pre-certified module, fast bring-up</td>
+<td>Workable, but more tools and parts</td>
+</tr>
+<tr>
+<td>Production band (battery, 5–7 days, small pod)</td>
+<td><strong>Does not meet the brief</strong>: ~3.7 days on 150 mAh in the typical profile, needs a ≥ 200 mAh cell for 5 days</td>
+<td><strong>Meets the brief</strong>: ~12 days on 150 mAh in the same profile</td>
+</tr>
+</tbody>
+</table></div>
+<p>The ESP32-C3 is excellent for proving the sensors. In production it costs about <strong>3× the battery</strong> for the same life, a quarter of the pod footprint, and a different power-management IC. The nRF54L15 was designed for exactly this class of product.</p>
+<p>If production must use the same chip as Iteration 1, the processor for both should be the <strong>nRF54L15</strong>, using a pre-certified module (Ezurio BL54L15, 14 × 10 × 1.6 mm) for Iteration 1 if the bring-up speed of a module is wanted.</p>
+<p>All figures below are from the vendor documents listed in §13. Battery numbers come from the repository's battery model (<code>research/power-battery/battery_model.py</code>) with only the processor loads swapped (<code>research/mcu-ble/mcu_power_compare.py</code>).</p>
+
+</section><section class="card"><h2 id="2-the-parts-being-compared">2. The parts being compared</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>ESP32-C3-MINI-1-N4X (module)</th>
+<th>nRF54L15 (SoC)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>32-bit RISC-V single core, 160 MHz</td>
+<td>Arm Cortex-M33, 128 MHz, plus 128 MHz RISC-V coprocessor</td>
+</tr>
+<tr>
+<td>Floating point / DSP</td>
+<td><strong>No hardware FPU</strong> (RV32IMC)</td>
+<td>FPU + DSP instructions</td>
+</tr>
+<tr>
+<td>CoreMark</td>
+<td>483 (3.02 /MHz)</td>
+<td>503 (3.93 /MHz), from non-volatile memory</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>400 KB SRAM (16 KB used for cache) + 8 KB RTC</td>
+<td>256 KB</td>
+</tr>
+<tr>
+<td>Non-volatile memory</td>
+<td>4 MB flash in package, 100 000 erase cycles</td>
+<td>1524 KB RRAM, <strong>10 000 write cycles</strong>, 10-year retention at 85 °C</td>
+</tr>
+<tr>
+<td>Radio</td>
+<td>BLE 5 + Wi-Fi 4 (2.4 GHz)</td>
+<td>BLE (incl. Channel Sounding), 802.15.4 (Thread/Zigbee/Matter), proprietary up to 4 Mbps; no Wi-Fi</td>
+</tr>
+<tr>
+<td>Max TX power</td>
+<td>+20 dBm</td>
+<td>+8 dBm (CSP) / +7 dBm (QFN)</td>
+</tr>
+<tr>
+<td>RX sensitivity, BLE 1 Mbps</td>
+<td>−97 dBm</td>
+<td>−96 dBm</td>
+</tr>
+<tr>
+<td>USB</td>
+<td>Native USB Serial/JTAG</td>
+<td><strong>None</strong></td>
+</tr>
+<tr>
+<td>NFC</td>
+<td>None</td>
+<td>NFC-A tag (tap-to-pair)</td>
+</tr>
+<tr>
+<td>Supply</td>
+<td><strong>3.0–3.6 V</strong></td>
+<td><strong>1.7–3.6 V</strong> (supply and GPIO)</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>13.2 × 16.6 × 2.4 mm module + antenna keep-out</td>
+<td>CSP47 2.4 × 2.2 mm (0.3 mm pitch) or QFN48 6 × 6 mm (0.4 mm pitch) + crystal, inductor, RF match, antenna</td>
+</tr>
+<tr>
+<td>GPIO</td>
+<td>15 (3 are boot straps)</td>
+<td>32 (CSP47) / 31 (QFN48)</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>−40 to 85 °C (N4X) or 105 °C (H4X)</td>
+<td>−40 to 105 °C</td>
+</tr>
+<tr>
+<td>ESD (device)</td>
+<td>HBM ±2 kV, CDM ±500 V</td>
+<td>QFN: HBM 1 kV, CDM 500 V · CSP: HBM 3 kV, CDM 250 V</td>
+</tr>
+<tr>
+<td>Moisture sensitivity</td>
+<td>MSL 3 (solder within 168 h of opening)</td>
+<td>QFN MSL 2 · CSP MSL 1</td>
+</tr>
+</tbody>
+</table></div>
+
+</section><section class="card"><h2 id="3-battery-life--the-deciding-difference">3. Battery life — the deciding difference</h2>
+<h3 id="31-datasheet-currents">3.1 Datasheet currents</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>ESP32-C3 (3.3 V)</th>
+<th>nRF54L15 (3.0 V)</th>
+<th>Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLE TX at 0 dBm</td>
+<td>170 mA (peak)</td>
+<td>4.8 mA</td>
+<td>~35×</td>
+</tr>
+<tr>
+<td>BLE RX</td>
+<td>86 mA (peak)</td>
+<td>3.4 mA</td>
+<td>~25×</td>
+</tr>
+<tr>
+<td>CPU running</td>
+<td>23 mA at 160 MHz (radio off, peripheral clocks off)</td>
+<td>2.6 mA CoreMark</td>
+<td>~9×</td>
+</tr>
+<tr>
+<td>Sleep while keeping a BLE connection</td>
+<td><strong>140 µA</strong> with an external 32 kHz crystal · <strong>2.3 mA</strong> without one</td>
+<td><strong>2.9 µA</strong> System ON idle, 256 KB RAM retained, RTC running</td>
+<td>~50× / ~800×</td>
+</tr>
+<tr>
+<td>Deepest sleep (BLE link lost)</td>
+<td>5 µA deep-sleep, 1 µA power-off</td>
+<td>0.7 µA System OFF</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>The sleep row matters most. A band spends &gt; 99 % of its life asleep between connection events. ESP-IDF's own low-power guide says the internal 136 kHz RC oscillator <strong>cannot hold a BLE connection</strong>: you need either the main crystal running (2.3 mA) or an external 32 kHz crystal (140 µA). The MINI-1 module has no 32 kHz crystal; it must be added on GPIO0/GPIO1.</p>
+<h3 id="32-whole-band-battery-life-same-sensors-same-use-only-the-processor-changed">3.2 Whole-band battery life (same sensors, same use, only the processor changed)</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Use profile</th>
+<th>nRF54L15 band</th>
+<th>ESP32-C3 + 32 kHz crystal</th>
+<th>ESP32-C3, no 32 kHz crystal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lean (25 sps HR, light use)</td>
+<td>215 µA → <strong>23.3 days</strong> on 150 mAh</td>
+<td>886 µA → <strong>5.6 days</strong></td>
+<td>3075 µA → 1.6 days</td>
+</tr>
+<tr>
+<td>Typical (50 sps HR, 1 h workout)</td>
+<td>404 µA → <strong>12.4 days</strong></td>
+<td>1355 µA → <strong>3.7 days</strong></td>
+<td>3544 µA → 1.4 days</td>
+</tr>
+<tr>
+<td>WHOOP-like (100 sps continuous)</td>
+<td>1227 µA → <strong>4.1 days</strong></td>
+<td>2562 µA → <strong>2.0 days</strong></td>
+<td>4751 µA → 1.1 days</td>
+</tr>
+<tr>
+<td>Cell needed for 5 days, typical</td>
+<td><strong>61 mAh</strong></td>
+<td><strong>203 mAh</strong></td>
+<td>532 mAh</td>
+</tr>
+</tbody>
+</table></div>
+<p>Processor share of the typical band: <strong>44 µA (11 %)</strong> on the nRF vs <strong>995 µA (73 %)</strong> on the ESP32. On the ESP32 the processor becomes the biggest load, ahead of the PPG LEDs.</p>
+<p>The ESP radio line uses datasheet peak currents for a 2 ms event once per second, so it is an upper estimate; a measured ESP link will be lower, but the 140 µA sleep floor alone (≈ 3.4 mAh/day) already exceeds the nRF band's whole processor budget (≈ 1.1 mAh/day). No firmware optimisation closes that gap.</p>
+<figure class="chart" aria-label="Battery life on a 150 mAh cell, from the table in section 3.2">
+<figcaption><b>Days on a 150 mAh cell</b><span>Same band, same sensors — only the processor changes (table §3.2)</span></figcaption>
+<div class="legend"><span><i class="sw s1"></i>nRF54L15</span><span><i class="sw s2"></i>ESP32-C3 + 32 kHz crystal</span><span><i class="sw s3"></i>ESP32-C3, no 32 kHz crystal</span></div><div class="grp"><div class="grp-name">Lean</div><div class="grp-bars"><div class="bar-row"><div class="bar s1" style="--w:85.0%" data-tip="Lean · nRF54L15: 23.3 days"></div><span class="bar-val">23.3 d</span></div><div class="bar-row"><div class="bar s2" style="--w:20.4%" data-tip="Lean · ESP32-C3 + 32 kHz crystal: 5.6 days"></div><span class="bar-val">5.6 d</span></div><div class="bar-row"><div class="bar s3" style="--w:5.8%" data-tip="Lean · ESP32-C3, no 32 kHz crystal: 1.6 days"></div><span class="bar-val">1.6 d</span></div></div></div><div class="grp"><div class="grp-name">Typical</div><div class="grp-bars"><div class="bar-row"><div class="bar s1" style="--w:45.2%" data-tip="Typical · nRF54L15: 12.4 days"></div><span class="bar-val">12.4 d</span></div><div class="bar-row"><div class="bar s2" style="--w:13.5%" data-tip="Typical · ESP32-C3 + 32 kHz crystal: 3.7 days"></div><span class="bar-val">3.7 d</span></div><div class="bar-row"><div class="bar s3" style="--w:5.1%" data-tip="Typical · ESP32-C3, no 32 kHz crystal: 1.4 days"></div><span class="bar-val">1.4 d</span></div></div></div><div class="grp"><div class="grp-name">WHOOP-like</div><div class="grp-bars"><div class="bar-row"><div class="bar s1" style="--w:15.0%" data-tip="WHOOP-like · nRF54L15: 4.1 days"></div><span class="bar-val">4.1 d</span></div><div class="bar-row"><div class="bar s2" style="--w:7.3%" data-tip="WHOOP-like · ESP32-C3 + 32 kHz crystal: 2 days"></div><span class="bar-val">2 d</span></div><div class="bar-row"><div class="bar s3" style="--w:4.0%" data-tip="WHOOP-like · ESP32-C3, no 32 kHz crystal: 1.1 days"></div><span class="bar-val">1.1 d</span></div></div></div><div class="tip" role="tooltip"></div></figure><h3 id="33-what-this-does-to-the-product">3.3 What this does to the product</h3>
+<ul>
+<li>A 200 mAh+ cell instead of ~60–150 mAh adds about <strong>1 mm of pod thickness</strong> and <strong>2–3 g</strong> (MECHANICAL_STACKUP §2, §5).</li>
+<li>The 5–7 day target in brief §4.7 is not reachable on ESP32 in a WHOOP-size pod with continuous HR.</li>
+</ul>
+
+</section><section class="card"><h2 id="4-power-system--esp32-forces-a-different-pmic">4. Power system — ESP32 forces a different PMIC</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rail</td>
+<td>3.3 V only (3.0 V minimum)</td>
+<td>Runs directly on the shared 1.8 V rail</td>
+</tr>
+<tr>
+<td>Supply capability required</td>
+<td>Espressif: rail must deliver <strong>≥ 0.5 A</strong>; peaks 340 mA at +20 dBm, 170 mA at 0 dBm</td>
+<td>Peak ≈ 10 mA at +8 dBm</td>
+</tr>
+<tr>
+<td>Fits the planned nPM1300 (200 mA bucks)?</td>
+<td><strong>No</strong> — needs a separate ≥ 500 mA buck/buck-boost</td>
+<td><strong>Yes</strong> — one 200 mA buck covers it with margin</td>
+</tr>
+<tr>
+<td>End-of-discharge</td>
+<td>A 3.3 V LDO/buck from a Li-ion cell loses regulation below ≈ 3.4 V; usable capacity shrinks or a buck-boost is needed</td>
+<td>1.8 V buck stays in regulation down to the cell cut-off</td>
+</tr>
+<tr>
+<td>Peak-load droop (PEAK_LOAD.md)</td>
+<td>170 mA radio bursts stack on PPG LED and haptic pulses (≈ 185 mA already) → ~350 mA on a small cell</td>
+<td>Radio adds &lt; 10 mA</td>
+</tr>
+<tr>
+<td>eFuse programming</td>
+<td>VDD3P3_CPU must not exceed 3.3 V while burning eFuses</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+
+</section><section class="card"><h2 id="5-board-area-thickness-and-rf">5. Board area, thickness and RF</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3 module</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Footprint</td>
+<td>219 mm² + antenna keep-out (≈ 25–30 % of a 35 × 25 mm pod)</td>
+<td>≈ 5 mm² CSP or 36 mm² QFN + ≈ 20 small passives + chip antenna</td>
+</tr>
+<tr>
+<td>Thickness</td>
+<td>2.4 mm module</td>
+<td>0.85 mm QFN (nominal); CSP thinner</td>
+</tr>
+<tr>
+<td>Antenna</td>
+<td>Module PCB antenna; must sit at a board edge with nothing under it. On a wrist, body loading detunes it and we cannot retune it</td>
+<td>Our own chip/PCB antenna, matched for the enclosure and wrist</td>
+</tr>
+<tr>
+<td>Chip-down option</td>
+<td>ESP32-C3FH4X (QFN32 5 × 5) is possible, but then we lose the module's certification and still carry the power problem</td>
+<td>Native design approach</td>
+</tr>
+<tr>
+<td>Pre-certified module option</td>
+<td>The ESP module itself</td>
+<td>Ezurio BL54L15: 14 × 10 × 1.6 mm, FCC/ISED/CE/MIC/RCM/UKCA, integrated antenna</td>
+</tr>
+</tbody>
+</table></div>
+
+</section><section class="card"><h2 id="6-sensor-interfaces">6. Sensor interfaces</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logic level vs 1.8 V sensors</td>
+<td>3.3 V I/O. Sensors on 1.8 V (MAX86141 core/SPI, MAX30102 core) need translation. MAX86141 SPI is push-pull, so it needs a real translator IC, not BSS138s</td>
+<td>Runs at 1.8 V — every sensor connects directly</td>
+</tr>
+<tr>
+<td>Serial buses</td>
+<td>SPI, 1× I2C, 2× UART, I2S</td>
+<td>5 serial units (I2C/SPI/UART, one HS-SPI 32 MHz), PDM, I2S</td>
+</tr>
+<tr>
+<td>Free pins (band needs ≈ 21–23, TRADE_STUDY_MCU)</td>
+<td>15 GPIO, 3 are straps, 2 go to USB, 2 to a 32 kHz crystal → <strong>≈ 8–10 usable</strong>: <strong>not enough for the full band</strong> without an I/O expander</td>
+<td>31–32 GPIO: fits with spares</td>
+</tr>
+<tr>
+<td>Signal processing (HR, SpO2, HRV filters)</td>
+<td>No FPU: floating-point filters run in software; must be rewritten in fixed point</td>
+<td>FPU + DSP extensions; RISC-V coprocessor can handle sensor FIFOs</td>
+</tr>
+<tr>
+<td>ADC</td>
+<td>12-bit, ±10 mV after calibration; DNL ±7 LSB</td>
+<td>14-bit at 31.25 ksps</td>
+</tr>
+<tr>
+<td>Wake on sensor interrupt</td>
+<td>Light-sleep GPIO wake</td>
+<td>GPIO SENSE wake (see erratum [114] in §9)</td>
+</tr>
+</tbody>
+</table></div>
+
+</section><section class="card"><h2 id="7-firmware-phone-app-and-updates">7. Firmware, phone app and updates</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SDK / RTOS</td>
+<td>ESP-IDF (FreeRTOS), NimBLE or Bluedroid host</td>
+<td>nRF Connect SDK (Zephyr), Nordic SoftDevice Controller</td>
+</tr>
+<tr>
+<td>BLE wearable track record</td>
+<td>Mainly used in Wi-Fi IoT products</td>
+<td>Nordic parts are widely used in BLE wearables and sensors</td>
+</tr>
+<tr>
+<td>Firmware update over BLE</td>
+<td>Possible, but OTA-over-BLE is mostly custom work</td>
+<td>MCUboot + MCUmgr/SMP, with Nordic's <strong>ready iOS and Android DFU libraries</strong> (our BLE_SECURITY_DFU plan)</td>
+</tr>
+<tr>
+<td>Memory for dual-slot update</td>
+<td>4 MB flash: two app slots + NVS + logs share it</td>
+<td>Both slots in 1.5 MB RRAM; logs go to the external MX25R flash</td>
+</tr>
+<tr>
+<td>Logging to internal memory</td>
+<td>100 000 cycles: workable for small logs</td>
+<td>10 000 cycles: <strong>do not log to RRAM</strong>; use the external flash (already planned)</td>
+</tr>
+<tr>
+<td>Chip revision handling</td>
+<td>MINI-1-N4 is <strong>NRND</strong>; replacement N4X uses chip rev v1.1, which needs a specific minimum ESP-IDF version</td>
+<td>Single production revision (Rev 2) with published errata</td>
+</tr>
+<tr>
+<td>Porting cost if Iteration 1 uses ESP and production uses nRF</td>
+<td>Drivers and algorithms in plain C port; BLE, power, bootloader, DFU and build system are rewritten</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+
+</section><section class="card"><h2 id="8-security-and-privacy-health-data-gdpr--dpdp">8. Security and privacy (health data, GDPR / DPDP)</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Secure boot</td>
+<td>Secure Boot v2 (eFuse-held key digest)</td>
+<td>Secure boot with hardware root of trust; MCUboot ED25519</td>
+</tr>
+<tr>
+<td>Data at rest</td>
+<td>Flash encryption (key in eFuse)</td>
+<td>TrustZone, secure storage, key management unit (KMU)</td>
+</tr>
+<tr>
+<td>Physical attack protection</td>
+<td>No tamper detectors listed</td>
+<td>Tamper detectors (TAMPC, glitch detector), side-channel-protected crypto engine (CRACEN)</td>
+</tr>
+<tr>
+<td>Debug lock</td>
+<td>Disable USB-JTAG through eFuse</td>
+<td>APPROTECT / ERASEPROTECT</td>
+</tr>
+<tr>
+<td>Production key provisioning</td>
+<td>eFuse burning is <strong>one-way</strong>; a mistake bricks the unit</td>
+<td>KMU provisioning at the SWD fixture; note erratum [13] on KMU busy state</td>
+</tr>
+</tbody>
+</table></div>
+<p>Both can be made secure. The nRF has the stronger physical-attack story, which matters if health data is stored on the band.</p>
+
+</section><section class="card"><h2 id="9-known-silicon-issues-that-affect-this-product">9. Known silicon issues that affect this product</h2>
+<p><strong>nRF54L15 Revision 2 errata (v1.1, May 2026)</strong> — 35 open anomalies, all inherited from Rev 1. The ones relevant to the band:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Issue</th>
+<th>Effect on the band</th>
+<th>Handling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[41]</td>
+<td>RX sensitivity −2 dB on 2432 and 2464 MHz</td>
+<td>Slightly shorter range on two channels</td>
+<td>Acceptable; included in the link-budget margin</td>
+</tr>
+<tr>
+<td>[30]</td>
+<td>Real-time clock drifts at low temperature on internal clock</td>
+<td>Timestamps in cold weather</td>
+<td>Fixed in nRF Connect SDK 3.0+; also use the 32 MHz crystal</td>
+</tr>
+<tr>
+<td>[105]</td>
+<td>I2C peripheral locks up if disabled during clock stretching</td>
+<td>MAX30208 / I2C sensor bus could hang</td>
+<td>Never disable TWIM mid-transfer; reset recovers it</td>
+</tr>
+<tr>
+<td>[114]</td>
+<td>+300 µA in idle if a wake pin toggles fast</td>
+<td>Sensor interrupts could add 300 µA</td>
+<td>Use latched detect mode (LDETECT)</td>
+</tr>
+<tr>
+<td>[100]</td>
+<td>Analog-capable P1 pins briefly shorted at power-on</td>
+<td>Don't put supply/drive nets on P1.04–P1.14</td>
+<td>Pin assignment rule</td>
+</tr>
+<tr>
+<td>[37]</td>
+<td>Higher System OFF current right after reset</td>
+<td>Shipping-mode current</td>
+<td>1-line register workaround</td>
+</tr>
+<tr>
+<td>[58]</td>
+<td>Comparator leaves 300 µA static current</td>
+<td>Only if COMP is used</td>
+<td>Don't use COMP for battery sensing (PMIC does it)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>ESP32-C3</strong> — The module datasheet marks <strong>ESP32-C3-MINI-1-N4 as NRND (not recommended for new designs)</strong>; the bare ESP32-C3FN4 chip is <strong>EOL</strong>. Use <strong>ESP32-C3-MINI-1-N4X</strong> (or H4X for 105 °C). Chip-revision-specific issues are in the ESP32-C3 Series SoC Errata; firmware must target an ESP-IDF version that supports rev v1.1.</p>
+
+</section><section class="card"><h2 id="10-certification-and-manufacturing">10. Certification and manufacturing</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3 module</th>
+<th>nRF54L15 chip-down</th>
+<th>nRF54L15 via BL54L15 module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Radio certification (FCC/CE/etc.)</td>
+<td>Module grant reused; product-level unintentional-emission and RF-exposure tests still needed</td>
+<td><strong>Full</strong> intentional-radiator testing</td>
+<td>Module grant reused</td>
+</tr>
+<tr>
+<td>Radios in scope</td>
+<td>BLE <strong>and Wi-Fi</strong></td>
+<td>BLE only (+802.15.4 if enabled)</td>
+<td>BLE</td>
+</tr>
+<tr>
+<td>Bluetooth SIG listing</td>
+<td>Required (product qualification)</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Factory programming</td>
+<td>USB/UART; eFuse keys one-way</td>
+<td>SWD fixture (TC2030 pads, DFT_PROGRAMMING.md)</td>
+<td>SWD</td>
+</tr>
+<tr>
+<td>Assembly</td>
+<td>MSL 3, single reflow for the module</td>
+<td>QFN MSL 2 / CSP MSL 1; CSP needs HDI microvias</td>
+<td>Module, standard reflow</td>
+</tr>
+<tr>
+<td>Board technology</td>
+<td>2–4 layer</td>
+<td>CSP needs HDI 1+N+1; QFN48 works on standard 4-layer</td>
+<td>Standard</td>
+</tr>
+</tbody>
+</table></div>
+
+</section><section class="card"><h2 id="11-what-the-nrf54l15-adds-in-flashing-debugging-and-day-to-day-development">11. What the nRF54L15 adds in flashing, debugging and day-to-day development</h2>
+<p>Moving from the ESP32-C3 to the nRF54L15 does not change the sensors or the algorithms. It changes <strong>how firmware gets onto the chip, how we see what it is doing, and how a broken unit is recovered.</strong> Each item below is extra work or extra equipment compared with the ESP32's single USB cable.</p>
+<h3 id="111-flashing-and-recovery">11.1 Flashing and recovery</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+<th>What it means for us</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How firmware is loaded</td>
+<td>USB-C cable, ROM bootloader (<code>esptool</code>), always present in silicon</td>
+<td><strong>SWD debug probe only.</strong> No USB, no ROM bootloader</td>
+<td>Every bench, every engineer and every factory station needs a probe</td>
+</tr>
+<tr>
+<td>Hardware needed</td>
+<td>A USB cable</td>
+<td>SEGGER J-Link (or the J-Link on an nRF54L15 DK used as an external programmer), plus a debug connector on the board</td>
+<td>About one probe per developer plus spares; a DK can be the programmer during Iteration 1</td>
+</tr>
+<tr>
+<td>Debug connector</td>
+<td>None</td>
+<td>SWDIO, SWDCLK, nRESET, VDD reference, GND: a 10-pin 1.27 mm Cortex header on dev boards, Tag-Connect TC2030 pads on the band (DFT_PROGRAMMING.md)</td>
+<td>Board area and a fixture design; the probe must sense the 1.8 V reference</td>
+</tr>
+<tr>
+<td>Software tools</td>
+<td><code>esptool</code>, ESP-IDF</td>
+<td><strong>nRF Util</strong> (<code>nrfutil device program</code>, <code>nrfutil device recover</code>) and <code>west flash</code>. The older <code>nrfjprog</code> is being retired, so older guides and scripts do not apply</td>
+<td>Tool versions must be kept in step with the SDK; out-of-date tools report "unknown device" on nRF54L parts</td>
+</tr>
+<tr>
+<td>Recovering a board with bad firmware</td>
+<td>Hold BOOT, reset, re-flash over USB</td>
+<td>Probe <strong>erase-all</strong> (<code>nrfutil device recover</code>) wipes the whole chip, then re-flash</td>
+<td>Recovery also wipes stored keys, calibration and logs held in RRAM</td>
+</tr>
+<tr>
+<td>If debug protection is on</td>
+<td>Secure download mode and eFuses limit USB access</td>
+<td><code>APPROTECT</code> blocks the debugger; erase-all temporarily re-opens it. <strong>If <code>ERASEPROTECT</code> is also set, erase-all is disabled</strong> and the port can only be re-opened by firmware that cooperates with the debugger</td>
+<td>A wrong protection setting can permanently lock a unit. Protection is set <strong>only at the end of the production line</strong>, never on development boards</td>
+</tr>
+<tr>
+<td>Updating units in the field</td>
+<td>OTA (custom BLE OTA, or Wi-Fi)</td>
+<td>MCUboot bootloader + BLE update (MCUmgr/SMP) with Nordic's phone libraries</td>
+<td>MCUboot and image signing must be set up <strong>before</strong> the first unit leaves the bench. If MCUboot itself is damaged, only SWD can fix the unit</td>
+</tr>
+<tr>
+<td>Fallback serial recovery</td>
+<td>Built into ROM</td>
+<td>Optional MCUboot serial recovery over UART (must be designed in)</td>
+<td>Worth enabling on Iteration 1 boards</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112-seeing-what-the-firmware-does-logs-and-data">11.2 Seeing what the firmware does (logs and data)</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>ESP32-C3</th>
+<th>nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Debug logs</td>
+<td>Over the same USB cable</td>
+<td><strong>SEGGER RTT through the debug probe</strong> (fast, no extra pins), or a UART</td>
+</tr>
+<tr>
+<td>Streaming raw PPG to a PC</td>
+<td>Native USB</td>
+<td>UART + a <strong>USB-UART bridge IC</strong> (with a 1.8 V I/O supply pin), over BLE, or RTT through the probe</td>
+</tr>
+<tr>
+<td>Step-through debugging</td>
+<td>USB-JTAG on the same cable</td>
+<td>Full Cortex-M debug (breakpoints, ETM/ITM trace) through the probe: more capable, but the probe must be attached</td>
+</tr>
+<tr>
+<td>Measuring current</td>
+<td>Bench meter</td>
+<td>Same, plus Nordic's Power Profiler Kit II, the usual tool for µA-level sleep checks: one more piece of equipment, but needed to prove the battery numbers</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113-build-system-and-firmware-setup">11.3 Build system and firmware setup</h3>
+<ul>
+<li><strong>nRF Connect SDK (Zephyr).</strong> Larger install, the <code>west</code> build tool, <strong>devicetree</strong> for pins and peripherals, <strong>Kconfig</strong> for features, and sysbuild to build the application and MCUboot together. Powerful, but the learning curve is steeper than ESP-IDF.</li>
+<li><strong>Custom board definition.</strong> Our board needs its own devicetree board files (pin control, clocks, rails) before any sample runs. The ESP32 module works with stock settings.</li>
+<li><strong>The SDK version is part of the hardware fix list.</strong> Several errata workarounds (for example [30] GRTC drift) exist only in nRF Connect SDK 3.0 or later, so the SDK version must be pinned and recorded.</li>
+<li><strong>Two processors.</strong> The RISC-V coprocessor runs its own firmware image. Using it (for sensor FIFOs or sQSPI) means a second build and harder debugging. It is optional; Iteration 1 does not need it.</li>
+</ul>
+<h3 id="114-hardware-design-work-the-module-would-have-done-for-us">11.4 Hardware design work the module would have done for us</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Work on the nRF54L15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>32 MHz crystal</td>
+<td>Required; placement and load capacitance (internal tunable capacitors) must be set</td>
+</tr>
+<tr>
+<td>32.768 kHz crystal</td>
+<td>Optional; saves current versus the internal RC oscillator. Decide by measurement</td>
+</tr>
+<tr>
+<td>DC/DC inductor</td>
+<td>Required for the low currents in §3; without it the chip runs in the less efficient LDO mode</td>
+</tr>
+<tr>
+<td>RF matching and antenna</td>
+<td>Our own matching network and antenna, tuned <strong>in the real enclosure on a wrist</strong> with a vector network analyser</td>
+</tr>
+<tr>
+<td>Pin assignment rules</td>
+<td>Avoid the errata pins (§9: P1.04–P1.14 at power-up); keep analog inputs away from noisy lines</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="115-security-setup-and-production-line">11.5 Security setup and production line</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What has to be done</th>
+<th>Risk if done wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signing keys</td>
+<td>Generate MCUboot signing keys, store them off-line, sign every release</td>
+<td>Lost key = no more field updates; leaked key = anyone can push firmware</td>
+</tr>
+<tr>
+<td>Key provisioning</td>
+<td>Load keys into the KMU at the programming station (erratum [13]: do not re-trigger provisioning while the KMU is busy)</td>
+<td>Unit boots unsigned, or not at all</td>
+</tr>
+<tr>
+<td>Debug lock</td>
+<td>Set <code>APPROTECT</code> (and, if chosen, <code>ERASEPROTECT</code>) as the <strong>last</strong> station step</td>
+<td>Locked before testing is complete → the unit cannot be re-flashed</td>
+</tr>
+<tr>
+<td>Factory flow</td>
+<td>Pogo-pin SWD fixture → program → RF self-test (radio test firmware) → functional test → protect → serialise</td>
+<td>Each station needs a probe; programming time sets line throughput</td>
+</tr>
+<tr>
+<td>Radio certification testing</td>
+<td>The lab needs DTM / radio-test firmware and a way to command it (UART or probe)</td>
+<td>Test pads must be planned into the board</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="116-how-to-keep-this-complexity-manageable">11.6 How to keep this complexity manageable</h3>
+<ol>
+<li><strong>Use the BL54L15 pre-certified module for Iteration 1.</strong> It removes the crystal, RF matching, antenna tuning and radio certification from the first board, while running the production silicon.</li>
+<li><strong>Use an nRF54L15 DK as programmer and reference.</strong> Its on-board J-Link programs our board through the debug-out header; one DK per engineer.</li>
+<li><strong>Put a 10-pin debug header and a USB-UART bridge on Iteration 1.</strong> This gives back the one-cable workflow for data streaming, with RTT for logs.</li>
+<li><strong>Enable MCUboot with serial recovery from day one,</strong> so a bad build is fixed without erasing the chip.</li>
+<li><strong>Pin the SDK and tool versions</strong> in the repository, and keep debug protection <strong>off</strong> until the production line.</li>
+<li><strong>Write the board devicetree once</strong> and reuse it for every revision.</li>
+</ol>
+
+</section><section class="card"><h2 id="12-pros-and-cons-summary">12. Pros and cons summary</h2>
+<h3 id="esp32-c3">ESP32-C3</h3>
+<p><strong>Pros</strong>
+- Single USB-C cable for flashing, debugging and data streaming.
+- Pre-certified module with antenna: lowest RF and certification risk.
+- 4 MB flash and 400 KB RAM for raw-data buffering.
+- Large community, fast prototyping, Wi-Fi available for lab data offload.
+- +20 dBm TX for long range when needed.</p>
+<p><strong>Cons in production</strong>
+- ~3× the battery for the same life; 5 days typical needs ≥ 200 mAh, against 61 mAh on the nRF.
+- 3.3 V-only: needs its own ≥ 500 mA regulator, can't share the 1.8 V rail, loses regulation at low cell voltage.
+- The planned nPM1300 PMIC cannot power it.
+- Module takes ~25–30 % of the pod footprint and 2.4 mm height.
+- Only ~8–10 usable GPIO after straps, USB and the 32 kHz crystal: not enough for the full band.
+- No FPU: PPG filtering must be written in fixed point.
+- Needs level translators for every 1.8 V sensor, including a push-pull translator for MAX86141 SPI.
+- No NFC tap-to-pair. Wi-Fi radio adds certification scope with no product use.
+- Base part number already NRND; must use the newer N4X.</p>
+<h3 id="nrf54l15">nRF54L15</h3>
+<p><strong>Pros</strong>
+- Meets the 5–7 day target with a small cell (≈ 12 days typical on 150 mAh).
+- Runs on the shared 1.8 V rail; every sensor connects directly; fits the nPM1300.
+- Tiny (CSP 2.4 × 2.2 mm) with 31–32 GPIO.
+- FPU/DSP plus a RISC-V coprocessor for sensor handling.
+- NFC tap-to-pair, Channel Sounding, Thread/Matter capable.
+- Strongest security: TrustZone, KMU, tamper and side-channel protection.
+- Mature BLE DFU with ready phone libraries.
+- Pre-certified module option (BL54L15) if a module is preferred.</p>
+<p><strong>Cons</strong>
+- No USB and no ROM bootloader: every flash and recovery goes through an SWD probe; data streaming needs a USB-UART bridge or RTT (§11).
+- Recovery by erase-all wipes keys and calibration; a wrong <code>ERASEPROTECT</code> setting can lock a unit permanently.
+- Zephyr build system, a custom board devicetree and pinned SDK versions add set-up work before the first sample runs.
+- Chip-down RF design (antenna, matching, crystal) and full radio certification unless a module is used.
+- Newer part: 35 published errata (none blocking, several need firmware or pin-assignment rules), younger SDK, fewer community examples.
+- RRAM endurance 10 000 cycles: logs must go to external flash (already planned).
+- CSP package needs HDI; QFN48 avoids that at a larger footprint.
+- Steeper toolchain (Zephyr / nRF Connect SDK).</p>
+
+</section><section class="card"><h2 id="13-sources">13. Sources</h2>
+<ul>
+<li>Espressif, <em>ESP32-C3 Series Datasheet</em> v2.4 — tables 1-1, 5-1 to 5-11, 6-8, 6-12.</li>
+<li>Espressif, <em>ESP32-C3-MINI-1 &amp; MINI-1U Datasheet</em> v2.2 — tables 1-1, 6-4 to 6-7, §12.</li>
+<li>Espressif, ESP-IDF <em>Bluetooth LE low-power mode</em> guide and <code>examples/bluetooth/nimble/power_save</code> README (light sleep 2.3 mA main XTAL / 140 µA 32 kHz crystal).</li>
+<li>Nordic Semiconductor, <em>nRF54L15/nRF54L10/nRF54L05 Datasheet</em> v1.0 (Sep 2025) — key features, tables 96–98.</li>
+<li>Nordic Semiconductor, <em>nRF54L15 Revision 2 Errata</em> v1.1 (2026-05-12).</li>
+<li>Nordic datasheet v1.0 §9.6 CTRL-AP (erase all, erase protection) and UICR APPROTECT / ERASEPROTECT registers.</li>
+<li>Nordic DevZone: nrfjprog retirement and <code>nrfutil device recover</code> for nRF54L15.</li>
+<li>Ezurio, <em>BL54L15 Series Datasheet</em> v1.1.</li>
+<li>This repository: <code>research/power-battery/battery_model.py</code>, <code>research/mcu-ble/mcu_power_compare.py</code>, <code>research/mcu-ble/TRADE_STUDY_MCU.md</code>, <code>research/validation/MECHANICAL_STACKUP.md</code>, <code>research/power-battery/PEAK_LOAD.md</code>.</li>
+</ul></section>
+<footer>HealthOS Band · ESP32-C3 vs nRF54L15</footer></main></div>
+<button class="theme" type="button" aria-label="Toggle light or dark theme">◐ Theme</button>
+<script>
+document.querySelectorAll('table').forEach(t=>{const hs=[...t.querySelectorAll('th')];hs.forEach((h,i)=>{const s=h.textContent;
+const c=/nRF54L15|BL54L15/.test(s)?'nrf':/ESP32/.test(s)?'esp':'';if(!c||i===0)return;h.classList.add(c);
+t.querySelectorAll('tbody tr').forEach(r=>r.children[i]&&r.children[i].classList.add(c))})});
+const links=[...document.querySelectorAll('nav.toc a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>s&&io.observe(s));
+const fig=document.querySelector('.chart'),tip=fig&&fig.querySelector('.tip');
+fig&&fig.querySelectorAll('.bar').forEach(b=>{b.addEventListener('mousemove',e=>{const r=fig.getBoundingClientRect();tip.textContent=b.dataset.tip;
+tip.style.left=(e.clientX-r.left+12)+'px';tip.style.top=(e.clientY-r.top-34)+'px';tip.style.opacity=1});b.addEventListener('mouseleave',()=>tip.style.opacity=0)});
+const btn=document.querySelector('.theme');btn.onclick=()=>{const d=document.documentElement,dark=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+d.dataset.theme=dark?'light':'dark';try{localStorage.setItem('theme',d.dataset.theme)}catch(e){}};
+try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+</script></body></html>

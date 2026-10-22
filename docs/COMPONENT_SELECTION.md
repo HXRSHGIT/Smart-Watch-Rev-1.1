@@ -25,7 +25,7 @@ These objectives define a development platform, not a medically validated device
 
 | Function | Selected component | Quantity | Main reason for selection |
 |---|---|---:|---|
-| Controller, memory and wireless | ESP32-C3-MINI-1-N4 | 1 | Integrated module simplifies processor/RF implementation and provides USB, BLE and 4 MB flash. |
+| Controller, memory and wireless | ESP32-C3-MINI-1-N4X | 1 | Integrated module simplifies processor/RF implementation and provides USB, BLE and 4 MB flash. |
 | Optical sensing | MAX30102EFD+T | 1 | Integrates red/IR emitters, detector and acquisition electronics for an initial HR/SpO2 platform. |
 | Temperature sensing | MAX30208CLB+ | 1 | Digital contact-temperature sensor suitable for skin-temperature trend experiments. |
 | Main 3.3 V regulator | AP2112K-3.3TRG1 | 1 | Simple USB-to-3.3 V supply for the ESP32 module and optical LED circuit. |
@@ -42,7 +42,7 @@ Exact switch/LED part numbers and the complete passive BOM will be selected duri
 
 ## 3. Component decisions and technical rationale
 
-### 3.1 ESP32-C3-MINI-1-N4 - controller and wireless module
+### 3.1 ESP32-C3-MINI-1-N4X - controller and wireless module
 
 **Role in the system**
 

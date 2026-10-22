@@ -16,7 +16,7 @@ The component choices and scope below are approved. This is not a fabrication-re
 
 | Function | Selected part / specification | Quantity | Decision and rationale |
 |---|---|---:|---|
-| Controller, flash and radio module | ESP32-C3-MINI-1-N4 | 1 | Solder-down module with 4 MB flash, BLE, Wi-Fi and native USB Serial/JTAG. Reduces clock/RF implementation work so this iteration can focus on sensing. Keep Wi-Fi disabled by default. |
+| Controller, flash and radio module | ESP32-C3-MINI-1-N4X | 1 | Solder-down module with 4 MB flash, BLE, Wi-Fi and native USB Serial/JTAG. Reduces clock/RF implementation work so this iteration can focus on sensing. Keep Wi-Fi disabled by default. |
 | Optical acquisition | MAX30102EFD+T | 1 | Integrated red/IR LEDs, photodetector and acquisition electronics. Use raw samples for HR/SpO2 development. No external optical AFE, LEDs or photodiodes are fitted. |
 | Skin-temperature sensor | MAX30208CLB+ | 1 | Shares the 1.8 V sensor-side I2C bus. Place on a thermally isolated skin-facing area with local decoupling. |
 | Main 3.3 V supply | AP2112K-3.3TRG1 | 1 | USB 5 V to 3.3 V for the module and optical LED supply. The 600 mA regulator rating is not a guarantee of available continuous board current: verify input-power limits, transients and thermal dissipation. |
@@ -52,7 +52,7 @@ No external USB-to-UART IC is needed for the main logging path because the selec
 ```text
 USB-C 5 V
     |
-    +-- AP2112K, 3.3 V --+-- ESP32-C3-MINI-1-N4
+    +-- AP2112K, 3.3 V --+-- ESP32-C3-MINI-1-N4X
                          +-- MAX30102 VLED+
                          +-- TLV75518, 1.8 V --+-- MAX30102 VDD
                                               +-- MAX30208 VDD

@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>HealthOS Band — MCU Comparison</title><style>/* 800 V BMU documentation — instrument/datasheet visual system.
+   Self-contained: system fonts only, no external assets, no scripts. */
+
+:root{
+  --paper:#F1F4F5;
+  --panel:#FFFFFF;
+  --ink:#0F171B;
+  --muted:#5A6B73;
+  --line:#C3D1D6;
+  --line-soft:#E1E9EB;
+  --hv:#D9480F;          /* HV cabling orange - verdicts and cautions only */
+  --hv-soft:#FCEFE8;
+  --data:#0B6270;        /* instrument cyan - links and data emphasis */
+  --head:#E6EDEF;
+  --zebra:#F7FAFA;
+  --code:#EDF2F3;
+  --figure:#0E171B;      /* dark panel behind ASCII diagrams */
+  --figure-ink:#D3E3E7;
+  --figure-line:#26383F;
+  --shadow:rgba(15,40,50,.10);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0C1214;
+    --panel:#121A1E;
+    --ink:#DEE9EB;
+    --muted:#8DA0A6;
+    --line:#2A383E;
+    --line-soft:#1C282D;
+    --hv:#FF7A45;
+    --hv-soft:#2B1711;
+    --data:#4FD0E0;
+    --head:#1A252A;
+    --zebra:#161F23;
+    --code:#182226;
+    --figure:#070D0F;
+    --figure-ink:#D3E3E7;
+    --figure-line:#223238;
+    --shadow:rgba(0,0,0,.40);
+  }
+}
+
+*{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  padding:0 20px;
+  background:var(--paper);
+  color:var(--ink);
+  font:15.5px/1.65 "Segoe UI",system-ui,-apple-system,"Helvetica Neue",Roboto,sans-serif;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+}
+
+main{max-width:1100px;margin:0 auto;padding:40px 0 96px}
+
+/* ---- prose measure -------------------------------------------------- */
+p,li,blockquote{max-width:74ch}
+
+/* ---- title block: schematic sheet corner ---------------------------- */
+.titleblock{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-top:4px solid var(--hv);
+  border-radius:3px;
+  padding:30px 32px 24px;
+  margin:0 0 40px;
+  box-shadow:0 1px 3px var(--shadow);
+  max-width:none;
+}
+.titleblock h1{
+  font-size:37px;
+  line-height:1.14;
+  font-weight:700;
+  letter-spacing:-.021em;
+  margin:0 0 14px;
+  max-width:22ch;
+}
+.titleblock p{margin:6px 0;color:var(--muted);max-width:78ch}
+.titleblock p:first-of-type{
+  color:var(--ink);
+  font-size:17px;
+  font-weight:600;
+  letter-spacing:-.005em;
+  margin-bottom:16px;
+}
+.titleblock p strong{font-weight:600;color:inherit}
+.titleblock code{background:transparent;padding:0;color:var(--ink);font-size:13px}
+.titleblock p:last-child{
+  margin-top:20px;
+  padding-top:14px;
+  border-top:1px solid var(--line-soft);
+  color:var(--ink);
+  font-weight:600;
+}
+
+/* ---- headings: each section taps the left rule ---------------------- */
+h1,h2,h3,h4{text-wrap:balance}
+
+h2{
+  position:relative;
+  font-size:24px;
+  line-height:1.25;
+  font-weight:650;
+  letter-spacing:-.013em;
+  margin:56px 0 16px;
+  padding:16px 0 0 18px;
+  border-top:1px solid var(--line);
+}
+h2::before{                     /* the tap marker on the section rule */
+  content:"";
+  position:absolute;
+  left:0;top:16px;
+  width:6px;height:calc(100% - 16px);
+  min-height:20px;
+  background:var(--hv);
+  border-radius:1px;
+}
+
+h3{
+  font-size:19px;
+  font-weight:650;
+  letter-spacing:-.008em;
+  margin:36px 0 10px;
+  padding-left:18px;
+  max-width:48ch;
+}
+
+h4{
+  font-size:16px;
+  font-weight:650;
+  color:var(--data);
+  margin:26px 0 8px;
+  padding-left:18px;
+}
+
+/* indent body content to align with the headings' rail */
+h2 ~ p, h2 ~ ul, h2 ~ ol, h2 ~ blockquote, h2 ~ .tbl, h2 ~ pre, h2 ~ p > img{
+  margin-left:18px;
+}
+.toc{margin-left:18px}
+
+a{color:var(--data);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--hv)}
+a:focus-visible,:focus-visible{outline:2px solid var(--hv);outline-offset:2px;border-radius:2px}
+
+strong{font-weight:650}
+
+/* ---- contents: two-column index ------------------------------------- */
+.toc{
+  list-style:none;
+  padding:20px 24px;
+  margin:16px 0 0 18px;
+  background:var(--panel);
+  border:1px solid var(--line-soft);
+  border-radius:3px;
+  columns:2;
+  column-gap:40px;
+  max-width:none;
+}
+.toc li{
+  break-inside:avoid;
+  margin:0 0 7px;
+  padding-left:0;
+  max-width:none;
+  font-size:14.5px;
+}
+.toc a{text-decoration:none;color:var(--ink);display:block;padding:2px 0}
+.toc a:hover{color:var(--hv);text-decoration:underline}
+
+@media (max-width:760px){ .toc{columns:1} }
+
+/* ---- tables: the workhorse ------------------------------------------ */
+.tbl{
+  overflow-x:auto;
+  margin:18px 0 22px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  background:var(--panel);
+  box-shadow:0 1px 2px var(--shadow);
+}
+table{
+  border-collapse:collapse;
+  font-size:14px;
+  width:100%;
+  background:var(--panel);
+}
+th,td{
+  padding:9px 14px;
+  text-align:left;
+  vertical-align:top;
+  border-bottom:1px solid var(--line-soft);
+}
+th{
+  background:var(--head);
+  font-weight:650;
+  font-size:13px;
+  letter-spacing:.005em;
+  border-bottom:2px solid var(--line);
+  white-space:nowrap;
+}
+tbody tr:nth-child(even){background:var(--zebra)}
+tbody tr:hover{background:var(--hv-soft)}
+tbody tr:last-child td{border-bottom:none}
+td code{font-size:12.5px;white-space:nowrap}
+
+/* the author already marked winning values with ** ** - let them carry */
+td strong{color:var(--hv);font-weight:650}
+
+/* ---- ASCII diagrams as instrument panels ---------------------------- */
+pre{
+  background:var(--figure);
+  color:var(--figure-ink);
+  border:1px solid var(--figure-line);
+  border-top:3px solid var(--hv);
+  border-radius:4px;
+  padding:20px 22px;
+  margin:20px 0 24px;
+  overflow-x:auto;
+  box-shadow:0 2px 6px var(--shadow);
+  /* the font must be set on pre itself: its inherited strut would otherwise
+     set a taller minimum line box and break the box-drawing glyph joins */
+  font:12.5px/1 Consolas,"Cascadia Mono",ui-monospace,"DejaVu Sans Mono",monospace;
+}
+pre code{
+  background:none;
+  padding:0;
+  color:inherit;
+  font:inherit;
+  white-space:pre;
+}
+
+code{
+  font:13px/1.5 Consolas,"Cascadia Mono",ui-monospace,"DejaVu Sans Mono",monospace;
+  background:var(--code);
+  padding:1.5px 5px;
+  border-radius:3px;
+  color:var(--ink);
+}
+
+/* ---- caveats: every blockquote here is a caution -------------------- */
+blockquote{
+  margin:18px 0;
+  padding:14px 18px;
+  background:var(--hv-soft);
+  border:1px solid var(--line-soft);
+  border-left:4px solid var(--hv);
+  border-radius:3px;
+  color:var(--ink);
+}
+blockquote p{margin:6px 0;max-width:70ch}
+blockquote p:first-child{margin-top:0}
+blockquote p:last-child{margin-bottom:0}
+blockquote strong{color:var(--hv)}
+
+/* ---- proof panels: a screenshot of the page each figure came from ---- */
+figure.ev{
+  margin:22px 0 26px 18px;
+  padding:0;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-left:4px solid var(--data);
+  border-radius:3px;
+  overflow:hidden;
+  box-shadow:0 1px 3px var(--shadow);
+  max-width:none;
+}
+figure.ev img{
+  display:block;
+  width:100%;
+  margin:0;
+  border:0;
+  border-radius:0;
+  padding:14px 16px 10px;
+  background:#fff;          /* datasheet crops are black-on-white originals */
+  box-shadow:none;
+}
+figure.ev figcaption{
+  font-size:13px;
+  line-height:1.55;
+  color:var(--muted);
+  padding:11px 16px 13px;
+  border-top:1px solid var(--line-soft);
+  background:var(--panel);
+}
+figure.ev figcaption b{color:var(--ink);font-weight:650}
+.ev-tag{
+  display:inline-block;
+  background:var(--data);
+  color:#fff;
+  font-size:11px;
+  font-weight:650;
+  letter-spacing:.03em;
+  padding:2px 7px;
+  border-radius:2px;
+  margin-right:7px;
+  vertical-align:1px;
+}
+.ev-url{word-break:break-all;font-size:12.5px}
+
+@media (prefers-color-scheme: dark){
+  .ev-tag{color:#07171a}
+}
+
+@media print{
+  figure.ev{break-inside:avoid;page-break-inside:avoid;box-shadow:none}
+  .ev-tag{background:#000;color:#fff}
+}
+
+/* ---- schematic excerpts --------------------------------------------- */
+img{
+  max-width:100%;
+  display:block;
+  margin:18px 0 8px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:3px;
+  padding:6px;
+  box-shadow:0 1px 3px var(--shadow);
+}
+
+ul,ol{padding-left:22px}
+li{margin:4px 0}
+li::marker{color:var(--muted)}
+
+/* the markdown's --- separators are redundant: each h2 draws its own rule */
+hr{display:none}
+
+/* closing credit line */
+main > p:last-child{
+  margin:40px 0 0 18px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+}
+
+/* ---- responsive ------------------------------------------------------ */
+@media (max-width:720px){
+  body{padding:0 14px;font-size:15px}
+  main{padding:24px 0 64px}
+  .titleblock{padding:22px 20px 18px}
+  .titleblock h1{font-size:28px}
+  h2{font-size:21px;margin-top:40px}
+  h2 ~ p, h2 ~ ul, h2 ~ ol, h2 ~ blockquote, h2 ~ .tbl, h2 ~ pre,
+  h3, h4, .toc{margin-left:0;padding-left:0}
+  h2{padding-left:14px}
+  h2::before{width:4px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+
+/* ---- print: engineers print these ----------------------------------- */
+@media print{
+  :root{
+    --paper:#fff;--panel:#fff;--ink:#000;--muted:#333;
+    --line:#999;--line-soft:#ccc;--head:#eee;--zebra:#fff;
+    --figure:#fff;--figure-ink:#000;--figure-line:#999;
+    --hv-soft:#fff;--shadow:transparent;
+  }
+  body{font-size:10.5pt;padding:0}
+  main{max-width:none;padding:0}
+  .titleblock,.tbl,pre,blockquote,img{box-shadow:none}
+  pre{border:1px solid #999}
+  pre code{color:#000}
+  h2{break-after:avoid;page-break-after:avoid}
+  h3,h4{break-after:avoid}
+  .tbl,pre,table,img,blockquote{break-inside:avoid;page-break-inside:avoid}
+  tr{break-inside:avoid}
+  .toc{columns:2}
+  a{color:#000;text-decoration:none}
+}
+</style></head>
+<body><main>
+<h1 id="mcu-comparison-esp32-c3-module-vs-nrf54l15">MCU Comparison: ESP32-C3 module vs nRF54L15</h1>
+<p><strong>Project:</strong> HealthOS Band, Iteration 1 (functional sensor prototype)
+<strong>Recommendation:</strong> ESP32-C3-MINI-1-N4X for Iteration 1.</p>
+<p>Done by Harsh Thakur.</p>
+<p>Figures below are from vendor documentation as understood at the time of writing and must be re-checked against the exact datasheets before ordering.</p>
+<h2 id="1-summary">1. Summary</h2>
+<p>Iteration 1 exists to get clean red/IR optical waveforms and temperature data onto a computer, quickly and with as few unknowns as possible. The ESP32-C3 module is the lowest-risk way to do that. The nRF54L15 is a strong chip, but on this board it adds parts, tools and bring-up steps that do not help the first-iteration goal.</p>
+<h2 id="2-side-by-side-comparison">2. Side-by-side comparison</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>ESP32-C3-MINI-1-N4X</th>
+<th>nRF54L15</th>
+<th>Advantage for Iteration 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Form</td>
+<td>Pre-built, pre-certified module: chip, flash, crystal, RF matching and antenna in one part</td>
+<td>Bare SoC (CSP or QFN): flash is on-chip, but crystals, RF matching, antenna and decoupling are ours to design</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Programming and logging</td>
+<td>Native USB Serial/JTAG: one USB-C cable programs, debugs and streams raw data</td>
+<td>No USB. Needs an SWD programmer plus a separate USB-UART bridge for logging</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Extra parts for the dev loop</td>
+<td>None beyond the USB-C connector and ESD part</td>
+<td>SWD header, programmer or debug probe, USB-UART bridge IC, its supply and routing</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Recovery from bad firmware</td>
+<td>Boot button plus reset, USB download mode</td>
+<td>Needs a working probe and protection settings (APPROTECT / ERASEPROTECT) handled carefully, or the chip can be locked</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Radio</td>
+<td>BLE 5 and Wi-Fi 4</td>
+<td>BLE 5.x, Thread, Zigbee, proprietary 2.4 GHz; no Wi-Fi</td>
+<td>ESP32 (Wi-Fi is spare capability for lab use)</td>
+</tr>
+<tr>
+<td>Radio certification</td>
+<td>Module carries its own radio approvals; the product still needs its own testing, but the radio design risk is lower</td>
+<td>Chip-down RF design: layout, matching and antenna tuning are our responsibility</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>4 MB flash, ~400 KB RAM</td>
+<td>~1.5 MB on-chip non-volatile memory, 256 KB RAM</td>
+<td>ESP32 for raw-data buffering</td>
+</tr>
+<tr>
+<td>Supply</td>
+<td>3.0 to 3.6 V</td>
+<td>1.7 to 3.6 V</td>
+<td>nRF (can share the 1.8 V sensor rail)</td>
+</tr>
+<tr>
+<td>Power consumption</td>
+<td>Higher radio and sleep current</td>
+<td>Lower; designed for coin-cell and small-battery wearables</td>
+<td><strong>nRF</strong></td>
+</tr>
+<tr>
+<td>Tools and SDK</td>
+<td>ESP-IDF or Arduino; large community, many worked examples for MAX30102-class sensors</td>
+<td>nRF Connect SDK (Zephyr); powerful but a steeper setup</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Maturity</td>
+<td>Established part with a long field history</td>
+<td>Newer part; fewer community examples and a younger SDK</td>
+<td><strong>ESP32</strong></td>
+</tr>
+<tr>
+<td>Security features</td>
+<td>Secure boot and flash encryption</td>
+<td>Stronger key storage (KMU), tamper options</td>
+<td>nRF</td>
+</tr>
+<tr>
+<td>NFC tag (tap-to-pair)</td>
+<td>None</td>
+<td>Passive NFC tag built in</td>
+<td>nRF</td>
+</tr>
+<tr>
+<td>Package size</td>
+<td>Module ~13 x 16.6 mm</td>
+<td>CSP 2.25 x 2.45 mm or QFN 6 x 6 mm, but needs surrounding RF parts</td>
+<td>Tie (size is not a goal this iteration)</td>
+</tr>
+<tr>
+<td>Board complexity</td>
+<td>Simple 2-layer-friendly module footprint</td>
+<td>Fine-pitch package, RF layout, more passives</td>
+<td><strong>ESP32</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-why-the-nrf54l15-would-complicate-iteration-1">3. Why the nRF54L15 would complicate Iteration 1</h2>
+<ol>
+<li><strong>No native USB.</strong> The first board's whole workflow is "plug in one cable, flash, and stream data". On the nRF this needs a programmer plus a USB-UART bridge, which is two more interfaces that can each fail before any sensor is tested.</li>
+<li><strong>More circuitry to get right.</strong> Chip-down RF means crystals, matching network and antenna layout. A mistake there looks like a dead radio, and it is hard to tell from a firmware fault.</li>
+<li><strong>Locked-chip risk.</strong> Production-style protection on the nRF can lock out the debug port. A wrong setting during early firmware work can leave a board that cannot be recovered without a full erase.</li>
+<li><strong>Heavier toolchain.</strong> The nRF Connect SDK is capable but has a longer learning curve, and a newer chip has fewer solved examples when something goes wrong.</li>
+<li><strong>No benefit on the first-iteration goals.</strong> The board is USB-powered. Its lower power consumption is the nRF's main advantage and is not needed until a battery is added.</li>
+<li><strong>More places for schedule slip.</strong> Extra parts, extra tools and unfamiliar RF work all add rework risk before the sensing question (do we get a clean PPG signal?) is even answered.</li>
+</ol>
+<h2 id="4-what-this-means-for-the-final-band">4. What this means for the final band</h2>
+<p>The ESP32-C3 is the right choice to prove the sensing platform. It is <strong>not</strong> assumed to be the final wearable processor. Battery life for a 5-7 day band depends on measured current, and the ESP32 draws more than the nRF in radio and sleep modes. The final MCU decision is made after Iteration 1 data: measured sensor workload, measured power, and the firmware that actually runs on the board. The sensor drivers, HR/SpO2 algorithms and data formats built on the ESP32 are plain C and will port.</p>
+<h2 id="5-decision">5. Decision</h2>
+<p>Use the <strong>ESP32-C3-MINI-1-N4X</strong> for Iteration 1. Revisit the processor at the start of the next hardware revision, when a battery, power measurements and a size target exist.</p>
+</main></body></html>

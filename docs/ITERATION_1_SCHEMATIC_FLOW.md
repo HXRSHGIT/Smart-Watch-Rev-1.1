@@ -10,7 +10,7 @@ This document defines schematic blocks, signal connections and capture/review re
 flowchart TD
     PC[Computer / USB host] <-->|USB cable| J1[USB-C connector]
     J1 -->|VBUS 5 V| U2[AP2112K: 3.3 V regulator]
-    U2 -->|3V3_SYS| U1[ESP32-C3-MINI-1-N4]
+    U2 -->|3V3_SYS| U1[ESP32-C3-MINI-1-N4X]
     U2 -->|3V3_SYS to VLED+| U4[MAX30102 optical sensor]
     U2 -->|3V3_SYS| U3[TLV75518: 1.8 V regulator]
     U3 -->|1V8_SENS to VDD| U4
@@ -102,7 +102,7 @@ Use the ESP32's native USB Serial/JTAG for programming, logging and debugging. D
 | GPIO2 / GPIO8 | Boot-strapping considerations | Reserve and set required boot levels from the exact module documentation |
 | GPIO4-GPIO7 | Spare / possible external JTAG | Leave available in this proposal; USB Serial/JTAG is the primary debug path |
 
-These are **SoC GPIO names, not module pad numbers**. Before drawing connections, confirm exposure on ESP32-C3-MINI-1-N4, module-internal flash reservations, reset behavior and any alternate-function conflicts. The firmware pin configuration must match this table after review.
+These are **SoC GPIO names, not module pad numbers**. Before drawing connections, confirm exposure on ESP32-C3-MINI-1-N4X, module-internal flash reservations, reset behavior and any alternate-function conflicts. The firmware pin configuration must match this table after review.
 
 The reset button pulls EN low; the boot button establishes the download strap during reset. Validate the complete strap combination and reset timing, rather than assuming a boot button alone guarantees recovery. Do not use a status LED on a boot strap in this proposal.
 
