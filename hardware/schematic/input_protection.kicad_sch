@@ -1,0 +1,795 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "4abf3598-f152-4e2d-b001-f8ffd009e316")
+	(paper "A3")
+	(title_block (title "Charging input") (rev "0.1") (company "Done by Harsh Thakur"))
+	(lib_symbols
+		(symbol "Connector_Generic:Conn_01x01"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J"
+			(at 0 2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x01"
+			(at 0 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "connector"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "Connector*:*_1x??_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "Conn_01x01_1_1"
+			(rectangle
+				(start -1.27 1.27)
+				(end 1.27 -1.27)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(rectangle
+				(start -1.27 0.127)
+				(end 0 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "Device:C_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "C"
+			(at 0.254 1.778 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C_Small"
+			(at 0.254 -2.032 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "capacitor cap"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "C_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "C_Small_0_1"
+			(polyline
+				(pts
+					(xy -1.524 0.508) (xy 1.524 0.508)
+				)
+				(stroke
+					(width 0.3048)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.524 -0.508) (xy 1.524 -0.508)
+				)
+				(stroke
+					(width 0.3302)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "C_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 2.032)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 2.032)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "Device:R_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "R"
+			(at 0 0 90)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "R_Small"
+			(at 1.778 0 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "R resistor"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "R_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "R_Small_0_1"
+			(rectangle
+				(start -0.762 1.778)
+				(end 0.762 -1.778)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "R_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 0.762)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 0.762)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "power:+1V8"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 0 3.556 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "+1V8_0_1"
+			(polyline
+				(pts
+					(xy -0.762 1.27) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "+1V8_1_1"
+			(pin power_in line
+				(at 0 0 90)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "power:GND"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -6.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "GND_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "GND_1_1"
+			(pin power_in line
+				(at 0 0 270)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "smartwatch:OCVPB21-13F6"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U" (at 0 0 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "OCVPB21-13F6" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "smartwatch:OCVPB21-13F6_WLCSP-13_P0.4mm" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "hardware/datasheets/OCVPB21-13F6.pdf" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "ST OCVPB21-13F6 ESD, overvoltage and overcurrent protection with bridge, WLCSP-13." (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "ki_keywords" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(symbol "OCVPB21-13F6_1_1"
+			(rectangle (start -10.16 15.24) (end 10.16 -15.24)
+				(stroke (width 0.254) (type default)) (fill (type background)))
+			(text "OCVPB21-13F6 charge input protection" (at 0 13.97 0) (effects (font (size 1.27 1.27) bold)))
+			(pin passive line (at -12.70 10.16 0) (length 2.54)
+				(name "IN_A" (effects (font (size 1.27 1.27))))
+				(number "D1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.70 7.62 0) (length 2.54)
+				(name "IN_B" (effects (font (size 1.27 1.27))))
+				(number "D3" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.70 2.54 0) (length 2.54)
+				(name "RLIM" (effects (font (size 1.27 1.27))))
+				(number "E1" (effects (font (size 1.27 1.27)))))
+			(pin open_collector line (at -12.70 0.00 0) (length 2.54)
+				(name "FLAG" (effects (font (size 1.27 1.27))))
+				(number "E3" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at -12.70 -5.08 0) (length 2.54)
+				(name "RECTIF" (effects (font (size 1.27 1.27))))
+				(number "C2" (effects (font (size 1.27 1.27)))))
+			(pin power_out line (at 12.70 10.16 180) (length 2.54)
+				(name "OUT_5V" (effects (font (size 1.27 1.27))))
+				(number "B2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.70 5.08 180) (length 2.54)
+				(name "USB_IND" (effects (font (size 1.27 1.27))))
+				(number "A2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.70 2.54 180) (length 2.54)
+				(name "USB_INC" (effects (font (size 1.27 1.27))))
+				(number "B3" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.70 0.00 180) (length 2.54)
+				(name "USB_DP" (effects (font (size 1.27 1.27))))
+				(number "A1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 12.70 -2.54 180) (length 2.54)
+				(name "USB_DM" (effects (font (size 1.27 1.27))))
+				(number "B1" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 12.70 -7.62 180) (length 2.54)
+				(name "GND_DATA" (effects (font (size 1.27 1.27))))
+				(number "A3" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 12.70 -10.16 180) (length 2.54)
+				(name "GND_ESD" (effects (font (size 1.27 1.27))))
+				(number "C3" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 12.70 -12.70 180) (length 2.54)
+				(name "GND_BRIDGE" (effects (font (size 1.27 1.27))))
+				(number "E2" (effects (font (size 1.27 1.27)))))
+		)
+		(embedded_fonts no)
+	)
+
+	)
+	(text "Charging input: two pogo pads, ST OCVPB21-13F6, to the charger" (exclude_from_sim no) (at 15.0 18.0 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid "695712ab-51f0-4cfd-aca2-9af48a65b684"))
+	(text "The bridge accepts either polarity. Input 4.25-5.55 V. OUT_5V needs >= 10 uF. FLAG is open drain with 100 kOhm pull-up." (exclude_from_sim no) (at 15.0 25.0 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "6cf5f92a-b2da-4e46-90e5-e442a1b24f17"))
+	(text "RLIM sets the current limit: ILIM = (318 - RLIM) / 0.447 mA. 180 Ohm gives about 310 mA." (exclude_from_sim no) (at 15.0 29.5 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "2f7da860-a8cf-474f-a7f6-da401f90a85a"))
+	(text "Operating temperature of this part: -30 to +65 degC. Data pins are not used (two-pad pogo)." (exclude_from_sim no) (at 15.0 34.0 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "7e47c7a9-0384-4e1e-9aa0-0cf29cde692d"))
+	(symbol (lib_id "smartwatch:OCVPB21-13F6") (at 129.54 100.33 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "fa76b0ff-f5f7-48d0-bebe-55d9321ccaba")
+		(property "Reference" "U6" (at 119.38 84.09 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "OCVPB21-13F6" (at 119.38 81.59 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Footprint" "smartwatch:OCVPB21-13F6_WLCSP-13_P0.4mm" (at 129.54 100.33 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "hardware/datasheets/OCVPB21-13F6.pdf" (at 129.54 100.33 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "A1" (uuid "2f755b38-b78d-478e-9e88-3fc5cb4101b6"))
+		(pin "A2" (uuid "b225f22c-7a0a-42b4-b6e8-1888a0f632ba"))
+		(pin "A3" (uuid "c2c6bc40-f81a-4073-b833-cc833a88e896"))
+		(pin "B1" (uuid "948f5a60-eb74-47be-88d7-8d38aedd53eb"))
+		(pin "B2" (uuid "22ccd2fa-1d74-4235-95cf-c288cf3802c4"))
+		(pin "B3" (uuid "d26ae752-c201-49eb-aa53-7ccaa5fdd420"))
+		(pin "C2" (uuid "e86e3ca8-eb91-4654-805c-e6f0417b52eb"))
+		(pin "C3" (uuid "061c7311-8953-40bf-a520-0c5f25e4fb0a"))
+		(pin "D1" (uuid "76e20fe7-02fe-4bd7-b7d6-ed367a39f657"))
+		(pin "D3" (uuid "30786d15-e5f3-4a6a-be20-c6290d2d9c81"))
+		(pin "E1" (uuid "b5b3a978-cf3b-4fc6-bc52-5f8929a09fb3"))
+		(pin "E2" (uuid "1fdc1044-e8fa-41df-837e-2ee2a0359e68"))
+		(pin "E3" (uuid "6d14c734-2052-4db5-ae27-40fa3796aa91"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "U6") (unit 1))))
+	)
+	(label "POGO_A" (at 116.84 90.17 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "3f90a592-4a7b-419b-a4e1-6c05d757a488"))
+	(label "POGO_B" (at 116.84 92.71 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "89c80793-0dd0-4efe-ab0e-dd8a212db6ca"))
+	(label "RLIM" (at 116.84 97.79 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "5ea56bb0-7e44-4d13-943d-e8928dc5fd00"))
+	(hierarchical_label "CHG_FLAG" (shape bidirectional) (at 116.84 100.33 180) (effects (font (size 1.27 1.27)) (justify right)) (uuid "de43e92b-6c9a-4cf9-990f-f3f6bd048e52"))
+	(global_label "VBUS_PROT" (shape passive) (at 142.24 90.17 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left)) (uuid "2876903d-90c5-4fb3-8ccf-0fcbce622c8b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes))))
+	(global_label "GND" (shape passive) (at 142.24 107.95 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left)) (uuid "e841c298-6258-4a6e-9646-e7a9163bde23")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes))))
+	(global_label "GND" (shape passive) (at 142.24 110.49 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left)) (uuid "7a4be5e7-617c-4409-872c-be865a9f1369")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes))))
+	(global_label "GND" (shape passive) (at 142.24 113.03 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left)) (uuid "e0b8fa35-8557-4a52-97dd-44101677169a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes))))
+	(no_connect (at 116.84 105.41) (uuid "fb9c1813-24d8-4f73-b195-1f080d745dfa"))
+	(no_connect (at 142.24 95.25) (uuid "6a931af8-b820-4d76-bae5-b0f2e15b06e0"))
+	(no_connect (at 142.24 97.79) (uuid "c6b87598-c86b-4f3d-bfbf-f9e42cf03129"))
+	(no_connect (at 142.24 100.33) (uuid "4a90cc88-bb25-4ea6-886e-8fef920d94d1"))
+	(no_connect (at 142.24 102.87) (uuid "df1a06e4-ab45-47d6-932b-a3c81fb91411"))
+	(symbol (lib_id "Connector_Generic:Conn_01x01") (at 59.69 90.17 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "2ff4e628-f356-4aa6-b822-0cef46014082")
+		(property "Reference" "J1" (at 58.42 87.9 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "Pogo pad" (at 58.42 85.4 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Footprint" "smartwatch:Pogo_Pad_D2.6mm" (at 59.69 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 59.69 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "research/power-battery/POGO_CHARGING.md" (at 59.69 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "594ea8df-34e0-4cf7-89e0-168fb50ed755"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "J1") (unit 1))))
+	)
+	(label "POGO_A" (at 54.61 90.17 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "14bff6e1-85f5-429a-b381-790508fbbdb9"))
+	(symbol (lib_id "Connector_Generic:Conn_01x01") (at 59.69 110.49 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "f880c577-18a0-425e-ace4-f21b7aa782a1")
+		(property "Reference" "J2" (at 58.42 108.22 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "Pogo pad" (at 58.42 105.72 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Footprint" "smartwatch:Pogo_Pad_D2.6mm" (at 59.69 110.49 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 59.69 110.49 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "research/power-battery/POGO_CHARGING.md" (at 59.69 110.49 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b351f377-c644-4a0b-a143-3b662afc96e3"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "J2") (unit 1))))
+	)
+	(label "POGO_B" (at 54.61 110.49 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "9d5ae48b-6085-463a-9017-325ccefff1c8"))
+	(symbol (lib_id "Device:R_Small") (at 100.33 139.7 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "319428a7-b0fb-4fe2-8e2d-d8f0bac01e69")
+		(property "Reference" "R14" (at 99.568 136.922 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "180R" (at 99.568 134.422 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 100.33 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 100.33 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "1% or better, 51-270 Ohm allowed" (at 100.33 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "OCVPB21-13F6 DS13107 Rev 3 section 1.2" (at 100.33 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ddc65821-f5cd-44ee-9e08-0eb61c67ebd0"))
+		(pin "2" (uuid "497f462a-bd92-41f6-abc1-fb9215a53c99"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "R14") (unit 1))))
+	)
+	(label "RLIM" (at 100.33 137.16 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "78ef61b4-376f-49ea-aa6d-182652d6b930"))
+	(symbol (lib_id "power:GND") (at 100.33 142.24 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "fca1cc08-39cd-4f0e-8f8a-5d55ad5811e0")
+		(property "Reference" "#PWR41" (at 100.33 142.24 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 100.33 145.74 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 100.33 142.24 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 100.33 142.24 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "16422abe-2f9a-4b63-8543-000130e747c1"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "#PWR41") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 175.26 119.38 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "4412bfdc-1577-4ac4-be06-cc68dd737363")
+		(property "Reference" "C24" (at 177.8 118.78 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "10uF" (at 177.8 119.98 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 175.26 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 175.26 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "10V low ESR, >= 10 uF" (at 175.26 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "OCVPB21-13F6 DS13107 Rev 3 Table 2" (at 175.26 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "c3ad45a6-01ff-4670-a2de-bf9f1ef1a255"))
+		(pin "2" (uuid "5eb94d7e-04e7-48ae-849c-46e577e55dea"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "C24") (unit 1))))
+	)
+	(global_label "VBUS_PROT" (shape passive) (at 175.26 116.84 90) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left)) (uuid "9fb6ed0b-4e61-478f-b2c8-37c0b64c4817")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes))))
+	(symbol (lib_id "power:GND") (at 175.26 121.92 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "bfdb71fe-2db3-4d38-a30d-4ef148577a49")
+		(property "Reference" "#PWR42" (at 175.26 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 175.26 125.42 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 175.26 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 175.26 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a9092dca-bc3f-485c-a4f6-e90cdeaef468"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "#PWR42") (unit 1))))
+	)
+	(symbol (lib_id "Device:R_Small") (at 175.26 149.86 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "8ea6b22e-cb5c-41b0-987c-2bac58d534f1")
+		(property "Reference" "R15" (at 174.498 147.082 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "100k" (at 174.498 144.582 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric" (at 175.26 149.86 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 175.26 149.86 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "FLAG pull-up" (at 175.26 149.86 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "OCVPB21-13F6 DS13107 Rev 3 Table 2" (at 175.26 149.86 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "34ef0915-3493-4663-8b38-9add35f608a1"))
+		(pin "2" (uuid "133d5388-859c-4f9d-8f36-14b4816b8698"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "R15") (unit 1))))
+	)
+	(symbol (lib_id "power:+1V8") (at 175.26 147.32 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "cb2c2d2d-d1da-4edb-a0ff-6a0cae5f07ef")
+		(property "Reference" "#PWR43" (at 175.26 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+1V8" (at 175.26 143.82 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 175.26 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 175.26 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "f9de2a8a-940f-4b46-abb3-364d15b652f6"))
+		(instances (project "smartwatch" (path "/b33ce06c-f4b2-4886-8706-0059fa1ecac5/0144d67b-572f-44f4-9b30-960e039380a5" (reference "#PWR43") (unit 1))))
+	)
+	(label "CHG_FLAG" (at 175.26 152.4 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "4e2de3a4-71ee-4d06-aba7-9f651f23ee17"))
+	(sheet_instances (path "/" (page "1")))
+	(embedded_fonts no)
+)

@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "smartwatch")(type "KiCad")(uri "${KIPRJMOD}/libs/smartwatch.kicad_sym")(options "")(descr "Smart Watch chip symbols"))
+)

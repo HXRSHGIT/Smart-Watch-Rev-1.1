@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "smartwatch")(type "KiCad")(uri "${KIPRJMOD}/libs/smartwatch.pretty")(options "")(descr "Smart Watch footprints"))
+)

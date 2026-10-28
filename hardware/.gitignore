@@ -1,0 +1,7 @@
+datasheets/*.pdf
+datasheets/*.txt
+*-backups/
+fp-info-cache
+*.kicad_prl
+schematic/build/
+__pycache__/

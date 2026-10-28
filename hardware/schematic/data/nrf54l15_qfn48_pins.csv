@@ -1,0 +1,50 @@
+pdf_page,pin,clock_pin,name,function,description,dedicated
+868,1,,P1.00 | XL1,Digital I/O | Analog input,General purpose I/O | Connection for 32.768 kHz | crystal,
+868,2,,P1.01 | XL2,Digital I/O | Analog input,General purpose I/O | Connection for 32.768 kHz | crystal,
+868,3,,P1.02 | NFC1,Digital I/O | NFC input,General purpose I/O | NFC antenna connection,
+868,4,Yes,P1.03 | NFC2,Digital I/O | NFC input,General purpose I/O | NFC antenna connection,
+868,5,Yes,P1.04 | ASO[0] | AIN0,Digital I/O | Digital I/O | Analog input,General purpose I/O | TAMPC active shield 0 output | Analog input,TAMPC
+868,6,,P1.05 | ASI[0] | RADIO[6] | AIN1,Digital I/O | Digital I/O | Digital I/O | Analog input,General purpose I/O | TAMPC active shield 0 input | RADIO DFEGPIO | Analog input,TAMPC | RADIO
+868,7,,P1.06 | ASO[1] | AIN2,Digital I/O | Digital I/O | Analog input,General purpose I/O | TAMPC active shield 1 output | Analog input,TAMPC
+868,8,,P1.07 | ASI[1] | AIN3,Digital I/O | Digital I/O | Analog input,General purpose I/O | TAMPC active shield 1 input | Analog input,TAMPC
+868,9,Yes,P1.08 | EXTREF,Digital I/O | Digital I/O | Analog input,General purpose I/O | GRTC CLKOUTFAST | External reference for SAADC,
+868,10,,VDD,Power,Power supply,
+868,11,,P2.00,Digital I/O | Digital I/O,General purpose I/O | SPIM DCX,SPIM00/20
+869,12,Yes,P2.01,Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | SPIM SCK | SPIS SCK | FLPR.0 | QSPI SCK,SPIM00/20 | SPIS00/20 | FLPR | FLPR (QSPI
+869,13,,P2.02,Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | SPIM SDO | SPIS SDO | UARTE TXD | FLPR.1 | QSPI D0,SPIM00/20 | SPIS00/20 | UARTE00/20 | FLPR | FLPR (QSPI)
+869,14,,P2.03,Digital I/O | Digital I/O | Digital I/O,General purpose I/O | FLPR.3 | QSPI D2,FLPR | FLPR (QSPI)
+869,15,,P2.04,Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | SPIM SDI | SPIS SDI | UARTE CTS | FLPR.2 | QSPI D1,SPIM00/20 | SPIS00/20 | UARTE00/20 | FLPR | FLPR (QSPI)
+869,16,,P2.05,Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | SPIM CSN | SPIS CSN | UARTE RTS | FLPR.5 | QSPI CSN,SPIM00/20 | SPIS00/20 | UARTE00/20 | FLPR | FLPR (QSPI)
+869,17,Yes,P2.06,Digital I/O,General purpose I/O,
+870,18,,P2.07 | TRACEDATA[0] | SWO,Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | FLPR.7 | Trace data | Serial wire output (SWO) | SPIM DCX | UARTE RXD,FLPR | Trace | Trace | SPIM00/21 | UARTE00/21
+870,19,,P2.08 | TRACEDATA[1],Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | FLPR.8 | Trace data | SPIM SDO | SPIS SDO | UARTE TXD,FLPR | Trace | SPIM00/21 | SPIS00/21 | UARTE00/21
+870,20,,P2.09 | TRACEDATA[2],Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | FLPR.9 | Trace data | SPIM SDI | SPIS SDI | UARTE CTS,FLPR | Trace | SPIM00/21 | SPIS00/21 | UARTE00/21
+870,21,,P2.10 | TRACEDATA[3],Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O | Digital I/O,General purpose I/O | FLPR.10 | Trace data | SPIM CSN | SPIS CSN | UARTE RTS,FLPR | Trace | SPIM00/21 | SPIS00/21 | UARTE00/21
+870,22,,VDD,Power,Power supply,
+870,23,,P0.00,Digital I/O,General purpose I/O,
+870,24,,P0.01,Digital I/O,General purpose I/O,
+871,25,,SWDIO,Debug,Serial wire data. Bidirectional | with standard-drive and on-chip | pull-up.,
+871,26,,SWDCLK,Debug,Serial wire clock. Input with on- | chip pull-down.,
+871,27,,P0.02,Digital I/O,General purpose I/O,
+871,28,Yes,P0.03,Digital I/O | Digital I/O,General purpose I/O | GRTC PWM,GRTC
+871,29,Yes,P0.04,Digital I/O | Digital I/O,General purpose I/O | GRTC CLKOUT32K,GRTC
+871,30,,nRESET,Reset,Pin reset with on-chip pull-up,
+871,31,,ANT,RF,Single ended radio antenna | connection,See Reference | circuitry on | page 889 | for guidelines | on how to | ensure good RF | performance
+871,32,,VSS_PA,Power,Ground (radio supply),
+871,33,,DECRF,Power,0.9 V regulator supply | decoupling,Must be | connected | to DECA. See | Reference | circuitry on | page 889.
+871,34,,XC1,Analog input,Connection for 32 MHz crystal,
+871,35,,XC2,Analog input,Connection for 32 MHz crystal,
+871,36,,VDD,Power,Power supply,
+871,37,,P1.09 | ASO[2] | RADIO[0],Digital I/O | Digital I/O | Digital I/O,General purpose I/O | TAMPC active shield 2 output | RADIO DFEGPIO,TAMPC | RADIO
+872,38,,P1.10 | ASI[2] | RADIO[1],Digital I/O | Digital I/O | Digital I/O,General purpose I/O | TAMPC active shield 2 input | RADIO DFEGPIO,TAMPC | RADIO
+872,39,Yes,P1.11 | ASO[3] | RADIO[2] | AIN4,Digital I/O | Digital I/O | Digital I/O | Analog input,General purpose I/O | TAMPC active shield 3 output | RADIO DFEGPIO | Analog input,TAMPC | RADIO
+872,40,Yes,P1.12 | ASI[3] | RADIO[3] | AIN5,Digital I/O | Digital I/O | Digital I/O | Analog input,General purpose I/O | TAMPC active shield 3 input | RADIO DFEGPIO | Analog input,TAMPC | RADIO
+872,41,,P1.13 | RADIO[4] | AIN6,Digital I/O | Digital I/O | Analog input,General purpose I/O | RADIO DFEGPIO | Analog input,RADIO
+872,42,,P1.14 | RADIO[5] | AIN7,Digital I/O | Digital I/O | Analog input,General purpose I/O | RADIO DFEGPIO | Analog input,RADIO
+872,43,,DECA,Power,0.9 V regulator supply | decoupling,Must be | connected to | DECRF
+872,44,,VSS,Power,Ground,
+872,45,,DECD,Power,0.9 V regulator supply | decoupling,
+872,46,,DCC,Power,DC/DC regulator output,
+872,47,,VDD,Power,Power supply,
+872,48,,VDD,Power,Power supply,
+872,49,,VSS,Power,Ground pad (die pad),
