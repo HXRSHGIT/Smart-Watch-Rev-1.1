@@ -32,7 +32,7 @@ PDFs sit in `hardware/datasheets/` on the working PC and are **not committed** (
 
 | Part | Why it is missing | What to do |
 |---|---|---|
-| Nordic nPM1300 product specification (latest is v1.3, Oct 2026) | Nordic's site redirects every PDF link to its web reader. The PDF could not be saved automatically. | Save the PDF from docs.nordicsemi.com (nPM1300 Product Specification, v1.3) into `hardware/datasheets/nPM1300_PS_v1.3.pdf` |
-| Macronix MX25R3235F datasheet | Macronix's datasheet link is built by a script on their page; distributor pages are bot-protected. | Save the PDF from macronix.com into `hardware/datasheets/MX25R3235F.pdf` |
+| Nordic nPM1300 product specification v1.3 | saved as `nPM1300_PS_v1.3.txt` (text of all 318 topics from docs.nordicsemi.com; the PDF link is blocked) | none |
+| Macronix MX25R3235F datasheet | saved as `MX25R3235F_rev1.6.pdf` (Farnell mirror). Latest is rev 1.8, macronix.com blocks downloads | optional: save rev 1.8 |
 | Passive component datasheets (capacitor, resistor, inductor, ferrite, NTC series) | Not yet chosen to a single MPN per value. | Next step in `TASKS.md` B5 |
 | Battery cell, battery connector, NTC | Cell not chosen (150-250 mAh pouch with protection board) | Client decision, see open items |

@@ -8,6 +8,7 @@ Conventions
 - Connections are made by a label or power symbol whose anchor sits exactly on the pin end.
 - Stock symbols are copied from the installed KiCad 9 libraries; chip symbols are generated.
 """
+import math
 import re
 import uuid
 from pathlib import Path
@@ -106,32 +107,38 @@ def chip_symbol(libname, name, ref, units, footprint="", datasheet="~", descript
            f'\t\t(property "Description" {q(description)} (at 0 0 0) {HIDE})\n'
            f'\t\t(property "ki_keywords" {q(keywords)} (at 0 0 0) {HIDE})\n']
     for u, unit in enumerate(units, start=1):
-        slots = max(len(unit.left), len(unit.right))
-        h = max(slots, 2) * 2.54 + 5.08
-        h = round(h / 2.54) * 2.54
-        w = unit.width
+        CH = 1.0                      # drawn width of one pin-name character, mm
+        nm = lambda pl: max([len(p[1]) for p in pl if p] or [0])
+        slots = max(len(unit.left), len(unit.right), 1)
+        top_off = max(2.54, math.ceil((nm(unit.top) * CH + 1.0) / 2.54) * 2.54) if unit.top else 2.54
+        bot_off = max(2.54, math.ceil((nm(unit.bottom) * CH + 1.0) / 2.54) * 2.54) if unit.bottom else 2.54
+        h = top_off + bot_off + 2.54 * (slots - 1)
+        need = max((nm(unit.left) + nm(unit.right)) * CH + 6.0, 2.54 * (max(len(unit.top), len(unit.bottom)) + 1))
+        w = max(unit.width, math.ceil(need / 2.54) * 2.54)
         pins = [f'\t\t(symbol {q(f"{name}_{u}_1")}\n']
         pins.append(f'\t\t\t(rectangle (start {-w/2:.2f} {h/2:.2f}) (end {w/2:.2f} {-h/2:.2f})\n'
                     f'\t\t\t\t(stroke (width 0.254) (type default)) (fill (type background)))\n')
-        if unit.title:
-            pins.append(f'\t\t\t(text {q(unit.title)} (at 0 {h/2 - 1.27:.2f} 0) (effects (font (size 1.27 1.27) bold)))\n')
 
-        def pin(num, pname, ptype, x, y, ang):
+        def pin(p, x, y, ang):
+            num, pname, ptype = p[0], p[1], p[2]
             pins.append(f'\t\t\t(pin {ptype} line (at {x:.2f} {y:.2f} {ang}) (length {L})\n'
                         f'\t\t\t\t(name {q(pname)} {FONT})\n\t\t\t\t(number {q(num)} {FONT}))\n')
+            for extra in (p[3] if len(p) > 3 else ()):      # more pads of the same net: one drawn pin, several numbers
+                pins.append(f'\t\t\t(pin passive line (at {x:.2f} {y:.2f} {ang}) (length {L}) (hide yes)\n'
+                            f'\t\t\t\t(name {q(pname)} {FONT})\n\t\t\t\t(number {q(extra)} {FONT}))\n')
 
         for i, p in enumerate(unit.left):
             if p:
-                pin(p[0], p[1], p[2], -w / 2 - L, h / 2 - 2.54 * (i + 2), 0)
+                pin(p, -w / 2 - L, h / 2 - top_off - 2.54 * i, 0)
         for i, p in enumerate(unit.right):
             if p:
-                pin(p[0], p[1], p[2], w / 2 + L, h / 2 - 2.54 * (i + 2), 180)
+                pin(p, w / 2 + L, h / 2 - top_off - 2.54 * i, 180)
         for i, p in enumerate(unit.top):
             if p:
-                pin(p[0], p[1], p[2], -w / 2 + 2.54 * (i + 1), h / 2 + L, 270)
+                pin(p, -w / 2 + 2.54 * (i + 1), h / 2 + L, 270)
         for i, p in enumerate(unit.bottom):
             if p:
-                pin(p[0], p[1], p[2], -w / 2 + 2.54 * (i + 1), -h / 2 - L, 90)
+                pin(p, -w / 2 + 2.54 * (i + 1), -h / 2 - L, 90)
         pins.append("\t\t)\n")
         out.extend(pins)
     out.append("\t\t(embedded_fonts no)\n\t)\n")
@@ -274,7 +281,7 @@ class Sheet:
 
     # -- parts
     def part(self, libid, x, y, rot=0, ref=None, value="", footprint="", unit=1, nets=None, nc=(),
-             props=None, prefix=None, dnp=False, again=False):
+             props=None, prefix=None, dnp=False, again=False, tside="R", ctext="TR"):
         """Place a symbol. nets maps pin number -> net text. A leading '=' marks a power rail drawn as a
         power symbol ('=GND', '=+1V8'); any other text becomes a local label. nc lists pins to flag no-connect."""
         nets = nets or {}
@@ -291,17 +298,35 @@ class Sheet:
         lines = [f'\t(symbol (lib_id {q(libid)}) (at {snap(x)} {snap(y)} {rot}) (unit {unit}) (exclude_from_sim no) '
                  f'(in_bom yes) (on_board yes) (dnp {"yes" if dnp else "no"}) (uuid {q(uid())})\n']
         body = self.lib.body(libid, unit)
-        counter = (360 - rot) % 360             # property angles are relative to the symbol: undo the rotation
-        if body:                                # chip: text sits above the body outline
-            top = y - max(body[1], body[3])
-            lines.append(self._prop("Reference", refdes, x + body[0], top - 1.0, counter, just="left bottom"))
-            lines.append(self._prop("Value", value or sym_name, x + body[0], top - 3.5, counter, just="left bottom"))
-        elif rot in (90, 270):                  # horizontal two-pin part: text above and below
+        counter = 0 if rot == 180 else (360 - rot) % 360   # property angles are relative to the symbol: undo a 90/270 turn (KiCad keeps 180 upright itself)
+        if body and libid.startswith("smartwatch:") and unit != 0 and len(pins) > 3:   # chip: text above the topmost pin end
+            edge = y - body[1]                  # top edge of the body
+            if ctext == "BL":                   # below-left, right-aligned: for chips with a busy top
+                bot = y - body[3]
+                tx = x + body[0] - 3.0
+                lines.append(self._prop("Reference", refdes, tx, bot + 0.6, counter, just="right top"))
+                lines.append(self._prop("Value", value or sym_name, tx, bot + 3.1, counter, just="right top"))
+            elif ctext == "TL":                   # above-left, right-aligned, outside the pin stubs
+                tx, jr, jv, ry, vy = x + body[0] - 3.0, "right bottom", "right bottom", edge - 3.0, edge - 0.5
+            else:                               # "TR": above-right, left-aligned
+                tx, jr, jv, ry, vy = x + body[2] + 3.0, "left bottom", "left bottom", edge - 3.0, edge - 0.5
+            if ctext != "BL":
+                lines.append(self._prop("Reference", refdes, tx, ry, counter, just=jr))
+                lines.append(self._prop("Value", value or sym_name, tx, vy, counter, just=jv))
+        elif (rot in (90, 270) and libid in ("Device:R_Small", "Device:C_Small", "Device:L_Small", "Device:FerriteBead_Small")) or (rot in (0, 180) and libid == "Switch:SW_SPST"):   # horizontal two-pin part: text above and below
             lines.append(self._prop("Reference", refdes, x, y - 2.2, counter, just="bottom"))
             lines.append(self._prop("Value", value or sym_name, x, y + 2.2, counter, just="top"))
+        elif libid == "Connector:TestPoint" and rot == 180:   # test point hanging below a wire: text right of the pad
+            lines.append(self._prop("Reference", refdes, x + 2.0, y + 1.8, counter, just="left"))
+            lines.append(self._prop("Value", value or sym_name, x + 2.0, y + 3.4, counter, just="left"))
+        elif tside == "L":                      # vertical two-pin part, text on its left
+            lines.append(self._prop("Reference", refdes, x - 2.2, y - 0.6, counter, just="right bottom"))
+            lines.append(self._prop("Value", value or sym_name, x - 2.2, y + 0.6, counter, just="right top"))
         else:
-            lines.append(self._prop("Reference", refdes, x + 2.54, y - 0.6, 0, just="left bottom"))
-            lines.append(self._prop("Value", value or sym_name, x + 2.54, y + 0.6, 0, just="left top"))
+            lines.append(self._prop("Reference", refdes, x + 2.2, y - 0.6, counter, just="left bottom"))
+            lines.append(self._prop("Value", value or sym_name, x + 2.2, y + 0.6, counter, just="left top"))
+        if rot == 180 and not libid.startswith("smartwatch:"):            # KiCad flips left/right justification of a part turned 180: undo that
+            lines = [lines[0]] + [l.replace("(justify left", "(justify TMP").replace("(justify right", "(justify left").replace("(justify TMP", "(justify right") for l in lines[1:]]
         lines.append(self._prop("Footprint", footprint, x, y, 0, hide=True))
         lines.append(self._prop("Datasheet", props.pop("Datasheet", "~"), x, y, 0, hide=True))
         for k, v in props.items():
@@ -352,20 +377,23 @@ class Sheet:
             f'\t\t(pin "1" (uuid {q(uid())}))\n'
             f'\t\t(instances (project {q(PROJECT)} (path {q(self.path)} (reference {q(ref)}) (unit 1))))\n\t)\n')
 
-    def sheet_block(self, name, file, x, y, w, h, left, right, page, block_uuid):
+    def sheet_block(self, name, file, x, y, w, h, left, right, page, block_uuid, labels=True):
         """Root-level hierarchical sheet. left/right are lists of pin names. A label of the same name is
         placed at each pin end so sheets connect by name. Returns {pin name: (x, y)}."""
         pins, ends = [], {}
         x, y = grid(x), grid(y)
         for side, names in (("L", left), ("R", right)):
             for i, n in enumerate(names):
+                if n is None:
+                    continue
                 py = y + 2.54 * (i + 1)
                 px, ang = (x, 180) if side == "L" else (x + w, 0)
                 just = "left" if side == "L" else "right"        # names sit inside the box
                 pins.append(f'\t\t(pin {q(n)} bidirectional (at {snap(px)} {snap(py)} {ang}) '
                             f'(effects (font (size 1.27 1.27)) (justify {just})) (uuid {q(uid())}))\n')
                 ends[n] = (px, py)
-                self.label(n, px, py, ang)
+                if labels:
+                    self.label(n, px, py, ang)
         self.items.append(
             f'\t(sheet (at {snap(x)} {snap(y)}) (size {w} {h}) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)\n'
             f'\t\t(stroke (width 0.1524) (type solid)) (fill (color 0 0 0 0.0)) (uuid {q(block_uuid)})\n'

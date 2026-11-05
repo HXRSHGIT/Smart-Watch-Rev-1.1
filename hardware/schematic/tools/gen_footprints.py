@@ -89,4 +89,12 @@ fp("Johanson_2450AT18A0100001E_1206", "Johanson 2.45 GHz chip antenna 3.2x1.6x1.
 # ---- Pogo charging pad: PLACEHOLDER diameter until the dock contact vendor is chosen.
 fp("Pogo_Pad_D2.6mm", "Charging contact pad, 2.6 mm round. PLACEHOLDER size, set with the dock contact vendor (research/power-battery/POGO_CHARGING.md).",
    [(1, "circle", 0.0, 0.0, 2.6, 2.6)], (-1.3, -1.3, 1.3, 1.3), (-1.6, -1.6, 1.6, 1.6), tags="pogo charging")
+# ---- Macronix MX25R3235F 8-land USON 4 x 3 x 0.6 mm, 0.8 mm pitch (datasheet rev 1.6 section 19-4): lead width 0.30, lead length 0.60.
+# Land 0.35 x 0.90 mm, 0.2 mm outside the body. Pin 1 bottom left in the top view, counter-clockwise: 1-4 along the bottom, 5-8 along the top.
+# The two exposed metal pads under the body are left without a pad (datasheet: float or ground, no vias or traces under them).
+xs = [-1.2, -0.4, 0.4, 1.2]
+pads = [(i + 1, "rect", xs[i], 1.3, 0.35, 0.9) for i in range(4)] + [(8 - i, "rect", xs[i], -1.3, 0.35, 0.9) for i in range(4)]
+fp("MX25R3235F_USON-8_4x3mm_P0.8mm", "Macronix MX25R3235F 8-land USON 4x3 mm, 0.8 mm pitch. Land size 0.35 x 0.9 mm CHECK against Macronix land pattern. No pad for the exposed metal under the body: keep copper and vias away.",
+   pads, (-2.0, -1.5, 2.0, 1.5), (-2.3, -1.9, 2.3, 1.9), pin1=(-2.2, 1.0), tags="flash nor macronix")
+
 print("footprints written:", len(list(OUT.glob("*.kicad_mod"))))

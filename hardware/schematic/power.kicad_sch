@@ -1,0 +1,1620 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "c14ba68e-7f6f-4129-9a51-9d381a49f5b0")
+	(paper "A3")
+	(title_block (title "Power nPM1300") (rev "0.1") (company "Done by Harsh Thakur"))
+	(lib_symbols
+		(symbol "Device:C_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "C"
+			(at 0.254 1.778 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C_Small"
+			(at 0.254 -2.032 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "capacitor cap"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "C_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "C_Small_0_1"
+			(polyline
+				(pts
+					(xy -1.524 0.508) (xy 1.524 0.508)
+				)
+				(stroke
+					(width 0.3048)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.524 -0.508) (xy 1.524 -0.508)
+				)
+				(stroke
+					(width 0.3302)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "C_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 2.032)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 2.032)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "Device:L_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "L"
+			(at 0.762 1.016 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "L_Small"
+			(at 0.762 -1.016 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Inductor, small symbol"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "inductor choke coil reactor magnetic"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "Choke_* *Coil* Inductor_* L_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "L_Small_0_1"
+			(arc
+				(start 0 2.032)
+				(mid 0.5058 1.524)
+				(end 0 1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 1.016)
+				(mid 0.5058 0.508)
+				(end 0 0)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 0)
+				(mid 0.5058 -0.508)
+				(end 0 -1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 -1.016)
+				(mid 0.5058 -1.524)
+				(end 0 -2.032)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "L_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 0.508)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 0.508)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "Device:NetTie_2"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(property "Reference" "NT"
+			(at 0 1.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "NetTie_2"
+			(at 0 -1.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Net tie, 2 pins"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "net tie short"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "Net*Tie*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "NetTie_2_0_1"
+			(polyline
+				(pts
+					(xy -1.27 0) (xy 1.27 0)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "NetTie_2_1_1"
+			(pin passive line
+				(at -2.54 0 0)
+				(length 2.54)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 0 180)
+				(length 2.54)
+				(name "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "Device:R_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "R"
+			(at 0 0 90)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "R_Small"
+			(at 1.778 0 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "R resistor"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "R_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "R_Small_0_1"
+			(rectangle
+				(start -0.762 1.778)
+				(end 0.762 -1.778)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "R_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 0.762)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 0.762)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "Switch:SW_SPST"
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "SW"
+			(at 0 3.175 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPST"
+			(at 0 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "switch lever"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "SW_SPST_0_0"
+			(circle
+				(center -2.032 0)
+				(radius 0.508)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.524 0.254) (xy 1.524 1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 2.032 0)
+				(radius 0.508)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "SW_SPST_1_1"
+			(pin passive line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 5.08 0 180)
+				(length 2.54)
+				(name "B"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "power:+1V8"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 0 3.556 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "+1V8_0_1"
+			(polyline
+				(pts
+					(xy -0.762 1.27) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "+1V8_1_1"
+			(pin power_in line
+				(at 0 0 90)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "power:+3V3"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 0 3.556 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "+3V3_0_1"
+			(polyline
+				(pts
+					(xy -0.762 1.27) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "+3V3_1_1"
+			(pin power_in line
+				(at 0 0 90)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "power:GND"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -6.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "GND_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "GND_1_1"
+			(pin power_in line
+				(at 0 0 270)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "smartwatch:Battery_Conn_3"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J" (at 0 0 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "Battery_Conn_3" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Connector_JST:JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Three-wire battery connector: BAT+, NTC thermistor, GND. Pin order CHECK against the chosen cell." (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "ki_keywords" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(symbol "Battery_Conn_3_1_1"
+			(rectangle (start -5.08 10.16) (end 5.08 -10.16)
+				(stroke (width 0.254) (type default)) (fill (type background)))
+			(pin passive line (at 7.62 7.62 180) (length 2.54)
+				(name "BAT+" (effects (font (size 1.27 1.27))))
+				(number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 7.62 -2.54 180) (length 2.54)
+				(name "NTC" (effects (font (size 1.27 1.27))))
+				(number "2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 7.62 -7.62 180) (length 2.54)
+				(name "GND" (effects (font (size 1.27 1.27))))
+				(number "3" (effects (font (size 1.27 1.27)))))
+		)
+		(embedded_fonts no)
+	)
+
+		(symbol "smartwatch:nPM1300-QEAA"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U" (at 0 0 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "nPM1300-QEAA" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "hardware/datasheets/nPM1300_PS_v1.3.txt" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Nordic nPM1300 PMIC with charger, two bucks, two load switches/LDOs, QFN32 5x5 mm (QEAA). Pin table: product specification v1.3, QFN32 pin assignments." (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "ki_keywords" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(symbol "nPM1300-QEAA_1_1"
+			(rectangle (start -13.97 54.61) (end 13.97 -54.61)
+				(stroke (width 0.254) (type default)) (fill (type background)))
+			(pin power_in line (at -16.51 52.07 0) (length 2.54)
+				(name "VBUS" (effects (font (size 1.27 1.27))))
+				(number "21" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 41.91 0) (length 2.54)
+				(name "CC1" (effects (font (size 1.27 1.27))))
+				(number "23" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 39.37 0) (length 2.54)
+				(name "CC2" (effects (font (size 1.27 1.27))))
+				(number "24" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at -16.51 34.29 0) (length 2.54)
+				(name "VBAT" (effects (font (size 1.27 1.27))))
+				(number "19" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 24.13 0) (length 2.54)
+				(name "NTC" (effects (font (size 1.27 1.27))))
+				(number "18" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 16.51 0) (length 2.54)
+				(name "VSET1" (effects (font (size 1.27 1.27))))
+				(number "17" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 13.97 0) (length 2.54)
+				(name "VSET2" (effects (font (size 1.27 1.27))))
+				(number "16" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 1.27 0) (length 2.54)
+				(name "SHPHLD" (effects (font (size 1.27 1.27))))
+				(number "15" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -16.51 -6.35 0) (length 2.54)
+				(name "SCL" (effects (font (size 1.27 1.27))))
+				(number "14" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at -16.51 -8.89 0) (length 2.54)
+				(name "SDA" (effects (font (size 1.27 1.27))))
+				(number "13" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at -16.51 -19.05 0) (length 2.54)
+				(name "VDDIO" (effects (font (size 1.27 1.27))))
+				(number "12" (effects (font (size 1.27 1.27)))))
+			(pin power_out line (at 16.51 52.07 180) (length 2.54)
+				(name "VBUSOUT" (effects (font (size 1.27 1.27))))
+				(number "22" (effects (font (size 1.27 1.27)))))
+			(pin power_out line (at 16.51 41.91 180) (length 2.54)
+				(name "VSYS" (effects (font (size 1.27 1.27))))
+				(number "20" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 16.51 39.37 180) (length 2.54)
+				(name "PVDD" (effects (font (size 1.27 1.27))))
+				(number "4" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 26.67 180) (length 2.54)
+				(name "SW1" (effects (font (size 1.27 1.27))))
+				(number "3" (effects (font (size 1.27 1.27)))))
+			(pin power_out line (at 16.51 21.59 180) (length 2.54)
+				(name "VOUT1" (effects (font (size 1.27 1.27))))
+				(number "1" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 8.89 180) (length 2.54)
+				(name "PVSS1" (effects (font (size 1.27 1.27))))
+				(number "2" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -6.35 180) (length 2.54)
+				(name "VOUT2" (effects (font (size 1.27 1.27))))
+				(number "32" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -8.89 180) (length 2.54)
+				(name "SW2" (effects (font (size 1.27 1.27))))
+				(number "5" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -11.43 180) (length 2.54)
+				(name "PVSS2" (effects (font (size 1.27 1.27))))
+				(number "6" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -16.51 180) (length 2.54)
+				(name "LSIN1/VINLDO1" (effects (font (size 1.27 1.27))))
+				(number "28" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -19.05 180) (length 2.54)
+				(name "LSIN2/VINLDO2" (effects (font (size 1.27 1.27))))
+				(number "30" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -21.59 180) (length 2.54)
+				(name "LSOUT1/VOUTLDO1" (effects (font (size 1.27 1.27))))
+				(number "29" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -24.13 180) (length 2.54)
+				(name "LSOUT2/VOUTLDO2" (effects (font (size 1.27 1.27))))
+				(number "31" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at 16.51 -29.21 180) (length 2.54)
+				(name "GPIO0" (effects (font (size 1.27 1.27))))
+				(number "7" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at 16.51 -31.75 180) (length 2.54)
+				(name "GPIO1" (effects (font (size 1.27 1.27))))
+				(number "8" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at 16.51 -34.29 180) (length 2.54)
+				(name "GPIO2" (effects (font (size 1.27 1.27))))
+				(number "9" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at 16.51 -36.83 180) (length 2.54)
+				(name "GPIO3" (effects (font (size 1.27 1.27))))
+				(number "10" (effects (font (size 1.27 1.27)))))
+			(pin bidirectional line (at 16.51 -39.37 180) (length 2.54)
+				(name "GPIO4" (effects (font (size 1.27 1.27))))
+				(number "11" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -44.45 180) (length 2.54)
+				(name "LED0" (effects (font (size 1.27 1.27))))
+				(number "25" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -46.99 180) (length 2.54)
+				(name "LED1" (effects (font (size 1.27 1.27))))
+				(number "26" (effects (font (size 1.27 1.27)))))
+			(pin passive line (at 16.51 -49.53 180) (length 2.54)
+				(name "LED2" (effects (font (size 1.27 1.27))))
+				(number "27" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at -11.43 -57.15 90) (length 2.54)
+				(name "AVSS" (effects (font (size 1.27 1.27))))
+				(number "33" (effects (font (size 1.27 1.27)))))
+		)
+		(embedded_fonts no)
+	)
+
+	)
+	(text "POWER  -  nPM1300 charger, 1.8 V buck, battery" (exclude_from_sim no) (at 15.24 20.32 0) (effects (font (size 2.0 2.0) bold (color 0 0 180 1)) (justify left bottom)) (uuid "fa8693a0-fa4b-4e3d-a529-d923867677a0"))
+	(text "Charger input VBUS_PROT and the battery come in on the left; VSYS and the 1.8 V rail leave on the right. Nordic reference circuit, configuration 2 (one buck, no USB-C, no LEDs)." (exclude_from_sim no) (at 15.24 24.765 0) (effects (font (size 1.27 1.27) (color 0 0 180 1)) (justify left bottom)) (uuid "5bd2ec79-52d9-4bc3-be1a-8c8d0be08fd0"))
+	(rectangle (start 15.24 29.21) (end 223.52 172.72) (stroke (width 0.1524) (type solid) (color 0 0 180 1)) (fill (type none)) (uuid "ab8b5caa-75e9-4b45-a8d2-da6e795d1cba"))
+	(text "nPM1300  -  CHARGER, BUCK 1, SYSTEM RAIL" (exclude_from_sim no) (at 17.24 33.71 0) (effects (font (size 1.9 1.9) bold (color 0 0 180 1)) (justify left bottom)) (uuid "a83454ae-9668-4ffd-be0d-54ed819038d1"))
+	(symbol (lib_id "smartwatch:nPM1300-QEAA") (at 142.24 104.14 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "86bd17c9-81ef-4817-984c-94ce7dd0b513")
+		(property "Reference" "U7" (at 159.21 46.53 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "nPM1300-QEAA" (at 159.21 49.03 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Footprint" "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm" (at 142.24 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "hardware/datasheets/nPM1300_PS_v1.3.txt" (at 142.24 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "fd713eb0-3a05-4ead-828e-263caf753186"))
+		(pin "10" (uuid "2f71d845-a3c5-4705-83e8-31258d43021c"))
+		(pin "11" (uuid "037c07b3-f330-477f-a973-97d7d5faefb7"))
+		(pin "12" (uuid "df46d373-dcde-415e-b762-65a39a9b913d"))
+		(pin "13" (uuid "80340a3b-55af-41f1-83fd-2eb23ff60763"))
+		(pin "14" (uuid "5a04f21c-3158-408e-95f6-fb799abc72d8"))
+		(pin "15" (uuid "ae41adb1-50ff-4b19-9168-e95de6ddba98"))
+		(pin "16" (uuid "5f485a7d-c877-49f8-9cec-c5cbf58bd0cd"))
+		(pin "17" (uuid "2b7efd29-fff6-4c06-a5d1-237e691eed9d"))
+		(pin "18" (uuid "e6f185c3-b1d1-4db0-878e-03fea72d88b3"))
+		(pin "19" (uuid "944fcd0b-b620-4608-aa7d-cb209470eaf6"))
+		(pin "2" (uuid "adf17eee-3a33-4010-8749-87db074f2bc7"))
+		(pin "20" (uuid "01d541e1-047f-4656-b39e-2b298ae7ccfa"))
+		(pin "21" (uuid "b3a6fe54-22ba-4da9-b00b-70f6e841e74e"))
+		(pin "22" (uuid "d6fa7e8b-f751-4555-9b1f-fd371b3419b6"))
+		(pin "23" (uuid "24465314-8b4d-4074-9cb4-688f9f8d0b71"))
+		(pin "24" (uuid "82906cd2-5a30-4468-9b96-8161b10f20ea"))
+		(pin "25" (uuid "b8c3170c-3105-42da-aa12-d5ea2e09e609"))
+		(pin "26" (uuid "918974c9-4bac-492b-8db3-b2916826ccb1"))
+		(pin "27" (uuid "bea5a32a-26d8-4d94-abd7-37ccb62eab01"))
+		(pin "28" (uuid "d37f83cd-155d-441a-8966-dbc2ac38a27d"))
+		(pin "29" (uuid "c03c054b-48b9-4331-8c8c-6dbda76ffc45"))
+		(pin "3" (uuid "c0d47fd5-17c7-490f-a9a4-d2a231826740"))
+		(pin "30" (uuid "6e5bb1d2-d428-489a-8062-8de837a8d4ec"))
+		(pin "31" (uuid "ae67282d-9249-444d-8ca4-b6aa92ab1968"))
+		(pin "32" (uuid "35b39fc2-933b-4760-8c2a-2c907ecb1ebc"))
+		(pin "33" (uuid "74ae37b8-540e-43ec-ac02-9a18bbc08c4b"))
+		(pin "4" (uuid "0f7446b4-a02a-4979-8f71-f41533fe23fa"))
+		(pin "5" (uuid "e34c047b-92e8-4342-b5bc-699f242358eb"))
+		(pin "6" (uuid "626b1a6a-4d94-4498-9ba4-2b9a1d509624"))
+		(pin "7" (uuid "f332c6e7-91ef-4fd4-8e2d-69847c708b2c"))
+		(pin "8" (uuid "1c203c36-c905-471c-9034-4d4a26a0992e"))
+		(pin "9" (uuid "57033377-18d7-4a96-944b-5bac76193b22"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "U7") (unit 1))))
+	)
+	(symbol (lib_id "power:+3V3") (at 106.68 48.26 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "d0e10ef6-95d2-41cb-af83-2bca800278e4")
+		(property "Reference" "#PWR6" (at 106.68 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "VBUS_PROT" (at 106.68 44.76 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 106.68 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 106.68 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d26a67ed-322b-4955-8aa4-b41ed976d284"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR6") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 114.3 54.61 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "0ca262e5-df34-4658-a6d9-dd8864b4b977")
+		(property "Reference" "C25" (at 112.1 54.01 0) (effects (font (size 1.27 1.27)) (justify right bottom)))
+		(property "Value" "1uF" (at 112.1 55.21 0) (effects (font (size 1.27 1.27)) (justify right top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 114.3 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 114.3 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X5R 10V 10%" (at 114.3 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C1" (at 114.3 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b376ffb2-4187-423d-b04d-aa9d0028363e"))
+		(pin "2" (uuid "283a7140-fdf9-49a3-b39e-55b20d4fec76"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C25") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 114.3 57.15 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "cef7fc74-31fb-476d-901d-b9b00c845c51")
+		(property "Reference" "#PWR7" (at 114.3 57.15 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 114.3 60.65 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 114.3 57.15 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 114.3 57.15 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ba95e20e-58ce-4643-8533-fa4817a4ae60"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR7") (unit 1))))
+	)
+	(text "VBUS_PROT FROM THE CHARGING INPUT" (exclude_from_sim no) (at 80.01 41.91 0) (effects (font (size 1.27 1.27) bold (color 140 0 190 1)) (justify left bottom)) (uuid "ef446c25-5592-4358-8761-601c2f138490"))
+	(symbol (lib_id "power:GND") (at 119.38 67.31 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "e95690c4-dc53-4086-839f-98bb0d07848b")
+		(property "Reference" "#PWR8" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 119.38 70.81 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "9e7132b0-bbf7-4fc1-b941-baf286f12006"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR8") (unit 1))))
+	)
+	(symbol (lib_id "smartwatch:Battery_Conn_3") (at 85.09 77.47 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "6818212a-958a-4476-990b-bec9cc279fcb")
+		(property "Reference" "J4" (at 82.89 76.87 0) (effects (font (size 1.27 1.27)) (justify right bottom)))
+		(property "Value" "Battery" (at 82.89 78.07 0) (effects (font (size 1.27 1.27)) (justify right top)))
+		(property "Footprint" "Connector_JST:JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal" (at 85.09 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 85.09 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "battery cell and connector: open item" (at 85.09 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a04711ab-b70d-4d94-8660-c019616b47fe"))
+		(pin "2" (uuid "c13ed6ed-1a47-4536-9b11-003a25251c83"))
+		(pin "3" (uuid "2d818250-39af-45de-9a0a-c8d244b3543e"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "J4") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 113.03 72.39 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "da5ab653-a350-4b66-95d7-68904e11f8bb")
+		(property "Reference" "C30" (at 110.83 71.79 0) (effects (font (size 1.27 1.27)) (justify right bottom)))
+		(property "Value" "2.2uF" (at 110.83 72.99 0) (effects (font (size 1.27 1.27)) (justify right top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 113.03 72.39 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 113.03 72.39 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X7R 16V 10%" (at 113.03 72.39 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C6" (at 113.03 72.39 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "152f4cb6-a9c1-41c8-9ebc-923836c24f3f"))
+		(pin "2" (uuid "a55dc5a5-dd0a-4434-b94b-9efa6e130888"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C30") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 113.03 74.93 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "edaa941a-b353-4552-8653-cdab4b5053bc")
+		(property "Reference" "#PWR9" (at 113.03 74.93 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 113.03 78.43 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 113.03 74.93 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 113.03 74.93 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "e3db7077-082a-4927-af6c-a4f3ef320fa4"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR9") (unit 1))))
+	)
+	(symbol (lib_id "Device:R_Small") (at 102.87 82.55 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp yes) (uuid "de714662-6523-4cda-8415-29e41cb2721b")
+		(property "Reference" "R17" (at 105.07 81.95 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "10k" (at 105.07 83.15 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric" (at 102.87 82.55 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 102.87 82.55 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "NTC substitute, fit only for a pack WITHOUT thermistor" (at 102.87 82.55 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 NTC thermistor configuration" (at 102.87 82.55 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d57f785d-3e4b-4d93-8bb0-57465118c1b5"))
+		(pin "2" (uuid "036c9fe0-2453-420d-99d4-8ea7de38b7a0"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "R17") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 102.87 85.09 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "62ec7595-a350-414e-ad85-69abe2fe5a29")
+		(property "Reference" "#PWR10" (at 102.87 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 102.87 88.59 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 102.87 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 102.87 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2968eb65-10a5-485b-9f13-c7391c786905"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR10") (unit 1))))
+	)
+	(text "BATTERY PACK WITH NTC" (exclude_from_sim no) (at 80.01 63.5 0) (effects (font (size 1.27 1.27) bold (color 140 0 190 1)) (justify left bottom)) (uuid "192a40c0-0082-445a-9f04-917c8ff418fd"))
+	(symbol (lib_id "Device:R_Small") (at 113.03 90.17 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "b3b5d7c7-032e-41c8-aacf-86d0200aad89")
+		(property "Reference" "R16" (at 110.83 89.57 0) (effects (font (size 1.27 1.27)) (justify right bottom)))
+		(property "Value" "47k" (at 110.83 90.77 0) (effects (font (size 1.27 1.27)) (justify right top)))
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric" (at 113.03 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 113.03 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "1% (sets BUCK1 = 1.8 V)" (at 113.03 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 BUCK output voltage selection" (at 113.03 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "875ef903-bf11-4923-b451-2e833451958b"))
+		(pin "2" (uuid "24826d4f-c1a4-443a-b642-482261534275"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "R16") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 113.03 92.71 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "c75d1e24-b1fb-4390-9355-2c41d14461d5")
+		(property "Reference" "#PWR11" (at 113.03 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 113.03 96.21 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 113.03 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 113.03 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "7704fb49-6b63-4064-8322-73c9281f1870"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR11") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 120.65 92.71 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "29815c88-7aa0-4ca2-9903-91736a1bb0ee")
+		(property "Reference" "#PWR12" (at 120.65 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 120.65 96.21 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 120.65 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 120.65 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "738697ef-d71a-4597-b70d-6b9ea87c87b2"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR12") (unit 1))))
+	)
+	(symbol (lib_id "Switch:SW_SPST") (at 113.03 102.87 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "a7c881db-f376-464f-9b58-0f9a95bdcddb")
+		(property "Reference" "SW1" (at 113.03 100.67 0) (effects (font (size 1.27 1.27)) (justify bottom)))
+		(property "Value" "Ship mode / reset" (at 113.03 105.07 0) (effects (font (size 1.27 1.27)) (justify top)))
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_B3U-1000P" (at 113.03 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 113.03 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Ship and Hibernate modes" (at 113.03 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d71a520f-0aa5-4929-b4b6-c169a6ce38e1"))
+		(pin "2" (uuid "17298345-959c-402c-a952-2f96d2e4d39c"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "SW1") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 102.87 105.41 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "d8e58103-b2bf-4d31-bba3-76e74b300f5f")
+		(property "Reference" "#PWR13" (at 102.87 105.41 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 102.87 108.91 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 102.87 105.41 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 102.87 105.41 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "62f6c3bb-c95b-4f2a-a6aa-cdee1f7595db"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR13") (unit 1))))
+	)
+	(text "SHIP MODE / RESET BUTTON" (exclude_from_sim no) (at 69.85 103.505 0) (effects (font (size 1.27 1.27) bold (color 140 0 190 1)) (justify left bottom)) (uuid "79ef6349-feb6-4f78-bfe7-15b5b1bb3240"))
+	(hierarchical_label "I2C_SCL" (shape bidirectional) (at 74.93 110.49 180) (effects (font (size 1.27 1.27)) (justify right)) (uuid "ab41354e-54ff-46d9-9ca6-eefedfdd60f9"))
+	(hierarchical_label "I2C_SDA" (shape bidirectional) (at 74.93 113.03 180) (effects (font (size 1.27 1.27)) (justify right)) (uuid "88e34555-ccb6-47a9-882d-d8263aaab24b"))
+	(symbol (lib_id "power:+1V8") (at 119.38 119.38 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "b354919b-ba45-45aa-af37-f75c4afeaeae")
+		(property "Reference" "#PWR14" (at 119.38 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+1V8" (at 119.38 115.88 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 119.38 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 119.38 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ec1c15dd-9333-4caa-92a7-d2a84d8d03e9"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR14") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 111.76 125.73 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "5034abcd-e67a-407c-969c-83d7b2cc9922")
+		(property "Reference" "C31" (at 109.56 125.13 0) (effects (font (size 1.27 1.27)) (justify right bottom)))
+		(property "Value" "100nF" (at 109.56 126.33 0) (effects (font (size 1.27 1.27)) (justify right top)))
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric" (at 111.76 125.73 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 111.76 125.73 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X5R 10%" (at 111.76 125.73 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C13" (at 111.76 125.73 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "55202879-6f91-46f1-a2c1-538dc9b5a8c0"))
+		(pin "2" (uuid "4052ebc2-bf34-46e0-85f1-f91b8547ca13"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C31") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 111.76 128.27 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "fbdee4f6-ff0c-4048-b34e-23f574e1a96e")
+		(property "Reference" "#PWR15" (at 111.76 128.27 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 111.76 131.77 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 111.76 128.27 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 111.76 128.27 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d81e0c11-d7bf-4941-8eb5-cde552f8754d"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR15") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 166.37 54.61 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "5950273d-4730-4424-bdf6-d5c42037e4ab")
+		(property "Reference" "C26" (at 168.57 54.01 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "1uF" (at 168.57 55.21 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 166.37 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 166.37 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X5R 10V 10%, mandatory on VBUSOUT" (at 166.37 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C5" (at 166.37 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2ec78c84-95ac-4a40-9619-14a20e5597c9"))
+		(pin "2" (uuid "075938c2-5304-4127-ac47-73264c8b90d2"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C26") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 166.37 57.15 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "1351f7ad-69db-4249-9fda-521ed5c6ef7a")
+		(property "Reference" "#PWR16" (at 166.37 57.15 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 166.37 60.65 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 166.37 57.15 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 166.37 57.15 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2c63f703-0f78-4e42-b69b-db55a1af377b"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR16") (unit 1))))
+	)
+	(symbol (lib_id "power:+3V3") (at 196.85 58.42 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "9cae98b1-524f-4d1e-9000-7fbbc58ce33c")
+		(property "Reference" "#PWR17" (at 196.85 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "VSYS" (at 196.85 54.92 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 196.85 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 196.85 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "36e79dac-9974-4bbc-b13d-9d170d9a42b9"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR17") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 171.45 64.77 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "f79dee60-3b92-4770-a9cc-5714b104aa2a")
+		(property "Reference" "C28" (at 173.65 64.17 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "10uF" (at 173.65 65.37 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 171.45 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 171.45 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X5R 25V 20%" (at 171.45 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C4" (at 171.45 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "73e1a21d-1eff-419e-89b5-2fb5fd86bfec"))
+		(pin "2" (uuid "bb5ecc53-3d92-4e56-9539-d04f3626d95e"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C28") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 171.45 67.31 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "1c78a7ee-8c5a-4747-aa90-cf0398c1d335")
+		(property "Reference" "#PWR18" (at 171.45 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 171.45 70.81 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 171.45 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 171.45 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ebfe3db2-e5ce-49cb-a1a3-50e76fb3b778"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR18") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 189.23 64.77 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "ccdac2da-e788-436e-a51a-a542f082f933")
+		(property "Reference" "C27" (at 191.43 64.17 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "10uF" (at 191.43 65.37 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 189.23 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 189.23 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X5R 25V 20%, returns to PVSS1" (at 189.23 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C2" (at 189.23 64.77 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b8c7e17e-010a-4a38-ba8e-ab0c2559ee33"))
+		(pin "2" (uuid "6e0a0e9f-e8e4-4887-b630-cf34eb9b71c6"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C27") (unit 1))))
+	)
+	(symbol (lib_id "Device:L_Small") (at 168.91 80.01 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "01eb4893-b321-4b37-a90b-2e7c2df90e67")
+		(property "Reference" "L6" (at 171.11 79.41 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "2.2uH" (at 171.11 80.61 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Inductor_SMD:L_0805_2012Metric" (at 168.91 80.01 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 168.91 80.01 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "DCR <= 400 mOhm, Isat > 350 mA, 20%" (at 168.91 80.01 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 BUCK component selection" (at 168.91 80.01 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "82e22bc5-551f-466b-bd48-5c932605dc92"))
+		(pin "2" (uuid "a7e41834-23c7-465b-8b0d-3ae7e4c0a9f3"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "L6") (unit 1))))
+	)
+	(symbol (lib_id "power:+1V8") (at 184.15 78.74 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "2469c389-1819-4df1-ae25-86a683b9eb3f")
+		(property "Reference" "#PWR19" (at 184.15 78.74 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+1V8" (at 184.15 75.24 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 184.15 78.74 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 184.15 78.74 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "1b163aaf-a1f1-4de5-9ba2-ae01bfc32617"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR19") (unit 1))))
+	)
+	(symbol (lib_id "Device:C_Small") (at 176.53 85.09 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "297911b9-e7d0-4802-b529-2f8491b5392a")
+		(property "Reference" "C29" (at 178.73 84.49 0) (effects (font (size 1.27 1.27)) (justify left bottom)))
+		(property "Value" "10uF" (at 178.73 85.69 0) (effects (font (size 1.27 1.27)) (justify left top)))
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 176.53 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 176.53 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Spec" "X5R 25V 20% (>= 4 uF effective)" (at 176.53 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 C7" (at 176.53 85.09 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "29976d11-db26-400f-b93e-8a340931ba72"))
+		(pin "2" (uuid "8c1dfb9f-fd90-428a-869c-89be398aedac"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "C29") (unit 1))))
+	)
+	(symbol (lib_id "Device:NetTie_2") (at 165.1 100.33 90) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "004f3902-c920-45ff-8269-1eb330f26450")
+		(property "Reference" "NT4" (at 162.9 99.73 270) (effects (font (size 1.27 1.27)) (justify right bottom)))
+		(property "Value" "NetTie" (at 162.9 100.93 270) (effects (font (size 1.27 1.27)) (justify right top)))
+		(property "Footprint" "NetTie:NetTie-2_SMD_Pad0.5mm" (at 165.1 100.33 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 165.1 100.33 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Source" "nPM1300 PS v1.3 Reference circuitry, Configuration 2 (net tie on PVSS1)" (at 165.1 100.33 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d9be02b7-2fc0-4937-8f12-572078dfa104"))
+		(pin "2" (uuid "437c3d71-4c7e-4d34-ba6e-3c06a06b6eff"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "NT4") (unit 1))))
+	)
+	(symbol (lib_id "power:GND") (at 165.1 102.87 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "4a3f3fad-b14b-4d09-ae39-259c56b35c96")
+		(property "Reference" "#PWR20" (at 165.1 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 165.1 106.37 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 165.1 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 165.1 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "5d5516f7-5099-4390-9f16-8f0e6da55de6"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR20") (unit 1))))
+	)
+	(text "PVSS1 JOINS GROUND ONLY AT THE NET TIE" (exclude_from_sim no) (at 168.91 99.06 0) (effects (font (size 1.27 1.27) bold (color 140 0 190 1)) (justify left bottom)) (uuid "19c695d2-13f1-49d5-a744-dba89acf5c1f"))
+	(symbol (lib_id "power:+3V3") (at 173.99 106.68 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "fc75cf4e-bb74-4ab5-b4c0-e274baf45e9e")
+		(property "Reference" "#PWR21" (at 173.99 106.68 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "VSYS" (at 173.99 103.18 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 173.99 106.68 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 173.99 106.68 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ba48f857-4bdf-4925-a275-4fbf48ce3c30"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR21") (unit 1))))
+	)
+	(no_connect (at 158.75 113.03) (uuid "ed8d129d-fdc5-49a1-8ad4-baf65900b0fa"))
+	(symbol (lib_id "power:GND") (at 163.83 128.27 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "74da8717-4c4e-4edb-9b1b-2e72e1cbbd3b")
+		(property "Reference" "#PWR22" (at 163.83 128.27 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 163.83 131.77 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 163.83 128.27 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 163.83 128.27 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "88799c29-5b59-40a0-b805-60ddc94d900b"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR22") (unit 1))))
+	)
+	(text "BUCK 2 AND LOAD SWITCHES UNUSED" (exclude_from_sim no) (at 180.34 114.3 0) (effects (font (size 1.27 1.27) bold (color 140 0 190 1)) (justify left bottom)) (uuid "7b8ee21c-d735-45c3-bfef-e771b9366313"))
+	(no_connect (at 158.75 133.35) (uuid "ba2da0f4-70cf-46ba-a7af-f0a0c65d3c89"))
+	(no_connect (at 158.75 138.43) (uuid "830adaab-4386-453b-aa6d-987818a7f412"))
+	(no_connect (at 158.75 140.97) (uuid "704bbed9-d996-4af4-84fe-92d0fe5cdb75"))
+	(no_connect (at 158.75 143.51) (uuid "b9ad4377-4377-4413-be9d-0c31245d6787"))
+	(hierarchical_label "PMIC_IRQ" (shape output) (at 179.07 135.89 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "b654caee-d628-47f1-87b8-552e859e281b"))
+	(no_connect (at 158.75 148.59) (uuid "f8c9f3a1-151d-4e49-8036-da7fd7031069"))
+	(no_connect (at 158.75 151.13) (uuid "be9ce6ea-3081-4620-a0ed-4c3839cf61f6"))
+	(no_connect (at 158.75 153.67) (uuid "59565dc5-c972-40b9-95ae-a7b689fe9852"))
+	(symbol (lib_id "power:GND") (at 130.81 163.83 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board no) (dnp no) (uuid "05034f07-d3a8-41c7-ab98-25ebd24e4ed5")
+		(property "Reference" "#PWR23" (at 130.81 163.83 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 130.81 167.33 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 130.81 163.83 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 130.81 163.83 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b404535f-d021-4ba5-8460-0dbfef40b84f"))
+		(instances (project "smartwatch" (path "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f" (reference "#PWR23") (unit 1))))
+	)
+	(text_box "Input: VBUS comes from the OCVPB21 output (VBUS_PROT) with 1 uF (C25). CC1 and CC2 go to ground because there is no USB-C connector. The input current limit starts at 100 mA. The only settings above that are 500 mA and more, but the OCVPB21 limits at about 310 mA, so keep the nPM1300 at its 100 mA default (or set R14 to 51 Ohm for about 600 mA)." (exclude_from_sim no) (at 231.14 35.56 0) (size 70 14.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "21a57e5c-9088-422d-bdf0-44504181b836"))
+	(text_box "Buck 1 = 1.8 V from R16 (47 kOhm on VSET1). L6 2.2 uH (DCR 400 mOhm max, Isat above 350 mA), C29 10 uF (at least 4 uF effective). 200 mA maximum. PVSS1 is the power ground of buck 1; it joins ground only through net tie NT4." (exclude_from_sim no) (at 231.14 52.76 0) (size 70 10.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "6cd04e88-23c8-47ed-bf1b-a861f6f71d45"))
+	(text_box "VSYS and PVDD are one net with 10 uF to PVSS1 (C27) and 10 uF to ground (C28). Never feed VSYS from outside. Never power the application from VBAT: use VSYS or VOUT1 only (datasheet)." (exclude_from_sim no) (at 231.14 65.96 0) (size 70 8.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "c5773a66-5123-4a10-853e-ef76b4f322b8"))
+	(text_box "Battery: the pack must carry its own protection (over/under voltage, over current). A pack with an NTC goes on J4 pin 2. For a pack without NTC fit R17 (10 kOhm) and disable the NTC function in register BCHGDISABLESET. Thermistor type is chosen in software (10, 47 or 100 kOhm)." (exclude_from_sim no) (at 231.14 77.16 0) (size 70 12.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "06f38730-0b55-4552-a651-156efde57d07"))
+	(text_box "SW1 on SHPHLD exits Ship mode (a charger on VBUS also does) and a 10 s hold resets the system. TWI address is 0x6B. VDDIO is the 1.8 V rail and has its own 100 nF (C31). GPIO1 is the interrupt line PMIC_IRQ; the other GPIOs, LED0..2 and SW2 are open. The I2C pull-ups are on the sensors sheet." (exclude_from_sim no) (at 231.14 92.36 0) (size 70 12.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "d4859af4-023a-4fe3-8816-47c281a5385d"))
+	(text_box "DECISION NEEDED (rail voltage): the nRF54L15 needs VDD of at least 1.75 V during power-on reset, but 47 kOhm on VSET1 gives 1.8 V +/-5 %, which is 1.71 V at worst. MAX86141 allows 1.7 to 2.0 V. A 1.9 V rail (1.805 to 1.995 V) fits both. Options: keep R16 and have firmware set BUCK1NORMVOUT to 1.9 V at boot, or fit 68 kOhm (2.0 V default) and lower to 1.9 V in firmware. Net name stays +1V8." (exclude_from_sim no) (at 231.14 107.56 0) (size 70 16.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "df007c1d-0414-4241-894f-2f0397d93791"))
+	(text_box "Open items: battery cell and connector pin order (J4), button part (SW1), QFN32 exposed pad size (footprint EP 3.45 mm, datasheet 3.5 mm nominal)." (exclude_from_sim no) (at 231.14 126.76 0) (size 70 8.2) (margins 0.9525 0.9525 0.9525 0.9525) (stroke (width 0.1524) (type solid) (color 200 0 0 1)) (fill (type color) (color 160 195 245 1)) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "b89fd863-ad4b-43f3-8e14-60b990172972"))
+	(wire (pts (xy 125.73 52.07) (xy 114.3 52.07)) (stroke (width 0) (type default)) (uuid "cdec8a24-130e-4ef4-be78-006a1b536d4c"))
+	(wire (pts (xy 114.3 52.07) (xy 106.68 52.07)) (stroke (width 0) (type default)) (uuid "fa40b52a-ab2b-464a-91f9-c00f782d404c"))
+	(wire (pts (xy 106.68 52.07) (xy 106.68 48.26)) (stroke (width 0) (type default)) (uuid "c903ac3b-ca62-4769-9bd1-5fa08ea56748"))
+	(wire (pts (xy 125.73 62.23) (xy 119.38 62.23)) (stroke (width 0) (type default)) (uuid "2561de64-3fa5-4ed7-93bf-aced14c92bcd"))
+	(wire (pts (xy 119.38 62.23) (xy 119.38 64.77)) (stroke (width 0) (type default)) (uuid "98afcd2e-dfe4-4b44-8204-a93c50d03285"))
+	(wire (pts (xy 125.73 64.77) (xy 119.38 64.77)) (stroke (width 0) (type default)) (uuid "590a56c8-60b3-4d2e-a9d4-80f0e512b9b1"))
+	(wire (pts (xy 119.38 64.77) (xy 119.38 67.31)) (stroke (width 0) (type default)) (uuid "2a6faa2d-bc21-4d3e-82b2-cba8a77194ef"))
+	(wire (pts (xy 92.71 69.85) (xy 113.03 69.85)) (stroke (width 0) (type default)) (uuid "4eb46df5-70c7-48ed-aee8-0e890967f4f8"))
+	(wire (pts (xy 113.03 69.85) (xy 125.73 69.85)) (stroke (width 0) (type default)) (uuid "a7a0cb07-d9f6-4c5d-a98b-ab873fdb24b4"))
+	(wire (pts (xy 92.71 80.01) (xy 102.87 80.01)) (stroke (width 0) (type default)) (uuid "048a89f5-c185-4e6f-abfc-cbb5e2d72734"))
+	(wire (pts (xy 102.87 80.01) (xy 125.73 80.01)) (stroke (width 0) (type default)) (uuid "3b4ef060-76d7-438b-8ed3-89c36fb6466c"))
+	(wire (pts (xy 92.71 85.09) (xy 102.87 85.09)) (stroke (width 0) (type default)) (uuid "f0109da2-2dfc-437f-aac5-601acea75720"))
+	(wire (pts (xy 125.73 87.63) (xy 113.03 87.63)) (stroke (width 0) (type default)) (uuid "3d179ad2-3319-4902-8f49-f9b867bc1771"))
+	(wire (pts (xy 125.73 90.17) (xy 120.65 90.17)) (stroke (width 0) (type default)) (uuid "32223c08-2668-4118-aaec-5c8af7fdc7ff"))
+	(wire (pts (xy 120.65 90.17) (xy 120.65 92.71)) (stroke (width 0) (type default)) (uuid "48d87b49-58af-44e5-97c0-c2beac8fe407"))
+	(wire (pts (xy 125.73 102.87) (xy 118.11 102.87)) (stroke (width 0) (type default)) (uuid "f0ae2f0c-cb43-472b-9e0b-b1bfed45831d"))
+	(wire (pts (xy 107.95 102.87) (xy 102.87 102.87)) (stroke (width 0) (type default)) (uuid "67210d36-7686-4c1c-9bec-ee8d75fe6786"))
+	(wire (pts (xy 102.87 102.87) (xy 102.87 105.41)) (stroke (width 0) (type default)) (uuid "d421bee1-a0a0-4a04-ba77-9b74b7687c3d"))
+	(wire (pts (xy 125.73 110.49) (xy 74.93 110.49)) (stroke (width 0) (type default)) (uuid "113c3104-2ea0-4727-9c94-0c7e720e933b"))
+	(wire (pts (xy 125.73 113.03) (xy 74.93 113.03)) (stroke (width 0) (type default)) (uuid "566a4322-3451-4ca7-8c31-0d038b04029d"))
+	(wire (pts (xy 125.73 123.19) (xy 119.38 123.19)) (stroke (width 0) (type default)) (uuid "ed13552f-7755-4a0c-ac93-22644fa867f8"))
+	(wire (pts (xy 119.38 123.19) (xy 111.76 123.19)) (stroke (width 0) (type default)) (uuid "577cdfba-4a0e-47c2-ac7f-862608800dfe"))
+	(wire (pts (xy 119.38 123.19) (xy 119.38 119.38)) (stroke (width 0) (type default)) (uuid "93cf566c-ccfc-4c9b-a9e3-1ee91a30b5b3"))
+	(wire (pts (xy 158.75 52.07) (xy 166.37 52.07)) (stroke (width 0) (type default)) (uuid "3a9e13e3-d548-42ac-b065-a64bc2c95d4f"))
+	(wire (pts (xy 158.75 62.23) (xy 163.83 62.23)) (stroke (width 0) (type default)) (uuid "9dcb296c-beee-4897-bf30-fc02f719579f"))
+	(wire (pts (xy 158.75 64.77) (xy 163.83 64.77)) (stroke (width 0) (type default)) (uuid "6ae6dd8d-2326-4c28-802f-d5d24678741e"))
+	(wire (pts (xy 163.83 64.77) (xy 163.83 62.23)) (stroke (width 0) (type default)) (uuid "58bd0ea0-8606-475b-9411-a4fd4c4ffbd7"))
+	(wire (pts (xy 163.83 62.23) (xy 171.45 62.23)) (stroke (width 0) (type default)) (uuid "8a90fa69-c086-4df6-81ed-459bb82e95ad"))
+	(wire (pts (xy 171.45 62.23) (xy 189.23 62.23)) (stroke (width 0) (type default)) (uuid "0c0974f1-b75b-42c5-87b4-cc8558e7641e"))
+	(wire (pts (xy 189.23 62.23) (xy 196.85 62.23)) (stroke (width 0) (type default)) (uuid "f53f6ba9-a60b-4000-a105-1539b7db4617"))
+	(wire (pts (xy 196.85 62.23) (xy 196.85 58.42)) (stroke (width 0) (type default)) (uuid "3802834e-f2ac-487b-b9f3-1b53be8caaa9"))
+	(wire (pts (xy 158.75 77.47) (xy 168.91 77.47)) (stroke (width 0) (type default)) (uuid "fd989fd8-6f1f-4b8d-8888-bdf94b89df5e"))
+	(wire (pts (xy 158.75 82.55) (xy 168.91 82.55)) (stroke (width 0) (type default)) (uuid "e9975d6e-eecb-4fea-b940-8d38cafb5204"))
+	(wire (pts (xy 168.91 82.55) (xy 176.53 82.55)) (stroke (width 0) (type default)) (uuid "1ab4e723-86f9-4787-8767-d8717c2b4c95"))
+	(wire (pts (xy 176.53 82.55) (xy 184.15 82.55)) (stroke (width 0) (type default)) (uuid "c4f1face-a806-4eeb-a3f1-99429ef59d8a"))
+	(wire (pts (xy 184.15 82.55) (xy 184.15 78.74)) (stroke (width 0) (type default)) (uuid "85b5b2ce-4455-40b7-926e-5c1447573e76"))
+	(wire (pts (xy 176.53 87.63) (xy 176.53 95.25)) (stroke (width 0) (type default)) (uuid "2e9b1d87-37cc-4f2e-88f7-e80dc9d210ab"))
+	(wire (pts (xy 158.75 95.25) (xy 165.1 95.25)) (stroke (width 0) (type default)) (uuid "11cd07b1-8e30-4701-9515-7be0421f2620"))
+	(wire (pts (xy 165.1 95.25) (xy 176.53 95.25)) (stroke (width 0) (type default)) (uuid "dc3d2d48-7e45-425f-9e54-0a2de6cdfca0"))
+	(wire (pts (xy 176.53 95.25) (xy 189.23 95.25)) (stroke (width 0) (type default)) (uuid "1b1d2962-4c41-4c71-a347-4c070fdf45ce"))
+	(wire (pts (xy 189.23 67.31) (xy 189.23 95.25)) (stroke (width 0) (type default)) (uuid "f517073e-3a3f-4706-9095-137969b3a469"))
+	(wire (pts (xy 165.1 95.25) (xy 165.1 97.79)) (stroke (width 0) (type default)) (uuid "4451d2a2-021f-4160-b74b-dd4aa6b32b51"))
+	(wire (pts (xy 158.75 110.49) (xy 173.99 110.49)) (stroke (width 0) (type default)) (uuid "15038176-ae49-44c6-b7cd-abba6f08d18d"))
+	(wire (pts (xy 173.99 110.49) (xy 173.99 106.68)) (stroke (width 0) (type default)) (uuid "57351a33-e79f-4570-a30c-12c08a5bb9a1"))
+	(wire (pts (xy 158.75 115.57) (xy 163.83 115.57)) (stroke (width 0) (type default)) (uuid "e1e399ae-58c9-4502-be55-f603acbbfc80"))
+	(wire (pts (xy 163.83 115.57) (xy 163.83 120.65)) (stroke (width 0) (type default)) (uuid "c4fef1a5-975d-463c-b20e-6a97230ba289"))
+	(wire (pts (xy 163.83 120.65) (xy 163.83 123.19)) (stroke (width 0) (type default)) (uuid "8a48dbd8-3479-4d93-a2d9-1cd42cac5bdd"))
+	(wire (pts (xy 163.83 123.19) (xy 163.83 125.73)) (stroke (width 0) (type default)) (uuid "e6f770f0-1772-4fa0-8f39-74a62748a3c5"))
+	(wire (pts (xy 163.83 125.73) (xy 163.83 128.27)) (stroke (width 0) (type default)) (uuid "62d41580-4907-499c-9107-0416cfcc4261"))
+	(wire (pts (xy 158.75 120.65) (xy 163.83 120.65)) (stroke (width 0) (type default)) (uuid "17e542de-fb7f-412f-b22f-b492ad1ed8a7"))
+	(wire (pts (xy 158.75 123.19) (xy 163.83 123.19)) (stroke (width 0) (type default)) (uuid "08805b39-aa5e-41f6-8d8d-1e89f6c4832b"))
+	(wire (pts (xy 158.75 125.73) (xy 163.83 125.73)) (stroke (width 0) (type default)) (uuid "87bcfe76-ab29-476f-b95a-17cb8aabd126"))
+	(wire (pts (xy 158.75 128.27) (xy 163.83 128.27)) (stroke (width 0) (type default)) (uuid "70d86ea8-5f56-43f7-8a27-0e2d6aa9876b"))
+	(wire (pts (xy 158.75 135.89) (xy 179.07 135.89)) (stroke (width 0) (type default)) (uuid "4c1d2a74-453a-4b0d-a052-f1a8214a228c"))
+	(wire (pts (xy 130.81 161.29) (xy 130.81 163.83)) (stroke (width 0) (type default)) (uuid "92e824f6-7a22-4262-9806-9a2b8a413319"))
+	(junction (at 102.87 80.01) (diameter 0) (color 0 0 0 0) (uuid "fc255379-5706-4795-9501-79d37682018a"))
+	(junction (at 102.87 85.09) (diameter 0) (color 0 0 0 0) (uuid "c82df095-e6dc-456a-bf67-8ba796e82282"))
+	(junction (at 113.03 69.85) (diameter 0) (color 0 0 0 0) (uuid "c98f3a53-a1ae-4b8e-9515-a6d548783ede"))
+	(junction (at 114.3 52.07) (diameter 0) (color 0 0 0 0) (uuid "79cdba47-64f5-4a4f-87b4-e1b426275701"))
+	(junction (at 119.38 64.77) (diameter 0) (color 0 0 0 0) (uuid "fca4320a-245c-428a-943c-e698e2b44aa7"))
+	(junction (at 119.38 123.19) (diameter 0) (color 0 0 0 0) (uuid "aff02f56-3577-4102-9a3d-c042eec29a25"))
+	(junction (at 163.83 62.23) (diameter 0) (color 0 0 0 0) (uuid "cf72c8ab-e4ca-4358-9461-99aa2d2fbf84"))
+	(junction (at 163.83 120.65) (diameter 0) (color 0 0 0 0) (uuid "654995b4-7b32-4273-9ac1-d8688b462593"))
+	(junction (at 163.83 123.19) (diameter 0) (color 0 0 0 0) (uuid "c8a3c8f4-0bdc-4f60-9032-275009b8f255"))
+	(junction (at 163.83 125.73) (diameter 0) (color 0 0 0 0) (uuid "7c460a9c-8741-4653-a58b-5830a340c117"))
+	(junction (at 163.83 128.27) (diameter 0) (color 0 0 0 0) (uuid "755eeef6-f606-44da-8ef4-926223b1e028"))
+	(junction (at 165.1 95.25) (diameter 0) (color 0 0 0 0) (uuid "d8bacd78-3bf7-495d-8f3f-6da2aad4950e"))
+	(junction (at 168.91 82.55) (diameter 0) (color 0 0 0 0) (uuid "5c952598-d30f-4180-97bc-9d1e7bbd9d51"))
+	(junction (at 171.45 62.23) (diameter 0) (color 0 0 0 0) (uuid "2244fce1-044d-4fa8-9bd7-0c49d834825e"))
+	(junction (at 176.53 82.55) (diameter 0) (color 0 0 0 0) (uuid "38a016bd-95e5-46d3-971b-155107bd9a10"))
+	(junction (at 176.53 95.25) (diameter 0) (color 0 0 0 0) (uuid "adcbef5b-58c9-4b5e-80bb-a711ae2ea4e4"))
+	(junction (at 189.23 62.23) (diameter 0) (color 0 0 0 0) (uuid "e696283d-480a-44f0-bca4-63516c423d3e"))
+	(sheet_instances (path "/" (page "1")))
+	(embedded_fonts no)
+)

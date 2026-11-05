@@ -13,6 +13,6 @@
 	(fp_rect (start -1.3 -1.3) (end 1.3 1.3) (stroke (width 0.1) (type solid)) (fill no) (layer "F.Fab"))
 	(fp_rect (start -1.40 -1.40) (end 1.40 1.40) (stroke (width 0.12) (type solid)) (fill no) (layer "F.SilkS"))
 	(fp_rect (start -1.6 -1.6) (end 1.6 1.6) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
-	(pad "1" smd circle (at 0.0000 0.0000) (size 2.6 2.6) (layers "F.Cu" "F.Mask" "F.Paste") (uuid "a0b6a403-fe69-4d01-bca2-f4e354ad0435"))
+	(pad "1" smd circle (at 0.0000 0.0000) (size 2.6 2.6) (layers "F.Cu" "F.Mask" "F.Paste") (uuid "40847c95-5824-4cd2-9849-07ad608fa0c5"))
 	(embedded_fonts no)
 )

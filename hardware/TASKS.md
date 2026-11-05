@@ -14,7 +14,7 @@ Status key: [x] done and checked, [~] partly done (what is missing is written ne
 - [x] A3 Scope for this phase: the selected core parts. Display, haptic driver, pressure sensor and NFC reader are later sheets.
 
 ## B. Datasheets (nothing is skipped, passives included)
-- [~] B1 Active parts: 10 of 12 saved. **Missing: nPM1300 product specification, MX25R3235F** (see `DATASHEET_INDEX.md`)
+- [x] B1 Active parts: all 12 datasheets saved (nPM1300 as text of Nordic's web specification v1.3, MX25R3235F rev 1.6)
 - [x] B2 Reference circuits: nRF54L15 circuit configuration 1 (Fig. 180, Table 87), MAXREFDES103 sensor board (schematic, BOM, fab data)
 - [~] B3 Boost (TPS61240), protection (OCVPB21), antenna (Johanson) done. Flash pending.
 - [~] B4 Crystals: electrical limits read (HFXO, LFXO). **Exact crystal MPNs not chosen.**
@@ -35,18 +35,18 @@ Status key: [x] done and checked, [~] partly done (what is missing is written ne
 
 ## E. Hierarchical schematic
 - [x] E1 Root sheet and sheet interfaces
-- [~] E2 Charging input (pogo pads, OCVPB21) done. **nPM1300 charger: waiting for the datasheet.**
-- [~] E3 LED supply (TPS61240 with the VSYS bypass link) done. **1.8 V rail and VSYS come from the nPM1300 sheet.** A stand-in sheet marks them until then.
+- [x] E2 Charging input and power (OCVPB21, nPM1300, battery connector) done
+- [x] E3 LED supply (TPS61240) done
 - [x] E4 MCU core (nRF54L15, DC/DC, crystals, reset, debug)
 - [x] E5 RF (Nordic match network, antenna tee, antenna)
 - [x] E6 Optical (MAX86141, SFH 7016, 2x VEMD8080)
 - [x] E7 Motion and temperature (BMI270, MAX30208, I2C pull-ups)
-- [ ] E8 Memory (MX25R3235F): waiting for the datasheet
+- [x] E8 Memory (MX25R3235F) done
 - [x] E9 Test and programming (Tag-Connect, test points)
 
 ## F. Verification
 - [x] F1 ERC on the whole hierarchy: no errors except 4 "label not connected" for `PMIC_IRQ` and `CS_FLASH` (their other end is on the two pending sheets)
 - [x] F2 Netlist exported and compared with an independent expected table typed from the requirements document (`schematic/tools/check.py`); the check was shown to fail on a deliberately wrong net
-- [~] F3 Datasheet cross-check for the built sheets: supply ranges, I/O levels, addresses, strap pins and power-up behaviour are in `REQUIREMENTS_FROM_DATASHEETS.md`. Not yet done for nPM1300 and flash.
+- [~] F3 Datasheet cross-check: done for every sheet against the datasheet text and figures, see `schematic/REVIEW.md`. Findings and open decisions are listed there, with what was NOT rechecked
 - [x] F4 BOM export
 - [ ] F5 Review document for the client

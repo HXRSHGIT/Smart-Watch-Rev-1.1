@@ -14,6 +14,8 @@ where = {(r, p): nm for nm, nodes in nets.items() for (r, p, _) in nodes}
 
 
 def short(n):
+    if n.startswith("Net-("):          # internal wire between parts: no name on the drawing
+        return "(wire)"
     return n.rsplit("/", 1)[-1]
 
 

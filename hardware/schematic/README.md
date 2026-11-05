@@ -4,6 +4,8 @@ Done by Harsh Thakur.
 
 KiCad 9 project, hierarchical. Open `smartwatch.kicad_pro`.
 
+The sheets are drawn the way a person draws them: real wires between parts, left-to-right signal flow, frames with headings, blue designer notes, one ground symbol per group. Net labels are used only where a wire cannot reach: the I2C pair at the second chip on the sensors sheet, and on the root page the second receiver of the SPI bus (memory) and of the I2C bus (power), 10 labels. Bus test points sit on the sheets that own the bus. The rules are in `STYLE_GUIDE.md`; the datasheet review is in `REVIEW.md`. Each sheet is a script in `tools/sheets/`. Supply rails are power symbols, so they connect by name across sheets.
+
 ## Sheets
 
 | Sheet | File | Contents | State |
@@ -16,9 +18,8 @@ KiCad 9 project, hierarchical. Open `smartwatch.kicad_pro`.
 | Optical | `optical.kicad_sch` | MAX86141, SFH 7016, 2 x VEMD8080 | done |
 | Sensors | `sensors.kicad_sch` | BMI270, MAX30208, I2C pull-ups | done |
 | Test | `test.kicad_sch` | Tag-Connect SWD pads, test points | done |
-| Power stand-in | `power_stub.kicad_sch` | marks the rails the nPM1300 will drive | **replace with the power sheet** |
-| Power | (not yet) | nPM1300, battery, NTC | waiting for the datasheet |
-| Memory | (not yet) | MX25R3235F | waiting for the datasheet |
+| Power | `power.kicad_sch` | nPM1300 (QFN32), L6, caps, battery connector, NTC, ship-mode button | done |
+| Memory | `memory.kicad_sch` | MX25R3235F (8-land USON), CS# pull-up, SPI test points | done |
 
 ## Rebuild and check
 
@@ -26,19 +27,21 @@ KiCad 9 project, hierarchical. Open `smartwatch.kicad_pro`.
 python tools/gen_footprints.py     # custom footprints -> libs/smartwatch.pretty
 python tools/build.py              # symbols and sheets
 python tools/check.py              # ERC + netlist vs expected + pin table + footprint pads
+python tools/lint.py               # wire crossings and net labels per sheet
 python tools/pinmap.py             # PIN_MAP.md and BOM.csv
+python tools/dev.py mcu A3 110     # preview one sheet as build/dev/mcu.png
 ```
 
 `check.py` needs `kicad-cli` (KiCad 9). It prints `ALL CHECKS PASSED` or the list of differences.
 
 ## What the check covers
 
-1. KiCad ERC on the whole hierarchy. Allowed: four "label not connected" messages for `PMIC_IRQ` and `CS_FLASH`.
-2. Every pin of the nRF54L15, MAX86141, SFH 7016, VEMD8080, BMI270, MAX30208, TPS61240, OCVPB21, antenna and programming pads is on the net the requirements document says. The expected table is typed separately from the build script.
-3. Every two-pin part (value and both nets), 48 of them.
+1. KiCad ERC on the whole hierarchy: zero messages.
+2. Every pin of the nRF54L15, nPM1300, MX25R3235F, MAX86141, SFH 7016, VEMD8080, BMI270, MAX30208, TPS61240, OCVPB21, antenna, battery connector, button and programming pads is on the net the requirements document says. The expected table is typed separately from the build script.
+3. Every two-pin part by reference (both nets; the pin order of a passive does not matter, so the check follows each chain of parts from the nets it already knows), 61 of them. Internal nets are compared by connectivity, not by name, because wired nets carry no label.
 4. The nRF54L15 symbol has the same 49 pin numbers and names as the datasheet pin table (`data/nrf54l15_qfn48_pins.csv`).
 5. Every footprint pad matches the symbol pins (stock and custom footprints).
-6. No net has a single pin, except the two pending ones.
+6. No net has a single pin.
 
 ## nRF54L15 pin plan
 
@@ -46,11 +49,11 @@ python tools/pinmap.py             # PIN_MAP.md and BOM.csv
 |---|---|
 | P2.01 SCK, P2.02 MOSI, P2.04 MISO | SPI bus (SPIM00, dedicated pins) to MAX86141 and the flash |
 | P2.05 | chip select, MAX86141 |
-| P2.00 | chip select, flash (pending sheet) |
-| P0.04 SCL, P0.03 SDA | I2C (TWIM30) to BMI270, MAX30208 and later the nPM1300 |
+| P2.00 | chip select, flash |
+| P0.04 SCL, P0.03 SDA | I2C (TWIM30) to BMI270, MAX30208 and the nPM1300 (0x6B) |
 | P0.00, P0.01, P0.02 | MAX86141 INT, BMI270 INT1, BMI270 INT2 |
 | P2.03 | MAX30208 alarm (GPIO0) |
-| P1.08 | nPM1300 interrupt (pending sheet) |
+| P1.08 | nPM1300 interrupt (GPIO1) |
 | P2.06 | OCVPB21 FLAG |
 | P2.08 | LED boost enable |
 | P2.09, P2.10 | MAX86141 GPIO1, GPIO2 |
