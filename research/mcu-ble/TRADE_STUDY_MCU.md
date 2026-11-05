@@ -125,6 +125,6 @@ Scores are 1–5, from the facts above.
 
 ## 5. Open items
 
-- Confirm with the PCB fab: 0.35 mm-pitch CSP capability, microvia cost, and stack-up.
+- Confirm with the PCB fab: 0.3 mm-pitch CSP capability (datasheet v1.0 package table), microvia cost, and stack-up.
 - Measure actual image size after the first firmware build, then fix the partition sizes.
 - RF: the nRF54L15 gives more TX headroom (+7/+8 dBm), useful to recover body loss (see ANTENNA_RF.md), at a current cost.
