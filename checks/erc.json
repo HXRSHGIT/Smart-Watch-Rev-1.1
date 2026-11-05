@@ -1,0 +1,64 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-05T20:02:45+0530",
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "9.0.8",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74",
+            "violations": []
+        },
+        {
+            "path": "/input_protection/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/300adb46-4e98-4c7a-a6f1-476987e54b48",
+            "violations": []
+        },
+        {
+            "path": "/power/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/f5d15100-b171-45be-adf0-5ef6ebe6ab9f",
+            "violations": []
+        },
+        {
+            "path": "/led_supply/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/91fe4db3-c4db-47a9-83d2-ec5afb0cf678",
+            "violations": []
+        },
+        {
+            "path": "/mcu/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/b6b86cb9-2e55-4fef-b30f-f463db14d0f2",
+            "violations": []
+        },
+        {
+            "path": "/memory/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/d62e28fb-22e7-4ad2-aa8d-9841f3742021",
+            "violations": []
+        },
+        {
+            "path": "/rf/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/a73e9ab9-a5dd-4fa7-84df-5089ee23565b",
+            "violations": []
+        },
+        {
+            "path": "/optical/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/4ac791b4-5382-4cce-a9b9-195012dda138",
+            "violations": []
+        },
+        {
+            "path": "/sensors/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/784e9362-7c30-4cf6-9ecd-31a90af8ec0b",
+            "violations": []
+        },
+        {
+            "path": "/test/",
+            "uuid_path": "/beb01c95-410f-48bb-ba94-79a262575c74/96951d13-d2df-4c6e-b72f-90ded20f637c",
+            "violations": []
+        }
+    ],
+    "source": "smartwatch.kicad_sch"
+}

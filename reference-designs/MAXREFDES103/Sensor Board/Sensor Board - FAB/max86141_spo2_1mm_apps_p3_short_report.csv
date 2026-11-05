@@ -1,0 +1,33 @@
+ Maxim Integrated Products 
+ Maxim | Innovation Delivered | www.maximintegrated.com
+ ---------------------------------------------------------------------------------------
+ Confidential Note:  THE INFORMATION CONTAINED IN THIS DOCUMENT IS PROPRIETARY TO MAXIM.
+ THE INFORMATION IN THIS DOCUMENT IS NOT TO BE SHOWN/REPRODUCED OR 
+ DISCLOSED TO ANYONE OUTSIDE OF MAXIM WITHOUT PRIOR WRITTEN PERMISSION FROM MAXIM.
+ ***************************************************************************************
+ Design Name	:	"max86141_spo2_1mm_apps_p3"
+ Date		:	"09/09/2019"
+ Layout Designer	:	"SUBUTAY BASKIR"
+ Program version	:	014
+ ***************************************************************************************
+ NOTE:If "$NONE" present in NET_NAME; then the short at this location is intentional(Dummy pin in intentional short symbol).
+ CAM_NET_SHORT_COUNT column indicates the CAM tool shorting count (for reference only).
+ The * on the CAM_NET_SHORT_COUNT value indicates the net is shorted in two or more REFDES locations.
+
+NOTE:Below Shorts are done physically using dedicated short symbols.
+
+NET_NAME,REFDES,SYM_NAME,PIN_NO,X,Y,CAM_NET_SHORT_COUNT
+"PD_GND","S1","INTENTIONAL_SHORT_2PIN","1",18.9461,124.83,"1",
+"GND_SIGNAL","S1","INTENTIONAL_SHORT_2PIN","2",18.9461,124.83,"1",
+
+
+NOTE:Below Shorts are done physically without using dedicated short symbols.
+
+SHORT_DESCRIPTION,CAM_NET_SHORT_COUNT
+Nets ("GND_SIGNAL" "PD_GND") shorted at locations ((23.0811 124.83)) on layers ("TOP"),"1*"
+
+
+Total Intentional Short locations reported(1+1):2
+Total CAM net Short count reported:1
+
+END OF FILE

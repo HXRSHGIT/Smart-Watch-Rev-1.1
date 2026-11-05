@@ -1,0 +1,794 @@
+SFH 7016
+数据表数据表
+1 | Version 1.5 | 2022-04-12
+  
+ www.osram-os.com
+SFH 7016
+数据表
+Published by ams-OSRAM AG
+Tobelbader Strasse 30, 8141 Premstaetten, Austria
+Phone +43 3136 500-0
+ams-osram.com
+© All rights reserved
+ 
+SFH 7016
+数据表数据表
+2 | Version 1.5 | 2022-04-12
+  
+Multi Chip LED  
+SFH 7016
+绿光 (530 nm)、红光 (655 nm) 和红外发射管 (940 nm)
+应用
+ - 健康监测
+ - (心率, 血,
+ - 血 氧 , …）
+特点
+ - 封装: 透明硅树脂
+ - ESD: 2 kV acc. to ANSI/ESDA/JEDEC JS-001 (HBM, Class 2)
+ - SMT 封装
+ - 适合表面封装
+ - 提供卷带和卷盘包装
+ - 发射器可以独立控制
+    
+订购信息  
+型号 亮度组 1)2) 订单码
+SFH 7016 Q65112A7849
+● true green ● Ie = 2.20 ... 5.40 mW/sr (IF = 20 mA) Q65112A7849
+ 
+SFH 7016
+数据表数据表
+3 | Version 1.5 | 2022-04-12
+  
+订购信息  
+型号 亮度组 1)2) 订单码
+● hyper red ● Ie = 2.50 ... 7.00 mW/sr (IF = 20 mA) Q65112A7849
+● infrared (940 nm) ● Ie = 1.65 ... 4.05 mW/sr (IF = 20 mA) Q65112A7849
+ 
+ 
+SFH 7016
+数据表数据表
+4 | Version 1.5 | 2022-04-12
+  
+最大额定  
+TS = 25 °C
+参数 图形符号 值 值 值
+● true green ● hyper red ● infrared 
+(940 nm)
+工作温度 Top 最小值 
+最大值
+-40 °C 
+85 °C
+-40 °C 
+85 °C
+-40 °C 
+85 °C
+储存温度 Tstg 最小值 
+最大值
+-40 °C 
+85 °C
+-40 °C 
+85 °C
+-40 °C 
+85 °C
+结温 Tj 最大值 100 °C 100 °C 100 °C
+正向电流 IF 最大值 30 mA 40 mA 60 mA
+正向脉冲电流  
+tp ≤ 50 µs (G); tp ≤ 900 µs (R); 
+tp ≤ 60 µs (IR); D ≤ 0.005  
+IF pulse 最大值 0.75 A 0.3 A 1 A
+反向电压 3) VR 最大值 5 V 5 V 5 V
+功耗 Ptot 最大值 90 mW 100 mW 110 mW
+ESD耐受电压   
+acc. to ANSI/ESDA/JEDEC JS-001 
+(HBM, Class 2)
+VESD 最大值 2 kV 2 kV 2 kV
+ 
+The stated maximum ratings refer to one chip, unless otherwise specified.
+ 
+SFH 7016
+数据表数据表
+5 | Version 1.5 | 2022-04-12
+  
+特性 
+IF = 20 mA; tp = 20 ms; TS = 25 °C
+参数 图形符号 值 值 值
+● true green ● hyper red ● infrared 
+(940 nm)
+峰值波长 λpeak 典型值 526.0 nm 660.0 nm 950.0 nm
+质心波长 4) λcentroid 最小值 
+典型值 
+最大值
+522.5 nm 
+530.0 nm 
+541.5 nm
+652.5 nm 
+655.0 nm 
+657.5 nm
+930.5 nm 
+940.0 nm 
+949.5 nm
+光谱带宽, 50% Irel,max (FWHM) ∆λ 典型值 32.0 nm 17.0 nm 42.0 nm
+半角 φ 典型值 60 ° 60 ° 60 °
+芯片有效区域的尺寸 L x W 典型值 0.5 x 0.5 
+mm x mm
+0.3 x 0.3 
+mm x mm
+0.3 x 0.3 
+mm x mm
+上升时间（10%/90%）  
+IF = 100 mA; RL = 50 Ω
+tr 典型值 59 ns 17 ns 16 ns
+下降时间（10%/90%）  
+IF = 100 mA; RL = 50 Ω
+tf 典型值 59 ns 17 ns 16 ns
+正向电压 5) VF 最小值 
+典型值 
+最大值
+2.20 V 
+2.40 V 
+2.80 V
+1.70 V 
+1.90 V 
+2.20 V
+1.10 V 
+1.30 V 
+1.50 V
+反向电流 3) 
+VR = 5 V
+IR 最大值 10 µA 10 µA 10 µA
+辐射强度 1)2) 
+IF = 20 mA; tp = 20 ms
+Ie 最小值 
+典型值 
+最大值
+2.2 mW/sr 
+4 mW/sr 
+5.4 mW/sr
+2.5 mW/sr 
+4.2 mW/sr 
+7 mW/sr
+1.65 mW/sr 
+3 mW/sr 
+4.05 mW/sr
+总辐射通量 6) Φe 典型值 14 mW 14 mW 11 mW
+电压的温度系数 TCV 典型值 -3.6 mV / K -1.7 mV / K -0.8 mV / K
+亮度的温度系数 TCI 典型值 -0.35 % / K -0.7 % / K -0.3 % / K
+波长的温度系数 TCλ 典型值 0.03 nm / K 0.18 nm / K 0.3 nm / K
+实际热阻 PN结/焊点 7) RthJS real 典型值 
+最大值
+210 K / W 
+260 K / W
+260 K / W 
+310 K / W
+320 K / W 
+380 K / W
+ 
+ 
+SFH 7016
+数据表数据表
+6 | Version 1.5 | 2022-04-12
+  
+相对光谱发射 8), 9)
+● true green: Ie,rel = f (λ); IF = 20 mA; tp = 20 ms
+450 500 550 600 650
+λ [
+ ]
+0
+20
+40
+60
+80
+100
+[
+ ]
+相对光谱发射 8), 9)
+● hyper red: Ie,rel = f (λ); IF = 20 mA; tp = 20 ms
+5500 nm
+%
+OHF05734
+Irel
+λ
+600 650 700 750
+10
+20
+30
+40
+50
+60
+70
+80
+100
+ 
+SFH 7016
+数据表数据表
+7 | Version 1.5 | 2022-04-12
+  
+相对光谱发射 8), 9)
+● infrared (940 nm): Ie,rel = f (λ); IF = 20 mA; tp = 20 ms
+800
+0
+nm
+%
+OHF04134
+20
+40
+60
+80
+100
+Irel
+λ
+850 900 950 1025
+辐射特性 8), 9)
+Irel = f (ϕ); TS = 25 °C
+0
+0.2
+0.4
+1.0
+0.8
+0.6
+ϕ
+1.0 0.8 0.6 0.4
+0˚10˚20˚40˚ 30˚ OHL01660
+50˚
+60˚
+70˚
+80˚
+90˚
+100˚
+0˚ 20˚ 40˚ 60˚ 80˚ 100˚ 120˚
+ 
+SFH 7016
+数据表数据表
+8 | Version 1.5 | 2022-04-12
+  
+正向电流 8), 9)
+● true green: IF = f (VF); single pulse; tp = 100 µs
+2.2 2.4 2.6 2.8 3.0 3.2 3.4 3.6 3.8
+[
+ ]
+1
+5
+10
+50
+100
+500
+1000
+[
+ ]
+正向电流 8), 9)
+● hyper red: IF = f (VF); single pulse; tp = 100 µs
+1.8 2.0 2.2 2.4 2.6 2.8
+[
+ ]
+5
+10
+50
+100
+[
+ ]
+正向电流 8), 9)
+● infrared (940 nm): IF = f (VF); single pulse; tp = 100 µs
+0
+I
+OHF05642
+F
+VF
+mA
+V
+102
+310
+010
+110
+1 2 3 4
+ 
+SFH 7016
+数据表数据表
+9 | Version 1.5 | 2022-04-12
+  
+相对辐射强度 8), 9)
+● true green: Ie/Ie(20mA) = f (IF); single pulse; tp = 25 µs
+5
+10
+50
+100
+[
+ ]
+0.3
+0.4
+0.5
+1
+2
+3
+4
+5
+10
+相对辐射强度 8), 9)
+● hyper red: Ie/Ie(20mA) = f (IF); single pulse; tp = 100 µs
+5 10 50 100
+[
+ ]
+0.1
+0.5
+1
+5
+10
+相对辐射强度 8), 9)
+● infrared (940 nm): Ie/Ie(20mA) = f (IF); s. p.; tp = 100 µs
+OHF05669
+310
+Ι
+e
+(20 mA)e
+Ι
+FI
+102110100 mA
+10-2
+10-1
+100
+101
+210
+ 
+SFH 7016
+数据表数据表
+10 | Version 1.5 | 2022-04-12
+  
+最大容许正向电流
+● true green: IF,max = f (TS); Rthjs = 260K / W
+0 20 40 60 80
+[
+ ]
+0
+5
+10
+15
+20
+25
+30
+[
+ ]
+最大容许正向电流
+● hyper red: IF,max = f (TS); Rthjs = 310K / W
+0 20 40 60 80
+[
+ ]
+0
+10
+20
+30
+40
+[
+ ]
+最大容许正向电流
+● infrared (940 nm): IF,max = f (TS); Rthjs = 380K / W
+0 20 40 60 80
+[
+ ]
+0
+10
+20
+30
+40
+50
+60
+[
+ ]
+ 
+SFH 7016
+数据表数据表
+11 | Version 1.5 | 2022-04-12
+  
+容许脉冲处理能力
+● true green: IF = f (tp); D = parameter; TS = 25°C
+10-4 10-3 0.01 0.1 1 10
+[
+ ]
+0
+200
+400
+600
+[
+ ]
+:D =1
+:D =0 ,5
+:D =0 ,2
+:D =0 ,1
+:D =0 ,05
+:D =0 ,02
+:D =0 ,01
+:D =0 ,005
+容许脉冲处理能力
+● hyper red: IF = f (tp); D = parameter; TS = 25°C
+10-4 10-3 0.01 0.1 1 10
+[
+ ]
+0
+100
+200
+300
+[
+ ]
+:D =1
+:D =0 ,5
+:D =0 ,2
+:D =0 ,1
+:D =0 ,05
+:D =0 ,02
+:D =0 ,01
+:D =0 ,005
+容许脉冲处理能力
+● infrared (940 nm): IF = f (tp); D = parameter;  = 25°C
+10-4 10-3 0.01 0.1 1 10
+[
+ ]
+0
+200
+400
+600
+800
+1000
+[
+ ]
+:D =1
+:D =0 ,5
+:D =0 ,2
+:D =0 ,1
+:D =0 ,05
+:D =0 ,02
+:D =0 ,01
+:D =0 ,005
+ 
+SFH 7016
+数据表数据表
+12 | Version 1.5 | 2022-04-12
+  
+容许脉冲处理能力
+● true green: IF = f (tp); D = parameter; TS = 85°C
+10-4 10-3 0.01 0.1 1 10
+[
+ ]
+0
+200
+400
+600
+[
+ ]
+:D=1
+:D=0 ,5
+:D =0,2
+:D =0,1
+:D =0,05
+:D =0,02
+:D =0,01
+:D =0,005
+容许脉冲处理能力
+● hyper red: IF = f (tp); D = parameter; TS = 85°C
+10-4 10-3 0.01 0.1 1 10
+[
+ ]
+0
+100
+200
+300
+[
+ ]
+:D=1
+:D=0 ,5
+:D =0,2
+:D =0,1
+:D =0,05
+:D =0,02
+:D =0,01
+:D =0,005
+容许脉冲处理能力
+● infrared (940 nm): IF = f (tp); D = parameter;  = 85°C
+10-4 10-3 0.01 0.1 1 10
+[
+ ]
+0
+200
+400
+600
+800
+1000
+[
+ ]
+:D=1
+:D=0 ,5
+:D =0,2
+:D =0,1
+:D =0,05
+:D =0,02
+:D =0,01
+:D =0,005
+ 
+SFH 7016
+数据表数据表
+13 | Version 1.5 | 2022-04-12
+  
+尺寸图 10)
+备注:   
+近似重量: 3.0 mg
+识别码 描述
+1 Cathode infrared emitter (940 nm)
+2 Anode green/ red/ infrared emitter
+3 Cathode green emitter (530 nm)
+4 Cathode red emitter (655 nm)
+5 Anode green/ red/ infrared emitter
+6 NC 
+ 
+SFH 7016
+数据表数据表
+14 | Version 1.5 | 2022-04-12
+  
+推荐焊盘 10)
+为了获得更佳的焊点连接效果，我们建议在标准氮气环境下进行焊接。
+ 
+SFH 7016
+数据表数据表
+15 | Version 1.5 | 2022-04-12
+  
+回流焊曲线
+产品符合MSL等级 3 根据JEDEC J-STD-020E
+00 s
+OHA04525
+50
+100
+150
+200
+250
+300
+50 100 150 200 250 300
+t
+T
+˚C
+St
+t
+Pt
+Tp240 ˚C
+217 ˚C
+245 ˚C
+25 ˚C
+L
+曲线特征 符号 无铅组装 单位
+最小值 推荐值 最大值
+预热升温速率*)
+25 °C 至 150 °C
+2 3 K/s
+时间 tS
+TSmin 至 TSmax
+tS 60 100 120 s
+峰值升温速率*)
+TSmax 至 TP
+2 3 K/s
+液相线温度 TL 217 °C
+超过液相线温度的时间 tL 80 100 s
+峰值温度 TP 245 260 °C
+温度保持在指定峰值温度 TP - 5 K 的 5 
+°C 范围内的时间 
+tP 10 20 30 s
+降温速度*
+TP 至 100 °C
+3 6 K/s
+时间
+25 °C 至 TP
+480 s
+ 
+所有温度均指从元件顶部测得的封装中心温度
+* 斜率计算 DT/Dt: Dt 最大值为 5 s; 涵盖整个 T 范围
+ 
+SFH 7016
+数据表数据表
+16 | Version 1.5 | 2022-04-12
+  
+编带机 10)
+ 
+SFH 7016
+数据表数据表
+17 | Version 1.5 | 2022-04-12
+  
+编带和卷带 11)
+盘尺寸
+A W Nmin W1 W2 max 每卷带上的数量
+180 mm 8 + 0.3 / - 0.1 mm 60 mm 8.4 + 2 mm 14.4 mm 3000
+ 
+ 
+SFH 7016
+数据表数据表
+18 | Version 1.5 | 2022-04-12
+  
+条形码-产品-标签（BPL）
+干燥包装工艺和材料 10)
+OHA00539
+OSRAM
+Moisture-sensitive label or print
+Barcode label
+Desiccant
+Humidity indicator
+Barcode label
+OSRAM
+Please check the HIC immidiately after
+bag opening.
+Discard if circles overrun.
+Avoid metal contact.
+WET
+Do not eat.
+Comparator
+check dot
+parts still adequately dry.
+examine units, if necessary
+examine units, if necessary
+5%
+15%
+10%bake units
+bake units
+If wet,
+change desiccant
+If wet,
+Humidity Indicator
+MIL-I-8835
+If wet,
+M
+oisture Level 3
+Floor tim
+e  168 Hours
+M
+oisture Level 6
+Floor tim
+e    6 Hours
+a) Hum
+idity Indicator Card is > 10%
+ when read at 23 ˚C ± 5 ˚C, or
+reflow, vapor-phase reflow, or equivalent processing (peak package
+2. After this bag is opened, devices that will be subjected to infrared
+1. Shelf life in sealed bag: 24 m
+onths at < 40 ˚C and < 90%
+ relative hum
+idity (RH).
+M
+oisture Level 5a
+at factory conditions of
+(if blank, seal date is identical with date code).
+a) M
+ounted within
+b) Stored at
+body tem
+p.
+3. Devices require baking, before m
+ounting, if:
+Bag seal date
+M
+oisture Level 1
+M
+oisture Level 2
+M
+oisture Level 2a4. If baking is required, 
+b) 2a or 2b is not m
+et.
+Date and tim
+e opened:
+reference IPC/JEDEC J-STD-033 for bake procedure.
+Floor tim
+e see below
+If blank, see bar code label
+Floor tim
+e > 1 Year
+Floor tim
+e    1 Year
+Floor tim
+e    4 W
+eeks10%
+ RH.
+_<
+M
+oisture Level 4
+M
+oisture Level 5
+˚C).
+OPTO SEMICONDUCTORS
+MOISTURE SENSITIVE
+This bag contains
+CAUTION
+Floor tim
+e  72 Hours
+Floor tim
+e  48 Hours
+Floor tim
+e  24 Hours
+30 ˚C/60%
+ RH.
+_<
+LEVEL
+If blank, see
+bar code label
+ 
+SFH 7016
+数据表数据表
+19 | Version 1.5 | 2022-04-12
+  
+备注
+人眼安全的评估按照IEC 62471:2008标准(photo biological safety of lamps and lamp systems)进行。在本
+CIE标准的风险分组系统中，本数据表中指定的LED属于该类 豁免等级 (暴露时间 10000 s). 在某些情况下(如
+不同的暴露时间、瞳孔大小、观察距离等)，尽管这些产品对人眼没有危害。但是理论上来说，由于强光光源
+的致盲作用，它们具有很高的二次曝光可能性。例如当注视其他明亮的光源(如前照灯)时，也会出现视力暂时
+下降和余像情况，也可能会导致不同程度的急躁、恼怒、视力受损等情形
+除其他物质外，该器件的子组件还包含金属填充材料，包括银。金属填充材料可能会受到含残留侵蚀性物质
+的环境的影响。因此，我们建议客户在存储、生产和使用过程中尽量少将器件暴露于腐蚀性物质环境中。当
+使用上述测试条件进行测试时，器件在规定的测试持续时间内表现出了颜色的变化，但其各项性能的变化均
+未超出失效极限的定义。IEC60810中描述了相关的各项失效极限。
+更多的应用信息，请访问 www.osram-os.com/appnotes
+ 
+SFH 7016
+数据表数据表
+20 | Version 1.5 | 2022-04-12
+  
+免责声明
+语言
+如中、英文文本描述有任何差异或偏差，以英文文本为准。
+The English version of this document will prevail in case of any discrepancies or deviations between the 
+Chinese and English document.
+请注意!
+该信息仅描述了组件的类型，不能视为对组件特征的保证。本公司保留对交付条款和设计更改的权利。由于
+技术要求，组件可能含有危险物质。
+如需咨询相关类型的信息，请联系我们的销售组织。
+如需打印或下载，请自行在我们的网站上寻找最新版本。
+包装
+请使用您所知的回收操作员。我们亦可帮助您与离您最近的销售办事处联系。
+若双方另行存在协议，在您事先对包装材料已进行分类的前提下，我们亦可回收包装材料，但贵方必须承担
+运输费用。对于退回给我们的包装材料，若未事先分类或我司并无义务接收的，我们将向您收取相关回收费
+用并开具发票。
+产品安全设备/应用或医疗设备/应用
+我们的组件并非开发、构建或测试用作安全相关组件或应用于医疗设备，亦不适格适合在该等设备的模组或
+系统层面使用。
+如果买方或买方供货的终端客户考虑在产品安全设备/应用或医疗设备/应用中使用我们的组件，买方和/或客
+户必须立即通知我们的当地销售伙伴，由我方和买方和/或客户将就客户的特定需求进行分析和协调。
+ 
+SFH 7016
+数据表数据表
+21 | Version 1.5 | 2022-04-12
+  
+词汇表
+1) 辐射强度: 在ω= 0.01 Sr立体角条件下测量
+2) 亮度: 亮度值的测量公差为±11％。
+3) 反向工作: 应在规定的范围内，对本产品施加正向电流。 应避免施加任何在规定的可发光的电压范围之
+外的连续反向或正向电流电压，因为这可能会引起迁移，从而改变电光特性或损坏LED。
+4) 波长: 波长的测量公差为±1 nm。
+5) 正向电压: 正向电压的测量公差为±0.1V。
+6) 总辐射通量: 使用积分球测量。
+7) 热电阻: 仅器件的PN结 - 焊点，安装在理想的散热片（如金属块）上
+8) 典型值: 由于半导体器件制造工艺的特殊条件，技术参数的典型数据或计算相关性只能反映统计数字。这
+些参数不一定对应每个产品的实际参数，可能不同于产品的典型数据和计算相关性或典型特性线。如有
+要求（例如由于技术改进），这些典型数据会被更改，恕不另行通知。
+9) 测试温度: TA= 25℃
+10) 测量公差: 除非图纸中另有说明，公差表示为±0.1，尺寸表示为mm。
+11) 编带和卷料: 所有尺寸和公差均遵循IEC 60286-3，单位为mm。
+ 
+SFH 7016
+数据表数据表
+22 | Version 1.5 | 2022-04-12
+  
+修订历史
+版本 日期 修改
+1.0 2019-07-08 初始版本
+1.1 2019-09-27 特性 
+词汇表
+1.2 2020-08-06 新布局 
+运输箱示意图 
+运输箱尺寸
+1.3 2021-05-27 特征
+1.4 2021-11-17 特性 
+光电特性（图表）
+1.5 2022-04-12 特性 
+降额图表 
+新布局
+ 
+SFH 7016
+数据表数据表
+23 | Version 1.5 | 2022-04-12
+  
+ 
+Published by ams-OSRAM AG
+Tobelbader Strasse 30, 8141 Premstaetten, Austria
+Phone +43 3136 500-0
+ams-osram.com
+© All rights reserved
+ 

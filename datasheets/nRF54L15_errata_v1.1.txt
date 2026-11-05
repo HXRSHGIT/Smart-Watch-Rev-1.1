@@ -1,0 +1,761 @@
+nRF54L15
+Revision 2
+Errata
+v1.1
+4503_489 v1.1 / 2026-05-12
+Contents
+1 nRF54L15 Revision 2 Errata . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2 Revision history. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3 New and inherited anomalies . . . . . . . . . . . . . . . . . . . . . . . . . 6
+3.1 [1] CCM: MAC error is returned if MDATA size is slightly larger than MLEN. . . . . . . . . 7
+3.2 [6] RADIO: Spectrum of transmitted signal is not optimal for 802.15.4 . . . . . . . . . . . 7
+3.3 [7] UARTE: RXD.AMOUNT is not updated after RXFLUSH if FIFO is empty . . . . . . . . . . 8
+3.4 [8] SPIM: Wrong data is transmitted on MOSI . . . . . . . . . . . . . . . . . . . . . 9
+3.5 [10] SPU: PERM and FEATURE registers cannot be locked . . . . . . . . . . . . . . . . 10
+3.6 [13] KMU: Provision task is not ignored when KMU is busy . . . . . . . . . . . . . . . 10
+3.7 [16] VPR: Cleared EVENTS are triggered again on the next CNT0 event . . . . . . . . . . 11
+3.8 [17] VPR: Bus faults during hibernate save sequence are ignored . . . . . . . . . . . . . 11
+3.9 [18] VPR: Subsequent VPR hibernate sleeps might fail to save ra . . . . . . . . . . . . . 12
+3.10 [20] CLOCK: RADIO payload is not transmitted . . . . . . . . . . . . . . . . . . . . 12
+3.11 [21] SPIM: MOSI line toggles after transmission ends . . . . . . . . . . . . . . . . . 13
+3.12 [22] TIMER: EVENTS_COMPARE[n] event is not generated. . . . . . . . . . . . . . . 13
+3.13 [23] RRAMC: READY and READYNEXT events are generated when CPU wakes up. . . . . . 14
+3.14 [24] TIMER: EVENT_COMPARE is not generated when using PPI . . . . . . . . . . . . . 14
+3.15 [25] TIMER: EVENT_COMPARE[n] is not generated . . . . . . . . . . . . . . . . . . 15
+3.16 [26] DPPI: PPIB between domains uses wrong security attribution . . . . . . . . . . . . 15
+3.17 [30] CLOCK, GRTC: GRTC operates incorrectly at low temperature. . . . . . . . . . . . 16
+3.18 [37] POWER: Current consumption might increase after pin reset or power cycle. . . . . 16
+3.19 [39] CLOCK: Device can behave erratically after XOSTART. . . . . . . . . . . . . . . 17
+3.20 [41] RADIO: Sensitivity is degraded on n*32 MHz channels . . . . . . . . . . . . . . 17
+3.21 [44] EASYDMA: DMA.RX.AMOUNT is not updated with bytes count after match event. . . 18
+3.22 [47] POWER: Device resets while debugging in System OFF mode . . . . . . . . . . . . 18
+3.23 [48] RESET: RESETREAS register might show an additional wakeup source after reset. . . . 18
+3.24 [49] RADIO: First bits of on-air packet are not correct . . . . . . . . . . . . . . . . . 19
+3.25 [50] RRAMC: SPU00 incorrectly reports that RRAMC has DMA . . . . . . . . . . . . . 20
+3.26 [54] SPIS: SDO is configured as an input when SPIS is idle . . . . . . . . . . . . . . . 20
+3.27 [58] COMP: Static 300 µA current after COMP has been enabled . . . . . . . . . . . . 21
+3.28 [59] EGU: EGU uses incorrect security attribution . . . . . . . . . . . . . . . . . . 21
+3.29 [63] RESET: Soft reset might not fully reset the device . . . . . . . . . . . . . . . . 22
+3.30 [100] GPIO: Pins with analog functionality might be shorted together during power-on
+reset. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+3.31 [102] CCM: Operation fails when CCM MAC length is set to 0 . . . . . . . . . . . . . 23
+3.32 [103] GPIO: State is inconsistent during power-on reset . . . . . . . . . . . . . . . . 23
+3.33 [105] TWIM: Peripheral becomes unresponsive when disabled during clock stretching. . . 24
+3.34 [111] SAADC: Output data is incorrect when noise shaping is used . . . . . . . . . . . 24
+3.35 [114] GPIO: Current consumption increases when Wake on pin is used . . . . . . . . . . 25
+4 Fixed anomalies. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+5 New and inherited configurations . . . . . . . . . . . . . . . . . . . . . . 27
+5.1 [56] RADIO: Regulatory limits might be exceeded when using external FEM or PA. . . . . . 27
+4503_489 v1.1 ii
+1 nRF54L15 Revision 2 Errata
+This Errata document contains anomalies and configurations for the nRF54L15 SoC, Revision 2 (QFAA-C00,
+CAAA-C00, QDAA-C00, QGAA-C00).
+The document indicates which anomalies are fixed, inherited, or new compared to Revision 1.
+4503_489 v1.1 3
+2 Revision history
+See the following list for an overview of changes from previous versions of this document.
+Version Date Change
+nRF54L15
+Revision 2 v1.1
+12.05.2026 • Added: No. 10. “PERM and FEATURE registers cannot be locked”
+• Added: No. 13. “Provision task is not ignored when KMU is busy”
+• Added: No. 50. “SPU00 incorrectly reports that RRAMC has DMA”
+• Added: No. 54. “SDO is configured as an input when SPIS is idle ”
+• Added: No. 56. “Regulatory limits might be exceeded when using
+external FEM or PA”
+• Added: No. 58. “Static 300 μA current after COMP has been enabled”
+• Added: No. 59. “EGU uses incorrect security attribution”
+• Added: No. 63. “Soft reset might not fully reset the device”
+• Added: No. 100. “Pins with analog functionality might be shorted
+together during power-on reset”
+• Added: No. 102. “Operation fails when CCM MAC length is set to 0”
+• Added: No. 103. “State is inconsistent during power-on reset”
+• Added: No. 105. “Peripheral becomes unresponsive when disabled
+during clock stretching”
+• Added: No. 111. “Output data is incorrect when noise shaping is
+used”
+• Added: No. 114. “Current consumption increases when Wake on pin
+is used”
+4503_489 v1.1 4
+Revision history
+Version Date Change
+nRF54L15
+Revision 2 v1.0
+18.06.2025 • Added: No. 1. “MAC error is returned if MDATA size is slightly larger
+than MLEN”
+• Added: No. 6. “Spectrum of transmitted signal is not optimal for
+802.15.4”
+• Added: No. 7. “RXD.AMOUNT is not updated after RXFLUSH if FIFO is
+empty”
+• Added: No. 8. “Wrong data is transmitted on MOSI”
+• Added: No. 16. “Cleared EVENTS are triggered again on the next CNT0
+event”
+• Added: No. 17. “Bus faults during hibernate save sequence are
+ignored”
+• Added: No. 18. “Subsequent VPR hibernate sleeps might fail to save
+ra”
+• Added: No. 20. “RADIO payload is not transmitted”
+• Added: No. 21. “MOSI line toggles after transmission ends”
+• Added: No. 22. “EVENTS_COMPARE[n] event is not generated”
+• Added: No. 23. “READY and READYNEXT events are generated when
+CPU wakes up”
+• Added: No. 24. “EVENT_COMPARE is not generated when using PPI”
+• Added: No. 25. “EVENT_COMPARE[n] is not generated”
+• Added: No. 26. “PPIB between domains uses wrong security
+attribution”
+• Added: No. 30. “GRTC operates incorrectly at low temperature”
+• Added: No. 37. “Current consumption might increase after pin reset
+or power cycle”
+• Added: No. 39. “Device can behave erratically after XOSTART”
+• Added: No. 41. “Sensitivity is degraded on n*32 MHz channels”
+• Added: No. 44. “DMA.RX.AMOUNT is not updated with bytes count
+after match event”
+• Added: No. 47. “Device resets while debugging in System OFF mode”
+• Added: No. 48. “RESETREAS register might show an additional
+wakeup source after reset”
+• Added: No. 49. “First bits of on-air packet are not correct”
+4503_489 v1.1 5
+3 New and inherited anomalies
+The following anomalies are present in Revision 2 of the nRF54L15 SoC.
+ID Module Description Inherited
+from
+Revision 1
+1 CCM MAC error is returned if MDATA size is slightly larger than MLEN X
+6 RADIO Spectrum of transmitted signal is not optimal for 802.15.4 X
+7 UARTE RXD.AMOUNT is not updated after RXFLUSH if FIFO is empty X
+8 SPIM Wrong data is transmitted on MOSI X
+10 SPU PERM and FEATURE registers cannot be locked X
+13 KMU Provision task is not ignored when KMU is busy X
+16 VPR Cleared EVENTS are triggered again on the next CNT0 event X
+17 VPR Bus faults during hibernate save sequence are ignored X
+18 VPR Subsequent VPR hibernate sleeps might fail to save ra X
+20 CLOCK RADIO payload is not transmitted X
+21 SPIM MOSI line toggles after transmission ends X
+22 TIMER EVENTS_COMPARE[n] event is not generated X
+23 RRAMC READY and READYNEXT events are generated when CPU wakes up X
+24 TIMER EVENT_COMPARE is not generated when using PPI X
+25 TIMER EVENT_COMPARE[n] is not generated X
+26 DPPI PPIB between domains uses wrong security attribution X
+30 CLOCK, GRTC GRTC operates incorrectly at low temperature X
+37 POWER Current consumption might increase after pin reset or power cycle X
+39 CLOCK Device can behave erratically after XOSTART X
+41 RADIO Sensitivity is degraded on n*32 MHz channels X
+44 EASYDMA DMA.RX.AMOUNT is not updated with bytes count after match
+event X
+47 POWER Device resets while debugging in System OFF mode X
+48 RESET RESETREAS register might show an additional wakeup source after
+reset X
+49 RADIO First bits of on-air packet are not correct X
+50 RRAMC SPU00 incorrectly reports that RRAMC has DMA X
+54 SPIS SDO is configured as an input when SPIS is idle X
+58 COMP Static 300 µA current after COMP has been enabled X
+4503_489 v1.1 6
+New and inherited anomalies
+ID Module Description Inherited
+from
+Revision 1
+59 EGU EGU uses incorrect security attribution X
+63 RESET Soft reset might not fully reset the device X
+100 GPIO Pins with analog functionality might be shorted together during
+power-on reset X
+102 CCM Operation fails when CCM MAC length is set to 0 X
+103 GPIO State is inconsistent during power-on reset X
+105 TWIM Peripheral becomes unresponsive when disabled during clock
+stretching X
+111 SAADC Output data is incorrect when noise shaping is used X
+114 GPIO Current consumption increases when Wake on pin is used X
+Table 1: New and inherited anomalies
+3.1 [1] CCM: MAC error is returned if MDATA size is
+slightly larger than MLEN
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+A MAC error is generated.
+Conditions
+The MDATA size is larger than MLEN by 1 or a few bytes.
+Consequences
+Payload is lost due to MAC error.
+Workaround
+Use MLEN or a significantly bigger value than MLEN for the size of the MDATA job. For example, use
+mdata.size=1000 when a payload length in the range from 1 to 251 bytes is expected, but the exact
+payload length is not known beforehand.
+3.2 [6] RADIO: Spectrum of transmitted signal is not
+optimal for 802.15.4
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+4503_489 v1.1 7
+New and inherited anomalies
+Symptoms
+The FCC restricted band edge requirement might not be met for 2405 MHz and 2480 MHz.
+Conditions
+The radio is operating in the IEEE 802.15.4 mode at TX output power level above 0 dBm.
+Consequences
+The limit for emissions outside of the band might be violated for 2405 MHz and 2480 MHz.
+Workaround
+Perform the following register write immediately after setting RADIO.MODE to Ieee802154_250Kbit:
+*(volatile uint32_t *) 0x5008A810 = 2;
+The workaround can be applied to all channels and output powers.
+3.3 [7] UARTE: RXD.AMOUNT is not updated after
+RXFLUSH if FIFO is empty
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Wrong number of transferred bytes is reported.
+Conditions
+During the handling of the RXTO event, FLUSHRX is performed and the number of transferred bytes does
+not exceed MAXCNT.
+Consequences
+UARTE operations are unreliable.
+4503_489 v1.1 8
+New and inherited anomalies
+Workaround
+Apply the following workaround:
+/* Setup buffer to which data can be flushed. */
+UARTE->DMA.RX.PTR = buf;
+UARTE->DMA.RX.MAXCNT = 5;
+/* Clear READY. Needed for the workaround. */
+UARTE->EVENTS_DMA.RX.READY = 0;
+UARTE->EVENTS_DMA.RX.END = 0;
+/* Trigger flushing. */
+UARTE->TASKS_FLUSHRX = 1;
+/* Wait until flushing is done. */
+while (UARTE->EVENTS_DMA.RX.END == 0);
+/* If READY event is set then use AMOUNT value else FIFO was empty.
+If not for the PAN, AMOUNT could be read without checking READY event. */
+fifo_cnt = (UARTE->EVENTS_DMA.RX.READY == 1) ? UARTE->DMA.RX.AMOUNT : 0;
+This workaround clears the EVENTS_DMA.RX.READY before starting the flushing, and reads
+EVENTS_DMA.RX.READY after the flushing to determine if FIFO had data and DMA.RX.AMOUNT has valid
+data.
+3.4 [8] SPIM: Wrong data is transmitted on MOSI
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Wrong data is sampled.
+Conditions
+SPIM is configured with CPHA to 0, PRESCALER is larger than 2, and the first transmitted bit is 1.
+Consequences
+Wrong data is transmitted.
+Workaround
+Use the following workaround if PRESCALER is larger than 2.
+Before triggering SPIM.TASKS_START, complete the following steps:
+1. Set SPIM.IFTIMING.CSNDUR = SPIM.PRESCALER / 2 + 1 or any larger value.
+2. Write value 0x82 to the corresponding SPIM instance address offset 0xc84.
+When SPI.EVENTS_STARTED has been generated, write value 0x00 to the corresponding SPIM instance
+address offset 0xc84.
+4503_489 v1.1 9
+New and inherited anomalies
+3.5 [10] SPU: PERM and FEATURE registers cannot be
+locked
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Peripheral security settings cannot be locked for the peripherals with split security features. User-
+selectable Arm® TrustZone® map cannot be locked for peripherals with split security features. When lock
+bit is set, secure code can change the peripheral and split security settings.
+Conditions
+PERM lock bit is set for configurable security peripherals. FEATURE lock bits are set for split security
+peripherals.
+Consequences
+The security settings cannot be locked.
+Workaround
+None. Ensure software running in a secure environment does not change the PERM or FEATURE registers.
+3.6 [13] KMU: Provision task is not ignored when KMU is
+busy
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+An incorrect ERROR event is generated when the TASKS_PROVISION task is triggered while TASKS_REVOKE
+is in progress.
+Conditions
+TASKS_PROVISION is triggered with SRC register not holding a RAM address while TASKS_REVOKE is in
+progress.
+Consequences
+The ERROR event might be misattributed to the revoke operation rather than the operation that should
+have been ignored.
+Workaround
+Wait for STATUS == Ready before triggering a new task.
+4503_489 v1.1 10
+New and inherited anomalies
+3.7 [16] VPR: Cleared EVENTS are triggered again on the
+next CNT0 event
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+TRIGGERED events are triggered again on the following CNT0 event.
+Conditions
+A TRIGGERED event is set with CSR and cleared.
+Consequences
+APB cannot be used to properly clear events if CNT0 is used.
+Workaround
+Set up a VPR TASK which triggers an interrupt in the VPR to clear the relevant VEVENTS bits through a CSR
+write. Do not use VPR EVENTS to trigger interrupts. Alternatively, use DPPI from the VPR to the EGU to
+interrupt the CPU.
+This workaround is included in nRF Connect SDK version 3.0.0 and later.
+3.8 [17] VPR: Bus faults during hibernate save sequence
+are ignored
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Bus error responses during hibernate save are ignored.
+Conditions
+A bus fault occurs during the hibernate save sequence.
+Consequences
+The VPR CPU behavior is undefined.
+Workaround
+Before entering the lowest power state on VPR, ensure that the VPR context save memory register
+(VPRSAVEADDR) is set to memory address accessible to VPR.
+4503_489 v1.1 11
+New and inherited anomalies
+3.9 [18] VPR: Subsequent VPR hibernate sleeps might
+fail to save ra
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+GPR x1 (ra) is not updated.
+Conditions
+VPR enters sleep in VPR hibernate mode multiple times without powering down.
+Consequences
+The VPR application might misbehave.
+Workaround
+After waking up from sleep in VPR hibernate mode, issue an APB write with VPR anywhere inside its own
+RTP or CPUCTRL peripheral address range.
+3.10 [20] CLOCK: RADIO payload is not transmitted
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Preamble is correctly transmitted but all following payloads are not transmitted.
+Conditions
+CPU and peripherals in MCU power domain are sleeping when RADIO starts transmitting.
+Consequences
+Transmission is corrupted.
+Workaround
+Before triggering RADIO.TASKS_RXEN or RADIO.TASKS_TXEN, trigger POWER.TASKS_CONSTLAT.
+When disabling RADIO, trigger POWER.TASKS_LOWPWR.
+The workaround might increase current consumption.
+4503_489 v1.1 12
+New and inherited anomalies
+3.11 [21] SPIM: MOSI line toggles after transmission
+ends
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+One additional transition appears on the MOSI line at the end of the transmission when the clock has
+stopped toggling.
+Conditions
+SPIM00 or SPIM02 is being used with SPI mode 0. The first transmitted bit in the final byte is 1.
+Consequences
+None.
+Workaround
+None.
+3.12 [22] TIMER: EVENTS_COMPARE[n] event is not
+generated
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+The generation of the EVENTS_COMPARE[n] does not occur.
+Conditions
+TIMER has been used in counter mode, counted to 1, and cleared. The power domain associated with
+TIMER is powered down. TIMER is then used in timer mode, and CC[n] is 1.
+Consequences
+The EVENT is missed.
+Workaround
+Apply one of the following workarounds:
+• Do not use CC=1.
+• Use SHORT register to stop and clear TIMER.
+• Use PPI and START and CLEAR tasks at the same time.
+4503_489 v1.1 13
+New and inherited anomalies
+3.13 [23] RRAMC: READY and READYNEXT events are
+generated when CPU wakes up
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+READY and READYNEXT are set when the CPU is waking up.
+Conditions
+The CPU wakes up.
+Consequences
+READY and READYNEXT cannot be relied on immediately after CPU wakes up.
+Workaround
+Do not use READY or READYNEXT in combination with CPU sleep.
+3.14 [24] TIMER: EVENT_COMPARE is not generated
+when using PPI
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+The PPI enabled by PUBLISH_COMPARE[n] is not generated.
+Conditions
+DPPI channel is using TIMER EVENTS_COMPARE as an event with CC[n]=1.
+Consequences
+The PPI is missing.
+Workaround
+Apply one of the following workarounds:
+• Do not use CC=1.
+• Use SHORT register to stop and clear TIMER.
+• Use PPI and START and CLEAR tasks at the same time.
+4503_489 v1.1 14
+New and inherited anomalies
+3.15 [25] TIMER: EVENT_COMPARE[n] is not generated
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+EVENTS_COMPARE[n] is not generated for TIMER00 or TIMER10.
+Conditions
+The TIMER is configured with Timer mode and CC[n]=x+1, where x is the internal Counter value after
+TIMER is stopped. The TIMER is started once and then stopped with internal Counter at x. The power
+domain associated with the TIMER is powered down. The TIMER is started through PPI.
+Consequences
+The EVENT is missed.
+Workaround
+Apply one of the following workarounds for TIMER00 or TIMER10:
+• Write TIMER base + 0x010 = 1 after STOP and before next START task.
+• Trigger DPPI task at subscribe register TIMER base + 0x090 after stop and before next start.
+This clears the counter.
+Alternatively, the following workaround can be used for TIMER00:
+Start timer with write to TASKS_START.
+3.16 [26] DPPI: PPIB between domains uses wrong
+security attribution
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+PPIB channel security does not use the correct setting.
+Conditions
+DPPIC channels are configured with different S/NS security, and the PPIB channel subscribes to a DPPIC
+index different from the PPIB channel index.
+Consequences
+PPIB channels are blocked.
+4503_489 v1.1 15
+New and inherited anomalies
+Workaround
+Configure PPIB subscribe and publish to use the DPPIC channel of matching index, for example use DPPIC
+channel 0 for PPIB channel 0.
+3.17 [30] CLOCK, GRTC: GRTC operates incorrectly at low
+temperature
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+GRTC drifts in frequency at low temperature.
+Conditions
+The system is using HFINT.
+Consequences
+Applications with real-time requirements can behave unexpectedly.
+Workaround
+A workaround is implemented in nRF Connect SDK 2.8.0 and later when MPSL is used.
+A generic workaround is implemented in nRF Connect SDK 3.0.0 and later.
+3.18 [37] POWER: Current consumption might increase
+after pin reset or power cycle
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Current consumption is higher than expected in System OFF mode.
+Conditions
+The device is entering System OFF mode too soon after a pin reset or power cycle.
+Consequences
+Current consumption is higher than expected.
+Workaround
+Apply the following workaround:
+1. Perform the following code: *(volatile uint32_t *) 0x5005340C =1;
+4503_489 v1.1 16
+New and inherited anomalies
+2. Ensure that 40 CPU cycles are executed before entering System OFF mode.
+3.19 [39] CLOCK: Device can behave erratically after
+XOSTART
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+The device behaves erratically or becomes unresponsive.
+Conditions
+The XOSTART task is triggered when the PLLSTART task is not triggered and CPU is sleeping.
+Consequences
+Peripherals outside the MCU domain can behave erratically.
+Workaround
+Trigger TASKS_PLLSTART before TASKS_XOSTART is triggered and trigger TASKS_PLLSTOP after
+TASKS_XOSTOP is triggered. Current consumption might increase depending on the use case.
+3.20 [41] RADIO: Sensitivity is degraded on n*32 MHz
+channels
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Sensitivity is reduced on the 2432 MHz and 2464 MHz channels.
+Conditions
+The radio is set to a receive channel which is an integer multiplier of the 32 MHz reference frequency.
+Consequences
+• Sensitivity is degraded on 1 Mbps BLE, 2 Mbps BLE, nRF1M, and nRF2M by approximately 2 dB.
+• Sensitivity is degraded on nRF4M by approximately 2 dB on channels 2402, 2430, 2432, 2334, 2462,
+2464, and 2466.
+• Sensitivity is degraded on BLR125K by approximately 4 dB.
+• Sensitivity is degraded on IEEE 802.15.4 by approximately 2 dB in the 2465 MHz RX frequency.
+4503_489 v1.1 17
+New and inherited anomalies
+3.21 [44] EASYDMA: DMA.RX.AMOUNT is not updated
+with bytes count after match event
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+When a MATCH event is generated, DMA.RX.AMOUNT does not reflect the position of the character in
+memory.
+Conditions
+TWIM, SPI, or UART is used in RX mode with match candidates set up and match filter enabled.
+Consequences
+DMA.RX.AMOUNT cannot be used as a reliable offset with DMA.RX.PTR to find the matching character in
+memory.
+3.22 [47] POWER: Device resets while debugging in
+System OFF mode
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+The device is not responsive to the debugger and resets during debug operations.
+Conditions
+The device is in emulated System OFF mode and at temperature above 98°C or has power-intensive
+operations in firmware immediately after the line putting it into System OFF mode.
+Consequences
+Debug access is unstable.
+Workaround
+After a failed attempt, retry debug operations.
+3.23 [48] RESET: RESETREAS register might show an
+additional wakeup source after reset
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+4503_489 v1.1 18
+New and inherited anomalies
+Symptoms
+RESETREAS wakeup field has an incorrect value.
+Conditions
+A wakeup source is active during a reset.
+Consequences
+Reset reason might lead to an incorrect assumption on the application state.
+Workaround
+When RESETREAS shows a pin reset (RESETPIN), ignore other reset reason bits. Apply the following code
+after any reset:
+if (NRF_RESET->RESETREAS & RESET_RESETREAS_RESETPIN_Msk)
+{
+NRF_RESET->RESETREAS =  ~RESET_RESETREAS_RESETPIN_Msk;
+}
+3.24 [49] RADIO: First bits of on-air packet are not
+correct
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+First bits of the PAYLOAD field in the RADIO on-air packet are not correct.
+Conditions
+PCNF0.S1LEN is 4 or less and PCNF0.S1INCL is 1. RADIO is transmitting using 1 Mbps, 2 Mbps, or 4 Mbps
+data rate. The MCU power domain is powered down.
+Consequences
+Transmission is incorrect.
+Workaround
+If S1LEN is not 0, apply the following workaround:
+*(volatile uint32_t *) 0x5008C58C = 1; 
+Alternatively, use Constant Latency sub-power mode before starting the radio. If S1LEN is 0, apply the
+following workaround: Set S1 field equal to first byte in package.
+4503_489 v1.1 19
+New and inherited anomalies
+3.25 [50] RRAMC: SPU00 incorrectly reports that RRAMC
+has DMA
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+SPU DMA capability register for RRAMC (SPU00->PERIPH[11].PERM, DMA field) reports
+NoSeparateAttribute, but RRAMC does not have DMA.
+Conditions
+SPU is used to find the DMA capabilities of the RRAM controller.
+Consequences
+The availability of a DMA is incorrectly detected.
+Workaround
+Do not use the DMA field of SPU00->PERIPH[11].PERM to find the capability of RRAMC.
+3.26 [54] SPIS: SDO is configured as an input when SPIS
+is idle
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Current consumption is higher than expected.
+Conditions
+The SPIS chip select (CSN) line is high, and the SDO line does not have pull-up or pull-down resistors.
+Consequences
+Current consumption increases by up to 0.5 mA when SPIS is used.
+The additional current consumption is influenced by VDD and temperature.
+Workaround
+Ensure that the SDO has a known state and is not left floating.
+For example, use an internal or external pull-down resistor on the SDO line.
+4503_489 v1.1 20
+New and inherited anomalies
+3.27 [58] COMP: Static 300 µA current after COMP has
+been enabled
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Current consumption is increased when the device is in System ON all idle mode.
+Conditions
+The following conditions trigger failure mode:
+• COMP state changes from ABOVE to BELOW to ABOVE to BELOW within 0.5 µs.
+• COMP state changes from BELOW to ABOVE to BELOW to ABOVE within 0.5 µs.
+It is recommended to enable hysteresis in COMP to reduce the risk of the described conditions occurring
+in noisy environments.
+Consequences
+Current consumption is approximately 300 µA higher than specified in System ON all idle mode.
+Workaround
+Avoid the following conditions when COMP is enabled:
+• COMP state changes from ABOVE to BELOW to ABOVE to BELOW within 0.5 µs.
+• COMP state changes from BELOW to ABOVE to BELOW to ABOVE within 0.5 µs.
+The anomaly is resolved by any COMP state changes from ABOVE to BELOW to ABOVE or from BELOW to
+ABOVE to BELOW where the time between the state changes is longer than 0.5 µs.
+3.28 [59] EGU: EGU uses incorrect security attribution
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+EGU interrupt uses the same security setting as DPPI channel 0 regardless of how it is configured.
+Conditions
+EGU is used, and the DPPI channel 0 security setting is different from the EGU peripheral's security setting.
+Consequences
+All interrupt-related registers use the same security setting as DPPI channel 0.
+4503_489 v1.1 21
+New and inherited anomalies
+Workaround
+Set the security attribution of the EGU peripheral to the desired level and apply the same security
+attribution to DPPI channel 0.
+3.29 [63] RESET: Soft reset might not fully reset the
+device
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+The device does not behave as expected after a soft reset.
+Conditions
+A soft reset is triggered exactly at the same time as a power domain transitions from RUN state to IDLE
+state.
+Consequences
+Some parts of the device are not fully reset.
+Workaround
+Apply the appropriate workaround for the affected soft resets:
+• Before AIRCR.SYSRESETREQ is used, apply constant latency submode.
+• Prevent the processor from entering lockup state when code is executed in NMI or HardFault handlers.
+• When CTRL-AP is used, avoid using soft reset and use pin reset instead.
+3.30 [100] GPIO: Pins with analog functionality might be
+shorted together during power-on reset
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+During device startup, any of the following pins might be shorted together: P1.04 (AIN0), P1.05 (AIN1),
+P1.06 (AIN2), P1.07 (AIN3), P1.11 (AIN4), P1.12 (AIN5), P1.13 (AIN6), and P1.14 (AIN7).
+During device startup, any of the following pins might be shorted to ground: P1.04 (AIN0), P1.06 (AIN2),
+P1.07 (AIN3), P1.11 (AIN4), P1.12 (AIN5), P1.09, and P1.10.
+Pins shorting together and shorting to ground might occur simultaneously.
+Conditions
+The device is in power-on reset state. nRESET might prolong the time the pins are being shorted together
+if it is asserted during power-on reset.
+4503_489 v1.1 22
+New and inherited anomalies
+Consequences
+The following pins might be shorted together either for 10 µs after power-on reset or while nRESET is
+asserted: P1.04 (AIN0), P1.05 (AIN1), P1.06 (AIN2), P1.07 (AIN3), P1.11 (AIN4), P1.12 (AIN5), P1.13 (AIN6),
+and P1.14 (AIN7).
+The following pins might be shorted to ground for 1 µs after power-on reset: P1.04 (AIN0), P1.06 (AIN2),
+P1.07 (AIN3), P1.11 (AIN4), P1.12 (AIN5), P1.09, and P1.10.
+Workaround
+Do not assert nRESET during power-on reset (tPOR.10us), and ensure the application can tolerate shorted
+pins during power-on reset.
+3.31 [102] CCM: Operation fails when CCM MAC length
+is set to 0
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+CCM might stop and not complete its operation when CONFIG.MACLEN=M0 is used.
+Conditions
+CCM is used for encryption without authentication and under some combinations of DMA address
+alignment.
+Consequences
+CCM stalls and does not generate the END or ERROR events.
+Workaround
+Set MODE.MACLEN=M4 and ignore the MAC written by CCM.
+3.32 [103] GPIO: State is inconsistent during power-on
+reset
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+During device startup, the GPIO pins might not be in high-impedance state.
+Conditions
+Supply voltage drops below VBOR.OFF for a period of less than 50 ms.
+4503_489 v1.1 23
+New and inherited anomalies
+Consequences
+GPIO pins might be output, pull-down, or pull-up for a period of 10 µs after power-on reset. If nRESET
+is asserted during power-on reset, GPIO pins might be output, pull-down, or pull-up until nRESET is
+deasserted.
+Workaround
+Ensure that supply voltage drops below VBOR.OFF are longer than 50 ms.
+3.33 [105] TWIM: Peripheral becomes unresponsive
+when disabled during clock stretching
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+TWIM is unable to communicate with any peer device.
+Conditions
+TWIM is disabled during I2C transaction when clock stretching is ongoing.
+Consequences
+TWIM peripheral is unresponsive.
+Workaround
+Perform a soft reset or a hard reset of the device to recover the TWIM peripheral.
+3.34 [111] SAADC: Output data is incorrect when noise
+shaping is used
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+SAADC output is incorrect, which can be observed as large intermittent errors or data inversion.
+Conditions
+SAADC is configured in single-ended mode, noise shaping is enabled, and input amplitude is over 50% of
+the ADC core's input range with the selected gain setting.
+Consequences
+SAADC output is incorrect.
+4503_489 v1.1 24
+New and inherited anomalies
+Workaround
+Apply one of the following workarounds:
+• Use differential mode with negative input tied to GND.
+• Use single-ended mode and guarantee that the input amplitude does not exceed 50% of the ADC core's
+input range with the selected gain setting.
+3.35 [114] GPIO: Current consumption increases when
+Wake on pin is used
+This anomaly applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous SoC revision Revision 1.
+Symptoms
+Current consumption increases when the device is in System ON all idle mode.
+Conditions
+• GPIO.PIN_CFN.SENSE is enabled, and GPIO.PIN_CFN.INPUT is connected.
+• DETECT signal changes from low to high to low to high within 0.5 µs.
+• SENSE condition remains active.
+Consequences
+Current consumption is approximately 300 µA higher than specified in System ON all idle mode.
+Workaround
+Apply one of the following workarounds:
+• Avoid the DETECT signal changing from low to high to low to high within 0.5 µs.
+• Enable latched mode by using GPIO:DETECTMODE = LDETECT.
+4503_489 v1.1 25
+4 Fixed anomalies
+The anomalies listed in this table are no longer present in the current SoC version.
+For a detailed description of the fixed anomalies, see the Errata for Revision 1.
+ID Module Description
+31 POWER Current consumption is higher than expected in sleep
+33 RADIO GPIOs can exhibit radiated emissions
+Table 2: Fixed anomalies
+4503_489 v1.1 26
+5 New and inherited configurations
+The following configurations apply to Revision 2 of the nRF54L15 SoC.
+ID Module Description Inherited
+from
+Revision 1
+56 RADIO Regulatory limits might be exceeded when using external FEM or
+PA X
+Table 3: Configurations
+5.1 [56] RADIO: Regulatory limits might be exceeded
+when using external FEM or PA
+This configuration applies to Revision 2, build codes QFAA-C00, CAAA-C00, QDAA-C00, QGAA-C00.
+It was inherited from the previous IC revision Revision 1.
+Symptoms
+When transmitting with an external RF front-end module (FEM) or power amplifier (PA), the power
+emitted in the 5-25 MHz frequency range might exceed regolatory limits.
+Conditions
+The device is operating with an external FEM or PA.
+Consequences
+The end product might fail regulatory conformance test.
+Workaround
+In Bluetooth and Nordic proprietary modes, use RADIO:TXPOWER lower than 4 dBm in the device.
+In all modes, apply the following code before enabling the RADIO:
+(volatile uint32_t *)(((uint32_t)NRF_RADIO) + 0x8C4) = 0x01280001ul;
+4503_489 v1.1 27

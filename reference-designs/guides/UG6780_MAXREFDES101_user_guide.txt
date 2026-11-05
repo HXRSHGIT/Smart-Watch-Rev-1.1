@@ -1,0 +1,733 @@
+ 
+Maxim Integrated 
+Page 1 of 39 
+ 
+MAXREFDES101#: Health Sensor Platform 2.0 
+User Guide 
+UG6780; Rev 2; 8/19 
+ 
+Abstract 
+This user guide provides information about preparing and running the MAXREFDES101# Health 
+Sensor Platform. This platform uses several biosensors, power-management ICs (PMIC), and 
+microcontrollers from Maxim Integrated® in a wrist worn design that allows the capture of 
+biosignals important to healthcare. The platform also contains algorithms for calculating heart 
+health based on the biosensor measurements.   
+ 
+Maxim Integrated 
+Page 2 of 39 
+Table of Contents 
+Detailed Hardware Description ................................................................................................... 5 
+Required Equipment .................................................................................................................. 6 
+System Diagram ........................................................................................................................ 7 
+Operating the Watch .................................................................................................................. 8 
+Power On/Off .......................................................................................................................... 8 
+Display Modes ........................................................................................................................ 9 
+How to Wear the Device ........................................................................................................10 
+PPG Measurement ............................................................................................................10 
+ECG Measurement ............................................................................................................10 
+Body Temperature Measurement .......................................................................................10 
+Installing the PC GUI.................................................................................................................11 
+Upgrading the Firmware on MAXREFDES101# ........................................................................12 
+Updating the Sensor Hub Algorithm ......................................................................................13 
+Using the PC GUI .....................................................................................................................16 
+USB Connection ....................................................................................................................16 
+BLE Connection ....................................................................................................................19 
+Starting the ECG Measurement .............................................................................................20 
+Starting the Temperature Measurement ................................................................................22 
+Starting the PPG Measurement .............................................................................................23 
+Installing the Android App .........................................................................................................25 
+Using the Android App ..............................................................................................................26 
+BLE Connection for Android ..................................................................................................26 
+Starting the ECG Measurement for Android ..........................................................................27 
+Starting the PPG Measurement for Android ...........................................................................29 
+Starting the Temperature Measurement for Android ..............................................................30 
+Installing the Windows 7 Driver .................................................................................................32 
+Flash Logging ...........................................................................................................................34 
+Downloading the Log File ......................................................................................................34 
+Data Format ..............................................................................................................................36 
+Revision History ........................................................................................................................39 
+ 
+Maxim Integrated 
+Page 3 of 39 
+ 
+List of Figures 
+Figure 1. MAXREFDES101# wearable form factor in detail........................................................ 5 
+Figure 2. MAXREFDES101# exploded view. ............................................................................. 5 
+Figure 3. MAXREFDES101# system diagram. ........................................................................... 7 
+Figure 4. USB Type-C cable (left) and Pico adapter board (right)............................................... 8 
+Figure 5. Watch display modes. ................................................................................................. 9 
+Figure 6. PPG measurement. ....................................................................................................10 
+Figure 7. ECG measurement. ...................................................................................................10 
+Figure 8. Install the .msi file.......................................................................................................11 
+Figure 9. Pico adapter connected to the PC. .............................................................................12 
+Figure 10. DAPLINK drive on the PC. .......................................................................................12 
+Figure 11. Maxim DeviceStudio scan options. ...........................................................................13 
+Figure 12. Maxim DeviceStudio connected devices. .................................................................14 
+Figure 13. Upload embedded heart-rate algorithm to the MAX32664. .......................................15 
+Figure 14. USB connection to PC using a USB Type-C cable (left) and Pico adapter board (right). 16 
+Figure 15. Scan for devices. ......................................................................................................17 
+Figure 16. Successful connection over USB. ............................................................................18 
+Figure 17. BLE device selection. ...............................................................................................19 
+Figure 18. Successful connection over BLE. .............................................................................19 
+Figure 19. Start the ECG measurement. ...................................................................................20 
+Figure 20. ECG measurement sample. .....................................................................................21 
+Figure 21. Start the temperature measurement. ........................................................................22 
+Figure 22. Start the PPG measurement. ...................................................................................23 
+Figure 23. PPG measurement sample. .....................................................................................24 
+Figure 24. Install the Android app..............................................................................................25 
+Figure 25. Available Devices list. ..............................................................................................26 
+Figure 26. Mode selection view. ................................................................................................26 
+Figure 27. Start the ECG measurement for the Android app. ....................................................27 
+Figure 28. Android app ECG measurement sample. .................................................................28 
+Figure 29. Android app PPG measurement sample. .................................................................29 
+ 
+Maxim Integrated 
+Page 4 of 39 
+Figure 30. Start the temperature measurement for the Android app. .........................................30 
+Figure 31. Android app temperature measurement sample. ......................................................31 
+Figure 32. CDC DEVICE in Device Manager. ...........................................................................32 
+Figure 33. Locate and install the driver manually. .....................................................................32 
+Figure 34. Browse to extracted release package. ......................................................................33 
+Figure 35. Choose Install this driver software anyway. ..............................................................33 
+Figure 36. mbed Serial Port in Device Manager. .......................................................................33 
+Figure 37. MSD connection to PC using USB Type-C cable (left) and Pico adapter board (right). 34 
+Figure 38. Flash Log Parser. .....................................................................................................35 
+Figure 39. Log file PPG_.csv for PPG measurement.................................................................36 
+Figure 40. Log file ECG_.csv for ECG measurement. ...............................................................37 
+Figure 41. Log file Temp_.csv for body temperature measurement. ..........................................38 
+ 
+List of Tables 
+Table 1. PPG Raw Data Table Column Definitions (PPG_*.csv) ...............................................36 
+Table 2. ECG Raw Data Table Column Definitions (ECG_*.csv) ...............................................37 
+Table 3. Temperature Raw Data Table Column Definitions (TEMP_*.csv) ................................38 
+ 
+ 
+Maxim Integrated 
+Page 5 of 39 
+Detailed Hardware Description 
+ 
+Figure 1. MAXREFDES101# wearable form factor in detail. 
+ 
+Figure 2. MAXREFDES101# exploded view. 
+ 
+Maxim Integrated 
+Page 6 of 39 
+Required Equipment 
+The MAXREFDES101# platform includes the following components: 
+• Micro board that includes: 
+o MAX32630 microcontroller 
+o MAX20303 power-management IC (PMIC) 
+o Dual mode Bluetooth® 
+o Six-axis accelerometer and gyroscope 
+• Sensor board that includes: 
+o MAX86141 analog front end and optical heart-rate sensor with one green LED 
+and two photodiodes 
+o MAX30001 ECG sensor 
+o MAX30205 human body temperature sensor 
+o MAX32664 microcontroller with embedded heart-rate algorithm 
+o Three-axis accelerometer 
+• MAXDAP-TYPE-C Pico adapter board to be used during a firmware upgrade for the micro 
+board  
+• Watch enclosure 
+• Battery 
+• 1 USB Micro-B cable for firmware upgrade of the micro board  
+• 1 USB Type-C™ cable for PC communication with the micro board or charging of the watch 
+Additional requirements: 
+• PC or Android® device (e.g., tablet) with Bluetooth connection for data streaming and 
+logging 
+Note: PC Bluetooth connection is only supported on Windows® 10. A USB connection is required 
+for Windows 7. 
+ 
+ 
+ 
+ 
+ 
+ 
+Android is a registered trademark of Google Inc. 
+The Bluetooth word mark and logos are registered trademarks owned by Bluetooth SIG, Inc. and 
+any use of such marks by Maxim is under license. 
+USB Type-C is a trademark of Universal Serial Bus Implementers Forum, Inc. 
+Windows is a registered trademark and registered service mark of Microsoft Corporation. 
+ 
+Maxim Integrated 
+Page 7 of 39 
+System Diagram 
+ 
+Figure 3. MAXREFDES101# system diagram. 
+ 
+ 
+ 
+Maxim Integrated 
+Page 8 of 39 
+Operating the Watch 
+Power On/Off 
+The MAXREDES101# can be powered on by pressing and holding button 1 for at least one 
+second. When the device is on, the display shows the time mode by default. 
+Alternatively, the device powers on when connected to a PC using a USB Type-C cable or when 
+connected to a Pico adapter board. 
+ 
+ 
+Figure 4. USB Type-C cable (left) and Pico adapter board (right). 
+The MAXDAP-TYPE-C Pico adapter board has two USB Micro-B connectors. The top connector 
+next to the push button is used for updating the firmware of the micro board. The left connector 
+next to the “DEVICE” label is used for the serial connection between the MAXREFDES101# and 
+the PC. Both connectors provide power to the MAXREFDES101#. 
+To power off, press and hold button 1 for at least three seconds. When LED indicator 1 turns red, 
+release button 1, and the device powers off. 
+Note: If the device fails to power off or becomes unresponsive, press and hold button 1 for at least 
+twelve seconds to perform a hard reset. 
+ 
+ 
+Maxim Integrated 
+Page 9 of 39 
+Display Modes 
+The display can be toggled between time mode, PPG mode, temperature mode, and info mode. 
+To cycle between modes, press and release button 2 or button 3. 
+ 
+Figure 5. Watch display modes. 
+ 
+Note: There is no display in ECG mode because the noise from the display interferes with the 
+measurement. To take an ECG measurement, use the PC or Android application. 
+ 
+Maxim Integrated 
+Page 10 of 39 
+How to Wear the Device 
+Position the watch approximately one finger width up the arm from the wrist bone. If possible, 
+wear the watch on the non-dominant hand, as this improves the quality of the data. The watch 
+should fit tightly but comfortably around the wrist. 
+PPG Measurement 
+To take a PPG measurement, wear the watch on the wrist and make sure the skin has direct 
+contact with the LED/photodiodes at the center of the back of the watch.  
+ 
+Figure 6. PPG measurement. 
+ECG Measurement 
+To take an ECG measurement, wear the watch on the wrist and make sure the skin has direct 
+contact with electrodes 2 and 3. Then place a finger from the opposite hand on electrode 1. For 
+example, if the watch is worn on the left wrist, use a finger from the right hand. 
+Note: For best results on Windows 7, flash logging is recommended to avoid noise over the 
+USB cable.  
+ 
+Figure 7. ECG measurement. 
+Body Temperature Measurement 
+To take a body temperature measurement, wear the watch on the wrist and make sure the skin 
+has direct contact with electrode 2. 
+ 
+ 
+Maxim Integrated 
+Page 11 of 39 
+Installing the PC GUI 
+1. Download and extract the Eval Package for either Windows 10 or Windows 7 from the 
+Software section on the MAXREFDES101# Design Resources tab. 
+Note: The software package includes the latest firmware, algorithm, and the 
+corresponding Windows or Android application. All three must be updated to ensure 
+compatibility. 
+2. Double click on the .msi file. Check the box for “I accept the terms in the License 
+Agreement”, click on “Install,” and then click on “Finish.” 
+ 
+Figure 8. Install the .msi file. 
+ 
+ 
+Maxim Integrated 
+Page 12 of 39 
+Upgrading the Firmware on MAXREFDES101#  
+The micro board might be shipped without the latest firmware. Maxim recommends that you 
+update the firmware whenever new firmware becomes available. Firmware upgrades can be 
+performed using the provided Pico adapter board by performing the following steps: 
+1. Download and extract the Eval Package from the Software section on the 
+MAXREFDES101# Design Resources tab.  
+Note: The software package includes the latest firmware, algorithm, and the 
+corresponding Windows or Android application. All three must be updated to ensure 
+compatibility. 
+2. Insert the Pico adapter board into the USB Type-C connector of the watch. This 
+establishes a connection with the micro board inside the watch assembly.  
+3. Connect the Pico adapter board to the PC using two USB Micro-B cables. 
+ 
+Figure 9. Pico adapter connected to the PC.  
+4. Wait for the Windows drivers to install. After the drivers have installed, the PC recognizes 
+the device, which shows up as a drive named DAPLINK on the PC. 
+ 
+ 
+Figure 10. DAPLINK drive on the PC. 
+5. To flash the program, use the Drag and Drop feature (e.g., drag and drop the binary file 
+into the DAPLINK drive on your PC). 
+ 
+Maxim Integrated 
+Page 13 of 39 
+6. After flashing the micro board with the new firmware, the board does not automatically 
+reset. To restart the watch after flashing, press and release the button on the Pico adapter 
+board. The button is located below the top USB Micro-B connector. 
+Updating the Sensor Hub Algorithm 
+After the firmware binary is updated, the Biometric Sensor Hub algorithm can be updated with the 
+PC GUI by performing the following steps: 
+1. Download and extract the Eval Package from the Software section on the 
+MAXREFDES101# Design Resources tab. 
+Note: The software package includes the latest firmware, algorithm, and the 
+corresponding Windows or Android application. All three must be updated to ensure 
+compatibility. 
+2. Open the Maxim® DeviceStudio Windows application. 
+3. Select the “Serial over USB” Scan Option. Click “Scan.” 
+ 
+Figure 11. Maxim DeviceStudio scan options. 
+ 
+ 
+ 
+ 
+ 
+ 
+Maxim is a registered trademark of Maxim Integrated Products, Inc. 
+ 
+Maxim Integrated 
+Page 14 of 39 
+4. Verify that Connected Devices lists ECG, Temp, and PPG. 
+ 
+Figure 12. Maxim DeviceStudio connected devices. 
+5. Go to Device Tab > Update SmartSensor_MAX32660 Software > Update Firmware and 
+select the *.msbl file from the extracted Eval Package. 
+6. The embedded heart rate algorithm is uploaded to the MAX32664 microcontroller on the 
+sensor board. 
+ 
+Maxim Integrated 
+Page 15 of 39 
+ 
+Figure 13. Upload embedded heart-rate algorithm to the MAX32664. 
+ 
+Maxim Integrated 
+Page 16 of 39 
+Using the PC GUI 
+The Windows 10 PC GUI currently supports connection to the MAXREFDES101# through USB 
+or Bluetooth Low Energy (BLE). The Windows 7 PC GUI only supports connection to the 
+MAXREFDES101# through USB. 
+USB Connection 
+1. Connect the watch to the PC with a USB Type-C cable (or with the Pico adapter board 
+with a USB Micro-B cable). 
+ 
+ 
+Figure 14. USB connection to PC using a USB Type-C cable (left) and Pico adapter 
+board (right). 
+ 
+ 
+ 
+Maxim Integrated 
+Page 17 of 39 
+2. Under Scan Mode, select “Serial over USB.” Click “Scan.” 
+ 
+Figure 15. Scan for devices. 
+ 
+ 
+ 
+Maxim Integrated 
+Page 18 of 39 
+3. Verify that Connected Devices lists ECG, TEMP, and PPG. 
+ 
+Figure 16. Successful connection over USB. 
+ 
+ 
+ 
+Maxim Integrated 
+Page 19 of 39 
+BLE Connection 
+1. Under Scan Mode, select “Windows BLE.” Click “Scan.” 
+2. Select the device with the MAC address that matches the MAC address listed on the watch 
+info screen. Click “Connect.” 
+ 
+Figure 17. BLE device selection. 
+3. Verify that Connected Devices lists ECG, TEMP, and PPG. 
+ 
+Figure 18. Successful connection over BLE. 
+ 
+Maxim Integrated 
+Page 20 of 39 
+Starting the ECG Measurement 
+1. 
+Select “ECG” under Connected Devices and click on “Launch Tool.” 
+2. 
+Check the box for “Log to File” to save the data to a file. 
+3. 
+Check the box for “Log to Flash” to save the data to the on-board flash. Data is not 
+streamed to the GUI while Flash Logging is enabled. 
+4. 
+Select the desired filters. 
+5. 
+Adjust the ECG parameters. The default parameters can be used for the first time. Refer 
+to the MAX30001 data sheet for a detailed explanation of the parameters. 
+6. 
+Click on “Start Monitoring.”  
+Note: There is no display in ECG mode because the noise from the display interferes with the 
+measurement. 
+ 
+Figure 19. Start the ECG measurement. 
+ 
+Maxim Integrated 
+Page 21 of 39 
+ 
+Figure 20. ECG measurement sample. 
+ 
+Maxim Integrated 
+Page 22 of 39 
+Starting the Temperature Measurement 
+1. Click on View. Select “TEMP EV Kit.” 
+2. Check the box for “Log to File” to save the data. 
+3. Check the box for “Log to Flash” to save the data to the on-board flash. Data is not 
+streamed to the GUI while Flash Logging is enabled. 
+4. Select the Sample Interval in seconds. 
+5. Click on “Start Monitoring.” 
+ 
+Figure 21. Start the temperature measurement. 
+ 
+Maxim Integrated 
+Page 23 of 39 
+Starting the PPG Measurement 
+1. Click on View and select “PPG EV Kit.” 
+2. Check the box for “Log to File” to save the data. 
+3. Check the box for “Log to Flash” to save the data to the on-board flash. Data is not 
+streamed to the GUI while Flash Logging is enabled. 
+4. Check the box for “Accelerometer Chart” to plot the accelerometer data. 
+5. Check the box for “Algorithm Data” to see the algorithm data: HR (bpm), HR Confidence 
+(%), and Activity. 
+6. Select Raw mode to manually set the AFE settings. The default settings can be used for 
+the first time. Refer to the MAX86141 data sheet for a detailed explanation of the AFE 
+settings. 
+7. Select Algorithm mode to allow the MAX32664 HRM algorithm to dynamically adjust the 
+AFE settings. 
+8. Click on “Start Monitoring.” 
+ 
+Figure 22. Start the PPG measurement. 
+ 
+Maxim Integrated 
+Page 24 of 39 
+ 
+Figure 23. PPG measurement sample. 
+ 
+ 
+Maxim Integrated 
+Page 25 of 39 
+Installing the Android App 
+1. Before installing the Android app, make sure that third-party apps are allowed on the 
+device. Go to Menu > Settings > Security and check Unknown Sources to allow the 
+device to install apps from sources other than the Google® Play Store. 
+2. Download the Android Eval Pack using the web browser on the Android device from the 
+Software section on the MAXREFDES101# Design Resources tab. 
+3. Open Downloads or an Android file browser and unzip the downloaded file. Once 
+extracted, open the AndroidApp_HSP2 folder. 
+4. Tap on the .apk file and click Install or Yes when prompted. 
+ 
+Figure 24. Install the Android app. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Google is a registered trademark of Google, Inc.  
+ 
+Maxim Integrated 
+Page 26 of 39 
+Using the Android App 
+BLE Connection for Android 
+1. Ensure Bluetooth is enabled and open the Android application. Select “Scan” to detect 
+nearby devices. 
+ 
+Figure 25. Available Devices list. 
+2. Tap the device with the MAC address that matches the MAC address listed on the watch 
+info screen. 
+3. Verify that Electrocardiogram, Optical HRM, and Temperature are displayed. 
+ 
+Figure 26. Mode selection view. 
+ 
+Maxim Integrated 
+Page 27 of 39 
+Starting the ECG Measurement for Android 
+1. Select Electrocardiogram on the mode selection screen. 
+2. Select the desired filters. 
+3. Tap the “…” button in the top right corner and check “Log to File” to save data to a file. 
+4. Tap the “…” button in the top right corner and check “Log to Flash” to save data to the on-
+board flash. Data is not streamed to the app while Flash Logging is enabled. 
+5. Tap “Start Monitoring.” 
+ 
+Figure 27. Start the ECG measurement for the Android app. 
+Note: There is no display in ECG mode because the noise from the display interferes with the 
+measurement. 
+ 
+Maxim Integrated 
+Page 28 of 39 
+6. A pop-up window appears. Select “NO” to use the last setting and select “YES” to use the 
+default setting. 
+7. Wear the watch on the wrist and make sure the skin has direct contact with electrodes 2 
+and 3. Then place a finger from the opposite hand on electrode 1. 
+8. Tap “INVERT ECG” to invert the ECG waveform if needed. 
+ 
+Figure 28. Android app ECG measurement sample. 
+ 
+Maxim Integrated 
+Page 29 of 39 
+Starting the PPG Measurement for Android 
+1. Select Optical HRM on the mode selection screen. 
+2. Tap the “…” button in the top right corner and check “Log to File” to save data to a file. 
+3. Tap the “…” button in the top right corner and check “Log to Flash” to save data to the on-
+board flash. Data is not streamed to the app while Flash Logging is enabled. 
+4. Wear the watch on the wrist and make sure the skin has direct contact with the 
+LED/photodiodes at the center of the back of the watch. 
+5. Tap “Start Monitoring.” 
+ 
+Figure 29. Android app PPG measurement sample. 
+ 
+Maxim Integrated 
+Page 30 of 39 
+Starting the Temperature Measurement for Android 
+1. Select Temperature on the mode selection screen. 
+2. Tap the “…” button in the top right corner and check “Log to File” to save data to a file. 
+3. Tap the “…” button in the top right corner and check “Log to Flash” to save data to the on-
+board flash. Data is not streamed to the app while Flash Logging is enabled. 
+4. Tap the Celsius or Fahrenheit radio button to select the units. 
+5. Tap the Sample Interval dropdown to select the Sample Interval in seconds. 
+6. Wear the watch on the wrist and make sure the skin has direct contact with electrode 2. 
+7. Tap “Start Monitoring.” 
+ 
+Figure 30. Start the temperature measurement for the Android app. 
+ 
+Maxim Integrated 
+Page 31 of 39 
+ 
+Figure 31. Android app temperature measurement sample. 
+ 
+ 
+Maxim Integrated 
+Page 32 of 39 
+Installing the Windows 7 Driver 
+To use the PC GUI on a Windows 7 PC, installing the driver manually might be required. To 
+manually install the USB serial driver, perform the following steps: 
+1. Download the Windows 7 Eval Package from the Software section on the 
+MAXREFDES101# Design Resources tab.  
+2. Extract the .zip file to a known location. 
+3. Open Device Manager. Device Manager can be found in the Control Panel. 
+4. If manual driver installation is needed, the MAXREFDES101# appears under Other 
+devices as “CDC DEVICE.” Right-click “CDC DEVICE” and select Properties. 
+ 
+Figure 32. CDC DEVICE in Device Manager. 
+5. If “Update Driver…” is grayed out, click “Change Settings,” and then click “Update 
+Driver…” 
+6. Choose “Browse my computer for driver software.” 
+ 
+Figure 33. Locate and install the driver manually. 
+ 
+ 
+ 
+Maxim Integrated 
+Page 33 of 39 
+7. Click “Browse…” and navigate to the location of the extracted .zip file in step 2. Click 
+“Next.” 
+ 
+Figure 34. Browse to extracted release package. 
+8. When prompted by the Windows Security window, click “Install this driver software 
+anyway.” 
+ 
+Figure 35. Choose Install this driver software anyway. 
+9. After the driver is installed successfully, the MAXREFDES101# appears as an mbed Serial 
+Port. 
+ 
+Figure 36. mbed Serial Port in Device Manager. 
+ 
+Maxim Integrated 
+Page 34 of 39 
+Flash Logging 
+To log ECG, PPG, or temperature data to on-board flash memory, perform the following steps: 
+1. Set up ECG, PPG, or temperature measurement on the PC GUI or Android app as 
+instructed in the Using the PC GUI section or in the Using the Android App section, and 
+ensure that the box for “Log to Flash” is checked and the box for “Log to File” is unchecked. 
+2. Click “Start Monitoring.” The device displays “REC” to indicate that data is being logged 
+to flash. Data is not streamed to the GUI or app while Flash Logging is enabled. 
+3. At this point, you can disconnect the USB Type-C or cable or BLE connection to log data 
+while untethered. 
+4. To stop flash logging while untethered, press the down button on the right side of the 
+watch. The display should return to “USB.” If the watch is still tethered to the PC or Android 
+device, flash logging can be stopped by pressing the “Stop” button in the GUI or app. 
+Downloading the Log File 
+After flash logging is complete, download and parse the log file by performing the following steps: 
+1. Ensure the USB Type-C cable is not connected, and power off the watch by holding the 
+power button on the left side of the watch for 3 seconds. 
+2. While holding the up button on the right side of the watch, insert the USB Type-C cable 
+(or the Pico adapter board with a USB Micro-B cable) into the USB Type-C connector of 
+the watch. Continue holding the up button until the indicator LED on the right side of the 
+watch turns blue. 
+3. If done correctly, the watch boots into mass storage device mode and displays “MSD.” 
+  
+ 
+Figure 37. MSD connection to PC using USB Type-C cable (left) and Pico adapter board 
+(right). 
+4. The device appears in Windows Explorer as a USB Drive, and you can copy-paste files 
+from the device. 
+5. Copy the “.maximlog” file to your PC hard drive. 
+ 
+Maxim Integrated 
+Page 35 of 39 
+Note: The log files are in raw binary format and need to be parsed to convert them to a 
+readable .csv format. 
+6. In the PC GUI, open the Flash Log Parser from the Tools menu. 
+7. Select the “.maximlog” file, choose an output folder, and click PARSE. A .csv file is 
+generated in the output folder containing the parsed log file. 
+ 
+Figure 38. Flash Log Parser. 
+ 
+ 
+ 
+ 
+Maxim Integrated 
+Page 36 of 39 
+Data Format 
+Table 1. PPG Raw Data Table Column Definitions (PPG_*.csv) 
+COLUMN 
+DESCRIPTION 
+Time 
+Time stamp 
+Sample count 
+Data index ranging from 0 to 255 for monitoring if samples are dropped during 
+Bluetooth transmission 
+Green count 1 
+Optical count detected by photodiode 1 
+Green count 2 
+Optical count detected by photodiode 2 
+X Axis Acceleration (g) 
+Acceleration in x-axis, in unit of g 
+Y Axis Acceleration (g) 
+Acceleration in y-axis, in unit of g 
+Z Axis Acceleration (g) 
+Acceleration in z-axis, in unit of g 
+Heart Rate (bpm) 
+Heart rate, in unit of beats per min 
+HR confidence (%) 
+Heart rate algorithm extraction confidence, a threshold confidence >85% is 
+recommended 
+Algorithm status 
+0: Rest (no or very light activity). HR confidence threshold: 50%. 
+1: Non-rhythmic activities that cannot be classified in the other categories. HR 
+confidence threshold 30%. 
+2: Walking activity. HR confidence threshold: 30%. 
+3: Running activity. HR confidence threshold: 30%. 
+4: Biking activity. HR confidence threshold: 30%. 
+5: Rhythmic activities that cannot be classified in the other categories. HR 
+confidence threshold: 30%. 
+ 
+ 
+Figure 39. Log file PPG_.csv for PPG measurement. 
+ 
+Maxim Integrated 
+Page 37 of 39 
+Table 2. ECG Raw Data Table Column Definitions (ECG_*.csv) 
+COLUMN 
+DESCRIPTION 
+Time 
+Time stamp 
+Sample count 
+Data index ranging from 0 to 255 for monitoring if samples are dropped during 
+Bluetooth transmission 
+Raw ECG 
+ECG data count 
+Filtered ECG 
+Filtered ECG data count (defined by user’s choice of filter setting) 
+ETAG [2:0] 
+ECG FIFO data tag (see table 48 in MAX30001 data sheet for details) 
+PTAG [2:0] 
+ECG PACE data tag (see table 49 in MAX30001 data sheet for details)  
+R-to-R (bpm) 
+Heart rate (beats per min) 
+ 
+ 
+Figure 40. Log file ECG_.csv for ECG measurement. 
+ 
+Maxim Integrated 
+Page 38 of 39 
+Table 3. Temperature Raw Data Table Column Definitions 
+(TEMP_*.csv) 
+COLUMN 
+DESCRIPTION 
+Time 
+Time stamp 
+Sample count 
+Data index ranging from 0 to 255 for monitoring if samples are dropped during 
+Bluetooth transmission 
+Temperature (°C) 
+Temperature in units of Celsius 
+ 
+ 
+Figure 41. Log file Temp_.csv for body temperature measurement. 
+ 
+Maxim Integrated 
+Page 39 of 39 
+Revision History  
+REVISION 
+NUMBER 
+REVISION 
+DATE 
+DESCRIPTION 
+PAGES 
+CHANGED 
+0 
+9/18 
+Initial release 
+— 
+1 
+11/18 
+Updated the description in the Power On/Off section to 
+pressing and holding button 1 for powering on and off the 
+device. 
+8 
+2 
+8/19 
+Updated procedures and figures to match with the latest 
+firmware and software and added the Flash Logging section. 
+1-37 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+©2019 by Maxim Integrated Products, Inc. All rights reserved. Information in this publication concerning the devices, 
+applications, or technology described is intended to suggest possible uses and may be superseded. MAXIM INTEGRATED 
+PRODUCTS, INC. DOES NOT ASSUME LIABILITY FOR OR PROVIDE A REPRESENTATION OF ACCURACY OF THE 
+INFORMATION, DEVICES, OR TECHNOLOGY DESCRIBED IN THIS DOCUMENT. MAXIM ALSO DOES NOT ASSUME 
+LIABILITY FOR INTELLECTUAL PROPERTY INFRINGEMENT RELATED IN ANY MANNER TO USE OF INFORMATION, 
+DEVICES, OR TECHNOLOGY DESCRIBED HEREIN OR OTHERWISE. The information contained within this document has 
+been verified according to the general principles of electrical and mechanical engineering or registered trademarks of Maxim 
+Integrated Products, Inc. All other product or service names are the property of their respective owners. 

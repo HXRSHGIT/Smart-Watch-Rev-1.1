@@ -1,0 +1,581 @@
+Features
+• USB interface protection between cable and charging circuit during battery 
+charging with:
+– Exceeds ESD IEC 61000-4-2 level 4 protection on cable side: ±15 kV 
+contact on bridge inputs, ±12 kV contact on USB data-lines inputs
+– Detection of the polarity of the charging cable with rerouting in case of 
+cable inversion thanks to 13 V input rectification bridge
+– Overvoltage protection (OVP) up to ± 13 V
+– Over current protection (OCP) externally adjustable from 100 mA to 
+500 mA
+– Controlled inrush current
+– Over temperature protection
+– Under-voltage lockout
+– 5 V USB 2.0 data lines protection and multiplexer for data line polarity 
+correction (RON = 6 Ω typical)
+– FLAG output signal (open-drain) available to inform thermal shutdown or 
+overvoltage or overcurrent or uncompleted start-up phase
+– Proposed in 400µm pitch WLCSP package 13 bumps
+– Operating temperature from -30°C to 65°C
+Benefits
+• Minimal PCB footprint in wearable, IoT, mobile phone, tablet and all USB 
+devices applications thanks to very strong integration
+• High voltage protection management to give flexibility to customers to use low 
+voltage charging circuit for power consumption and cost optimization
+• USB cable inversion management
+Complies with the following standards
+• IEC 61000-4-2 level 4: ±15kV contact on bridge inputs, ±12kV contact on USB 
+data-lines inputs
+• JESD22-A114D level 2
+Application
+• All wearable and IoT
+Description
+The OCVPB21-13F6 is an integrated ESD, overvoltage and overcurrent protection 
+with an integrated input rectification bridge to give flexibility for wearable and IoT 
+customers to manage properly any kind of USB charging conditions with or without 
+USB cable inversion.
+Thanks to state of the art high voltage technology, ST can integrate in WLCSP 
+package all required USB stressful high voltage and high current protection 
+conditions (ESD, OVP and OCP) with control signals for wearable and IoT design 
+optimization.
+Product status link
+OCVPB21-13F6
+ ESD, overvoltage and overcurrent protection with charging orientation direction 
+detection for wearables and IoT
+OCVPB21-13F6
+Datasheet
+DS13107 - Rev 3 - December 2024
+For further information contact your local STMicroelectronics sales office.
+www.st.com
+1 Functional description
+OCVPB21-13F6 is a very integrated solution to be connected between USB cable and battery charge 
+management chipset with very efficient protection to protect the system and the power management chipsets 
+during battery charging.
+As described herebelow , all protection functions are available to meet all stringent conditions of power supplies 
+but also USB cable inversion:
+• With 13 V input rectification bridge for polarity charging detection. Both signals (USB Vcc and USB 
+datalines) are rerouted according to following rule (see Figure 2 and Table 3 )
+Table 1. Rectification bridge for polarity
+IN_A IN_B USB_INC USB_IND
+VCC GND D+ D-
+GND VCC D- D+
+• Adjustable overcurrent protection to prevent peak current to meet a wide range of IoT and wearable 
+applications
+• Overvoltage protection to properly meet battery charging voltage conditions and protecting from -0.3 V to 
+13 V DC and to 20 V ringing at plug-in
+Figure 1. Application block diagram
+Power 
+management 
+Chipset
+OUT_5V
+USB_DP
+USB_DM
+IN_B
+IN_A
+RLIM
+RLIM
+VBAT
+Over Temperature 
+Protection
+Over Current 
+Protection
+Over Voltage
+Protection / UVLO OR
+Switch 
+5V
+ESD
++13V
+ESD
+Bridge
+MUX
+GND_DATA 
+USB Connector
+FLAG
+RFLAG
+RECTIF
+USB_INC
+USB_IND
+COUT
+GND _BRIDGE GND _ESD 
+USB
+transceiver
+Table 2. Block diagram reference
+Reference Typical values Comment
+COUT ≥ 10 µF 6V3 Low ESR capacitor
+RLIM From 51 Ω to 270 Ω 1% tolerance or better recommended
+RFLAG 100 kΩ
+OCVPB21-13F6
+Functional description
+DS13107 - Rev 3 page 2/17
+Figure 2. Functional diagram
+OUT_5V
+Current
+Detection
+IEC
+5V
+VDD
+Bias  and Voltage 
+Reference
+Vref
+Voltage Protection
+with 100mA / 500mA Current Limiter
+USB_IN_C
+IN_A
+IN_B
+Polarity
+Detection
+High side
+Gate Drivers
+VDDPolarity
+Low  side
+Gate Drivers
++
+-
+Data MUX
+Polarity
+USB_IN_D
+HBM
+2kV
+HBM
+2kV
+HBM
+2kV
+RLIM
+OCP
+with charge Pump
+Logi c + Timer FLAG
+USB_DP
+USB_DM
+Polarity
+OVP
+UVLO
+Vref
+Vref
+VDD
++
+-
+-
++
+V_OK
+V_OK 
+V_OK
+Thermal
+Shutdown
+VDD
+OTP
+OUT_5V
+V_OK
+LDO
+Regulator
+VDD
+Oscillator
+VDD
+CLK
+CLK
+Charge 
+Pump
+CLK
+OUT_5V
+IEC
+13V 
+15kV
+IEC 
+12kV
+RDWN_C
+RDWN_D
+GND _BR IDGE
+RECTIF
+GND _ESD
+GND _DATA
+Figure 3. Pin numbering (bump side)
+E        D       C       B       A
+1
+2
+3
+RLIM IN_A
+FLAG GND
+ESD
+RECTIF
+USB
+DP
+USB
+DM
+OUT
+5V
+USB
+INC
+USB
+IND
+GND
+DATAIN_B
+GND
+BRIDGE
+OCVPB21-13F6
+Functional description
+DS13107 - Rev 3 page 3/17
+Table 3. Pin description
+Pin Name Description Pin Name Description
+A1
+USB_DP
+(OUT_USB_D+ 
+DATA)
+Output USB D+ dataline C2 RECTIF Output bridge 
+rectification
+A2 USB_IND Input USB dataline - USB 
+pin 3 connector (D+ or D-) D1
+IN_A
+(USB connector VCC or GND)
+Input bridge 
+rectification - USB 
+connector
+(VCC or GND)
+A3, C3, 
+E2
+GND DATA
+GND ESD
+GND BRIDGE
+Ground dataline
+Ground ESD Bridge
+Ground bridge
+D3
+IN_B
+(USB connector GND or VCC)
+Input bridge 
+rectification - USB 
+connector
+(GND or VCC )
+B1
+USB_DM
+(OUT_USB_D- DATA)
+Output USB D- dataline E1 RLIM
+External resistor used 
+to set current-limit 
+threshold
+B2 OUT_5V Output USB 5 V voltage 
+charging E3 FLAG
+Active-low open-drain 
+output, asserted 
+during overcurrent, 
+over/under voltage 
+and over temperature 
+conditions
+B3 USB_INC Input USB dataline - USB 
+pin 2 connector (D- or D+)
+1.1 Rectification bridge description
+Thanks to an input rectification bridge, polarity of the charging cable can be detected and be rerouted in case of 
+USB cable inversion.
+During power-up stage, current will first flow in intrinsic body diodes of power MOS of the bridge.
+During steady state, current will flow through power MOS of the bridge providing a low drop-out voltage.
+OCVPB21-13F6
+Functional description
+DS13107 - Rev 3 page 4/17
+1.2 OCP function description
+Over current protection is required to prevent any inrush current or unexpected overcurrent that could damage the 
+system.
+Current limitation of the OCP will be set using an external resistor RLIM (from 100 to 500 mA min) to meet a wide 
+range of IoT and wearable applications.
+Typical limitation current will be set at 10-15% above targeted value as described in Figure 7.
+ILIM versus RLIM definition is: ILIM = (318 - RLIM) / 0.447
+In case of slow overloading, the current is regulated at OCP level as described in Figure 4.
+Figure 4. Load current regulation during slow overloadin
+VOUT
+t
+ILOAD
+OCP
+In case of fast overloading, the power-switch is switched-off in the microsecond range as described in Figure 5. 
+Then the power-switch is slowly turned on and the load-current regulated at the OCP level.
+Figure 5. Fast overloading
+VOUT
+I LOAD OCP
+In case of fast short-circuit, the power-switch is switched-off in the microsecond range as described in Figure 6. 
+Then the OCP level is folded back at around 75 mA.
+OCVPB21-13F6
+Functional description
+DS13107 - Rev 3 page 5/17
+Figure 6. Fast short circuit
+VOUT
+t
+I LOAD
+~75 mA
+During OCP operation, a big power can be dissipated in the chip. If junction temperature reaches OTP level 
+(150 °C), the power-switch is temporarily opened to cool the device. OCP is then re-enabled once Tj decreases 
+by 30 °C.
+Figure 7. Current limitation setting
+I_lim
+Current limitation 
+distribution
+100 mA 500 mA
+Typical RLIM
+(100 mA setting)
+Typical RLIM
+(500 mA setting) = 586 mA typ
+=128 mA typ
+1.3 OVP function description
+Both undervoltage lockout and overvoltage lockout are integrated to secure correct operating voltage conditions 
+of connected Power management chipset.
+In normal charging condition, VIN and VOUT can vary from 4.25 V to 5.5 V.
+Under 4.25 V and over 5.5 V, UVLO or OVLO are activated to disable the output (OVP switch open and FLAG set 
+to low - to inform protection Power management chipset).
+OCVPB21-13F6
+Functional description
+DS13107 - Rev 3 page 6/17
+1.4 FLAG output signal
+FLAG output signal (open-drain) is available to inform thermal shutdown or overvoltage or overcurrent or 
+uncompleted start-up phase.
+This signal is kept to low when product exceeds temperature conditions or voltage protection is activated or 
+overcurrent occurs or start-up phase is still incomplete.
+During normal conditions, this signal is at high level thanks to an external pull-up resistor.
+OCVPB21-13F6
+Functional description
+DS13107 - Rev 3 page 7/17
+2 Electrical characteristics
+Table 4. Absolute maximum ratings (limiting values)
+Symbol Parameter Test conditions Value Unit
+VPP_BUS
+ESD discharge on USB cable side, 
+exceeds IEC 61000-4-2 level 4:
+pins D1 and D3
+pins A2 and B3
+Contact or air discharge pin to GND 
+with COUT ≥ 10 µF(1) ±15
+±12
+kV
+VPP_OUTPUT
+ESD discharge (all pins), HBM 
+‑JESD22-A114D, level 2 Contact or air discharge ±2 kV
+VIN_MAX Max transient input voltage IN_A to GND or IN_B to GND (test 
+pulse < 5 min) -0.3 to +13.2 V
+VDATA_MAX Max data voltage USB_INC, USB_INC, USB_DP and 
+USB_DM -0.3 to +5.5 V
+VRLIM_MAX, VFLAG
+and OUT_5V Max voltage range -0.3 to +7 V
+IIN_MAX_DC Max DC input current : IN_A and IN_B 600 mA
+IFLAG_sink Max sunk current through FLAG PIN 4 mA
+TSTG Storage temperature range -55 to +150 °C
+TOP Operating temperature range -30 to +65 °C
+ 
+1. With minimum 10 µF low ESR capacitor connected to OUT_5V
+ 
+Table 5. USB power electrical characteristic (-30 °C < Tamb< 65 °C, typ at Tamb = 25 °C and VIN = 5 V unless 
+otherwise noted)
+Symbol Parameter Test conditions Min. Typ. Max. Unit
+VIN Input voltage range IN_A to GND or IN_B to GND 4.25 5.55 V
+IQ_IN Supply quiescent current 400 1500 µA
+UVLOOFF Under-voltage lockout deactivation 3.8 4.25 V
+UVLOON Under-voltage Lockout 3.45 4.05 V
+OVPON Over-voltage protection deactivation 5.5 6.35 V
+OVPOFF Over-voltage protection deactivation 5.45 6.2 V
+RINx /OUT_5V High side ON resistance IOUT = 100 mA 199 mΩ
+RINx/GND Low side ON resistance IIN_x = 100 mA 119 mΩ
+RLIM OCP setting resistor range T = 25 °C 51 270 Ω
+ILIM Overcurrent threshold
+RLIM = 56 Ω, VOUT = 4.5 V 524 586 637
+mA
+RLIM = 261 Ω, VOUT = 4.5 V 108 127.6 143.8
+Tsd Thermal Shutdown 134 148 161 °C
+Tsd_hyst Thermal Shutdown hysteresis 12 28 44 °C
+VOL_FLAG FLAG low state output voltage VIN = 3.6 V, ISink = 4 mA on FLAG 0.4 V
+IFLAG_leak FLAG leakage current VFLAG = 5 V 200 nA
+TON Activation time From VIN > UVLOOFF to FLAG = HIGH Z 1.2 2 ms
+OCVPB21-13F6
+Electrical characteristics
+DS13107 - Rev 3 page 8/17
+Table 6. USB data characteristic (-30 °C < Tamb< 65 °C, typ at Tamb = 25 °C and VIN = 5 V unless otherwise 
+noted)
+Symbol Parameter Test conditions Min. Typ. Max. Unit
+VDATA Dataline input Voltage range USB_INC, USB_IND, USB_DP, USB_DM -0.3 3.65 V
+CON ON capacitance VDATA = 0 V, F = 1 MHz 9 pF
+FC Cut-off frequency
+-3dB bandwidth RL = 50 Ω, CL = 5 pF 420
+MHz
+-3dB bandwidth RL = 50 Ω, CL = 0 pF 590
+RON_DATA On-Resistance VDATA = 0 V to 0.4 V, IDATA = 8 mA 9.2 Ω
+RON_FLAT On-Resistance flatness VDATA = 0 V to 1 V, IDATA = 8 mA 1.6 Ω
+RPULL_DOWN
+Pull-down resistor between 
+IN_C,IN_D and GND 100 kΩ
+Figure 8. USB2.0 high speed 480 Mbps eye diagram (pin A1 and B1 - with OCVPB21-13F6 and no load 
+capacitor)
+OCVPB21-13F6
+Electrical characteristics
+DS13107 - Rev 3 page 9/17
+Figure 9. S21 measurement (pin A1 and B1 - with no load capacitor)
+-21
+-18
+-15
+-12
+-9
+-6
+-3
+0
+1.00E+05 1.00E+06 1.00E+07 1.00E+08 1.00E+09
+S21 (dB)
+frequency (Hz)
+OCVPB21-13F6
+Electrical characteristics
+DS13107 - Rev 3 page 10/17
+3 Package information
+To meet environmental requirements, ST offers these devices in different grades of ECOPACK packages, 
+depending on their level of environmental compliance. ECOPACK specifications, grade definitions, and product 
+status are available at: www.st.com. ECOPACK is an ST trademark.
+3.1 WLCSP 13 bumps package information
+Figure 10. WLCSP 13 bumps package outline
+2.1 mm  ±50 µm
+1.322 mm  ± 50 µm
+400 ± 10 µm
+400  ± 10 µm
+261 µm
+250 µm
+220 ± 40 µm
+WLCSP number of bumps : 13
+Size : 1.320 mm ± 0.05 x 2.100 mm ± 0.05 
+2.772 mm ² ± 0.17
+Thickness : 605 ± 55 µm
+Pitch : 400 ± 10 µm
+Bump diameter : 220 ± 40 µm
+RLIM IN_A
+FLAG GND
+ESD
+RECTI
+USB_
+DP
+USB_
+DM
+OUT_
+5V
+USB_
+INC
+USB_
+IND
+GND
+DATA
+IN_B
+GND
+BRIDGE
+OCVPB21-13F6
+Package information
+DS13107 - Rev 3 page 11/17
+3.2 WLCSP 13 bumps packing information
+Figure 11. Marking
+Note: More packing information is available in the application note:
+• AN2348 Flip-Chip: “Package description and recommendations for use”
+Figure 12. WLCSP 13 bumps tape and reel specification (all dimensions in mm)
+OCVPB21-13F6
+Package information
+DS13107 - Rev 3 page 12/17
+4 Soldering assembly recommendations
+4.1 PCB design recommendations for multi-bump Flip Chip
+For optimum electrical performance and highly reliable solder joints, STMicroelectronics recommends the PCB 
+design guidelines listed in Table 7.
+Table 7. PCB design recommendations for multi-bump Flip Chips
+Name Parameters
+PCB pad design Non solder mask defined micro via under bump allowed
+PCB pad size Ø = 200 µm (circular)
+Solder mask opening Ø = 275 µm
+PCB pad finishing Cu - Ni (2-6 μm) - Au (0.2 μm max) or Cu OSP (Organic 
+Substrate Protection).
+Note: A too thick gold layer finishing on the PCB pad is not recommended (low joint reliability)
+To optimize the natural self-centering effect of Flip Chips on PCB, PCB pad positioning and size have to be 
+properly designed (see Figure 13).
+Micro vias
+An alternative to routing on the top surface is to route out on buried layers. To achieve this, the pads are 
+connected to the lower layers using micro vias.
+Figure 13. Multi-bump Flip-Chip bump footprint
+200 µm
+Copper pad diameter:
+275 µm
+Soldermask opening:
+Solder stencil opening:
+Circle 250 µm 
+4.2 PCB assembly guidelines
+For Flip Chip mounting on the PCB, STMicroelectronics recommends the use of a solder stencil aperture of 250 
+μm and a typical stencil thickness of 80 μm. Flip Chips are fully compatible with the use of near eutectic 95.8% 
+Sn, 3.5% Ag, 0.7% Cu solder paste with no-clean flux. ST's recommendations for Flip-Chip board mounting are 
+illustrated on the soldering reflow profile shown in Figure 14.
+OCVPB21-13F6
+Soldering assembly recommendations
+DS13107 - Rev 3 page 13/17
+Figure 14. ST ECOPACK recommended soldering reflow profile for Flip Chip mounting on PCB 
+(definitions)
+250
+0
+50
+100
+150
+200
+240210180150120906030 300270
+-6 °C/s
+240-245 °C
+2 - 3 °C/s
+Temperature (°C) -2 °C/s
+-3 °C/s
+Time (s)
+0.9 °C/s
+60 sec
+(90 max)
+Table 8. ST ECOPACK recommended soldering reflow profile for Flip Chip mounting on PCB (value)
+Profile
+Value
+Typ. Max.
+Temp. gradient in preheat (T = 70 – 180 
+°C) 0.9 °C/s 3 °C/s
+Temp. Gradient (T = 200 – 225 °C) 2 °C/s 3 °C/s
+Peak temp. in reflow 240 – 245 °C 260 °C
+Time above 220 °C 60 s 90 s
+Temp. gradient in cooling -2 to - 3 °C/s -6 °C/s
+Time from 50 to 220 °C 160 to 220 s
+4.3 Layout recommendations
+Low impedance trace are recommended for IN_A, IN_B, OUT_5V and GND_ESD to ensure layout optimization 
+for ESD.
+We recommend also to place COUT (see Table 2. Block diagram reference) as close as possible of 
+OCVPB21-13F6.
+To maximize current limit accuracy, we recommend also to place RLIM (see Table 2. Block diagram reference) as 
+close as possible of OCVPB21-13F6 (with Z < 500 mΩ).
+Traces for USB data lines should be designed with 90 Ω differential impedances (USB_INC, USB_IND, USB_DP 
+and USB_DM tracks).
+OCVPB21-13F6
+Soldering assembly recommendations
+DS13107 - Rev 3 page 14/17
+5 Ordering information
+Figure 15. Ordering information scheme
+With rectification bridge    
+OCVP B  2 1 - 13  F6
+ESD, overcurrent and overvoltage
+protection
+ 
+Version 1 with 15kV ESD in Power lines
+With two USB2.0 datalines ESD protection
+With 13 bumps
+Package
+F = Flip Chip
+6 : lead-free, pitch = 400 µm, bump = 220 µm
+Table 9. Ordering information
+Order code Marking Package Weight Base qty. Delivery mode
+OCVPB21-13F6 NL WLCSP 6 mg 5000 Tape and reel
+Note: More information is available in AN2348 application note :
+• STMicroelectronics 400 micro-meter Flip Chip: package description and recommendation for use
+OCVPB21-13F6
+Ordering information
+DS13107 - Rev 3 page 15/17
+Revision history
+Table 10. Document revision history
+Date Revision Changes
+08-Nov-2019 1 Initial release.
+21-Dec-2020 2 Inserted protection logo. Updated Table 5 and Figure 10.
+10-Dec-2024 3 Updated Table 5.
+OCVPB21-13F6
+DS13107 - Rev 3 page 16/17
+IMPORTANT NOTICE – READ CAREFULLY
+STMicroelectronics NV and its subsidiaries (“ST”) reserve the right to make changes, corrections, enhancements, modifications, and improvements to ST 
+products and/or to this document at any time without notice. Purchasers should obtain the latest relevant information on ST products before placing orders. ST 
+products are sold pursuant to ST’s terms and conditions of sale in place at the time of order acknowledgment.
+Purchasers are solely responsible for the choice, selection, and use of ST products and ST assumes no liability for application assistance or the design of 
+purchasers’ products.
+No license, express or implied, to any intellectual property right is granted by ST herein.
+Resale of ST products with provisions different from the information set forth herein shall void any warranty granted by ST for such product.
+ST and the ST logo are trademarks of ST. For additional information about ST trademarks, refer to www.st.com/trademarks. All other product or service names 
+are the property of their respective owners.
+Information in this document supersedes and replaces information previously supplied in any prior versions of this document.
+© 2024 STMicroelectronics – All rights reserved
+OCVPB21-13F6
+DS13107 - Rev 3 page 17/17

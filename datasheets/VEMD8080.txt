@@ -1,0 +1,359 @@
+VEMD8080
+www.vishay.com Vishay Semiconductors
+  
+ 
+Rev. 1.1, 05-Sep-2023 1 Document Number: 84565
+For technical questions, contact: detectortechsupport@vishay.com
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+Silicon PIN Photodiode
+DESCRIPTION
+VEMD8080 is a high speed and high sensitive PIN  
+photodiode with enhanced sensitivity for visible light. It is a 
+low profile surface-mount device (SMD) including the chip 
+with a 4.6 mm 2 sensitive area detecting visible and near  
+infrared radiation.
+FEATURES
+• Package type: surface mount
+• Package form: top view
+• Dimensions (L x W x H in mm): 4.8 x 2.5 x 0.48
+• Radiant sensitive area (in mm2): 4.6
+• 0.48 mm low profile package
+• Enhanced sensitivity for visible light
+• Suitable for visible and near infrared radiation
+• Fast response times
+• Angle of half sensitivity: ϕ = ± 65°
+• Floor life: 168 h, MSL 3, according to J-STD-020
+• Material categorization: fo r definitions of compliance  
+please see www.vishay.com/doc?99912
+APPLICATIONS
+• High speed photo detector
+• Wearables
+Note
+• Test conditions see table “Basic Characteristics”
+Note
+• MOQ: minimum order quantity
+PRODUCT SUMMARY
+COMPONENT Ira (μA) ϕ (deg) λ0.1 (nm)
+VEMD8080 28 ± 65 350 to 1100
+ORDERING INFORMATION
+ORDERING CODE PACKAGING REMARKS PACKAGE FORM
+VEMD8080 Tape and reel MOQ: 5000 pcs, 5000 pcs/reel Top view
+ABSOLUTE MAXIMUM RATINGS (Tamb = 25 °C, unless otherwise specified)
+PARAMETER TEST CONDITION SYMBOL VALUE UNIT
+Reverse voltage VR 20 V
+Junction temperature T j 85 °C
+Operating temperature range T amb -40 to +85 °C
+Storage temperature range T stg -40 to +85 °C
+Soldering temperature According to reflow solder profile Fig. 8 T sd 260 °C
+Thermal resistance junction-to-ambient R thJA 350 K/W
+ESD safety HBM ± 2000 V, 1.5 k Ω, 100 pF, 3 pulses ESD HBM ≥ 2 kV
+VEMD8080
+www.vishay.com Vishay Semiconductors
+  
+ 
+Rev. 1.1, 05-Sep-2023 2 Document Number: 84565
+For technical questions, contact: detectortechsupport@vishay.com
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+BASIC CHARACTERISTICS (Tamb = 25 °C, unless otherwise specified)
+Fig. 1 - Reverse Dark Current vs. Ambient Temperature Fig. 2 - Relative Reverse Light Current vs. Ambient Temperature
+BASIC CHARACTERISTICS (Tamb = 25 °C, unless otherwise specified)
+PARAMETER TEST CONDITION SYMBOL MIN. TYP. MAX. UNIT
+Forward voltage I F = 50 mA V F -1 . 2 1 . 6 V
+Breakdown voltage I R = 100 μA, E = 0 V (BR) 20 - - V
+Reverse dark current V R = 10 V, E = 0 I ro -0 . 2 1 0 n A
+Diode capacitance
+VR = 0 V, f = 1 MHz, E = 0 C D -4 7- p F
+VR = 3 V, f = 1 MHz, E = 0 C D -1 7 4 0 p F
+Open circuit voltage E e = 1 mW/cm2, λ = 950 nm V o - 320 - mV
+Temperature coefficient of Vo Ee = 1 mW/cm2, λ = 950 nm TK Vo -- 3 . 0- m V / K
+Short circuit current E e = 1 mW/cm2, λ = 950 nm I k -3 2- μ A
+Temperature coefficient of Ik Ee = 1 mW/cm2, λ = 950 nm TK Ik -0 . 1- % / K
+Reverse light current
+Ee = 1 mW/cm2, λ = 850 nm, VR = 5 V I ra 23 28 33 μA
+Ee = 0.25 mW/cm2, λ = 525 nm, VR = 5 V I ra 3.4 4.4 5.3 μA
+Angle of half sensitivity ϕ -±  6 5- d e g
+Wavelength of peak sensitivity λp - 850 - nm
+Range of spectral bandwidth λ0.1 - 350 to 1100 - nm
+Rise time
+VR = 10 V, RL = 1 kΩ, λ = 830 nm t r -7 0- n s
+VR = 10 V, RL = 50 Ω, λ = 830 nm t r -3 0- n s
+Fall time
+VR = 10 V, RL = 1 kΩ, λ = 830 nm t f -7 0- n s
+VR = 10 V, RL = 50 Ω, λ = 830 nm t f -3 0- n s
+0.1
+1
+10
+100
+1000
+0 2 04 06 08 0
+Iro - Reverse Dark Current (nA)
+Tamb - Ambient Temperature (°C)
+VR = 10 V
+0.8
+0.9
+1
+1.1
+1.2
+- 4 0 - 2 00 2 04 06 08 0
+Ira rel - Relative Reverse Light Current
+Tamb - Ambient Temperature (°C)
+Ee = 1 mW/cm2
+λ = 950 nm
+VR = 5 V
+VEMD8080
+www.vishay.com Vishay Semiconductors
+  
+ 
+Rev. 1.1, 05-Sep-2023 3 Document Number: 84565
+For technical questions, contact: detectortechsupport@vishay.com
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+Fig. 3 - Reverse Light Current vs. Irradiance
+Fig. 4 - Diode Capacitance vs. Reverse Voltage
+Fig. 5 - Relative Spectral Sensitivity vs. Wavelength
+Fig. 6 - Relative Sensitivity vs. Angular Displacement
+0.1
+1
+10
+100
+0.01 0.1 1
+Ira - Reverse Light Current (μA)
+Ee - Irradiance (mW/cm2)
+VR = 5 V, λ = 950 nm
+0
+10
+20
+30
+40
+50
+0.1 1 10 100
+Cp - Capacitance (pF)
+VR - Reverse Voltage (V)
+f = 1 MHz, E = 0
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+400 500 600 700 800 900 1000 1100
+S(λ)rel - Relative Spectral Sensitivity
+λ - Wavelength (nm)
+0.4 0.2 00.6
+0.9
+0.8
+0°
+30°
+10° 20°
+40°
+50°
+60°
+70°
+80°
+0.7
+1.0
+ϕ - Angular Displacement
+Srpel - Relative Sensitivity
+VEMD8080
+www.vishay.com Vishay Semiconductors
+  
+ 
+Rev. 1.1, 05-Sep-2023 4 Document Number: 84565
+For technical questions, contact: detectortechsupport@vishay.com
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+PACKAGE DIMENSIONS in millimeters
+2.5
+4.8
+Drawing number: 6.550-5354.01-4
+Issue: 1;  20.04.2018
+0.29
+0.5
+1.63
+0.15
+Footprint
+0.54 (x 8) 0.55 (x 8)
+1.311.381.31
+2.38
+2.4
+1.31 1.38 1.31
+0.48 ± 0.05
+0.15
+2.02
+4.32
+(0.14) Pin 1 marking
+Optical center PD
+2.14
+(0.14)
+1.25
+Technical drawings 
+according to DIN
+specification.
+PD pin 1
+cathode
+PD pin 2
+cathode
+PD pin 3
+cathode
+PD pin 4
+cathode
+Pinning top view
+PD pin 8
+cathode
+PD pin 7
+cathode
+PD pin 6
+cathode
+PD pin 5
+anode
+PD pin 1
+cathode
+PD pin 2
+cathode
+PD pin 3
+cathode
+PD pin 4
+cathode
+PD pin 8
+cathode
+PD pin 7
+cathode
+PD pin 6
+cathode
+PD pin 5
+anode
+Pinning bottom view
+Not indicated tolerances ± 0.1 mm
+VEMD8080
+www.vishay.com Vishay Semiconductors
+  
+ 
+Rev. 1.1, 05-Sep-2023 5 Document Number: 84565
+For technical questions, contact: detectortechsupport@vishay.com
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+TAPE AND REEL DIMENSIONS in millimeters
+Drawing-No.: 9.800-5146.01-4
+Issue: 1;  20.04.2018
+A
+Unreel direction
+5.5 1.75
+4
+2
+12
+4
+Ø 1.5
+Ø 1.5
+0.25
+0.9
+Label posted here
+Ø 13
+Reel Ø
+18.4
+A
+(5 : 1) Sensor orientation mark pin 1
+Non tolerated dimensions ± 0.1 mm
+Reel design is representative for different types
+VEMD8080
+www.vishay.com Vishay Semiconductors
+  
+ 
+Rev. 1.1, 05-Sep-2023 6 Document Number: 84565
+For technical questions, contact: detectortechsupport@vishay.com
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+SOLDER PROFILE
+Fig. 7 - Lead (Pb)-free Reflow Solder Profile
+According to J-STD-020D
+DRYPACK
+Devices are packed in mois ture barrier bags (MBB) to  
+prevent the products from moisture absorption during  
+transportation and storage. Each bag contains a desiccant.
+FLOOR LIFE
+Time between soldering and re moving from MBB must not 
+exceed the time indicated in J-STD-020:
+Moisture sensitivity: level 3
+Floor life: 168 h
+Conditions: Tamb < 30 °C, RH < 60 %
+DRYING
+In case of moisture absorption devices should be  
+baked before soldering. Conditions see J-STD-020 or  
+recommended conditions:
+192 h at 40 °C (+ 5 °C), RH < 5 % 
+or 
+96 h at 60 °C (+ 5 °C), RH < 5 %
+240 °C
+Max. 260 °C
+217 °C
+255 °C
+19841-1
+10
+100
+1000
+10000
+0
+100
+200
+300
+0 50 100 150 200 300
+Axis Title
+1st line
+2nd line
+2nd line
+Temperature (°C)
+Time (s)
+50
+150
+250
+250
+245 °C
+Max. 100 s
+Max. 30 s
+Max. 120 s
+Max. ramp down 6 °C/s
+Max. ramp up 3 °C/s
+Legal Disclaimer Notice
+www.vishay.com Vishay
+   
+ 
+Revision: 01-Jan-2026 1 Document Number: 91000
+THIS DOCUMENT IS SUBJECT TO CHANGE WITHOUT NOTICE. THE PRODUCTS DESCRIBED HEREIN AND THIS DOCUMENT
+ARE SUBJECT TO SPECIFIC DISCLAIMERS, SET FORTH AT www.vishay.com/doc?91000
+Disclaimer
+ALL PRODUCT, PRODUCT SPECIFICATIONS AND DATA AR E SUBJECT TO CHANGE WITH OUT NOTICE TO IMPROVE 
+RELIABILITY, FUNCTION OR DESIGN OR OTHERWISE. 
+Vishay Intertechnology, Inc., its affiliates, agents, and employee s, and all persons acting on it s or their behalf (collectivel y, 
+“Vishay”), disclaim any and all liability for any errors, inaccuracies or incompleteness contained in any datasheet or in any other 
+disclosure relating to any product.
+Vishay makes no warranty, representation or guarantee regarding the suitability of the products for any particular purpose or 
+the continuing production of any product. To the maximum extent permitted by applicable law, Vishay disclaims (i) any and all  
+liability arising out of the application or use of any product , (ii) any and all liability, including without limitation specia l, 
+consequential or incidental damages, and (iii) any and all implied warranties, incl uding warranties of fitness for particular  
+purpose, non-infringement and merchantability.
+Statements regarding the suitability of pro ducts for certain types of applications are based on Vishay's knowledge of typical  
+requirements that are often placed on Vishay products in ge neric applications. Such statements are not binding statements 
+about the suitability of products for a particular application. It is the customer's responsibility to validate that a particular product 
+with the properties described in the product specification is suitable for use in a particular application. Parameters provided in 
+datasheets and / or specificat ions may vary in different applications and performance may vary over time. All operating  
+parameters, including typical parameters, must be validated for each customer application by the customer's technical experts. 
+Product specifications do not expand or otherwise modify Vishay's terms and conditions of purchase, including but not limited 
+to the warranty expressed therein.
+Hyperlinks included in this datasheet may direct users to third-party websites. These links are provided as a convenience and 
+for informational purposes only. Inclusion of these hyperlinks does not constitute an endorsement or an approval by Vishay of 
+any of the products, services or opinions of the corporation, organization or individual associated with the third-party website. 
+Vishay disclaims any and all liability and bears no responsibility for the accuracy, legality or content of the third-party web site 
+or for that of subsequent links.
+Vishay products are not designed for use in life-saving or life -sustaining applications or any application in which the failure  of 
+the Vishay product could result in personal injury or death unless specifically qualified in writing by Vishay. Customers using or 
+selling Vishay products not expressly indicated for use in such applications do so at their own risk. Please contact authorized 
+Vishay personnel to obtain written terms and conditions regarding products designed for such applications.
+No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document or by 
+any conduct of Vishay. Product names and markings noted herein may be trademarks of their respective owners.
+© 2026 VISHAY INTERTECHNOLOGY, INC. ALL RIGHTS RESERVED

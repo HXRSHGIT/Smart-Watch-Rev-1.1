@@ -1,0 +1,910 @@
+Maxim Integrated 
+Page 1 of 45 
+MAXREFDES103# Health Sensor Band 
+User Guide 
+Abstract 
+This user guide provides information about preparing and running the MAXREFDES103# health 
+sensor band. This platform uses a high-sensitivity PPG biosensor, power-management IC 
+(PMIC), and microcontrollers from Maxim Integrated® in a wrist-worn design that captures 
+biometric signals important to healthcare. The platform also contains algorithms to calculate heart 
+health based on the biosensor measurements. 
+Maxim Integrated 
+Page 2 of 45 
+Table of Contents 
+Required Equipment ....................................................................................................................... 5 
+System Diagram.............................................................................................................................. 7 
+Operating the Health Sensor Band................................................................................................. 8 
+Power On/Off............................................................................................................................... 8 
+Button Functionality..................................................................................................................... 9 
+Color Definitions for LED Status ................................................................................................. 9 
+How to Position the Device on the Wrist .................................................................................. 10 
+Software Updates ......................................................................................................................... 11 
+Installing the Maxim DeviceStudio PC GUI .............................................................................. 11 
+Updating the Micro Board Firmware (.bin) on the MAXREFDES103# .................................... 12 
+Updating the MAX32664 Sensor Hub Algorithm Firmware (.msbl) ......................................... 13 
+Evaluation GUIs ............................................................................................................................ 17 
+Using the Maxim DeviceStudio PC GUI ................................................................................... 17 
+Installing the Windows 7 Driver for the Maxim DeviceStudio PC GUI ................................. 17 
+USB Connection .................................................................................................................... 19 
+Bluetooth LE Connection for Windows 10 ............................................................................ 22 
+Starting the PPG Measurement ............................................................................................ 24 
+Data Format of the Log File................................................................................................... 26 
+Flash Logging of Data ........................................................................................................... 27 
+Downloading the Log File ...................................................................................................... 28 
+Maxim Health Sensor Platform Android App GUI .................................................................... 30 
+Installing the App ................................................................................................................... 30 
+Optical Heart-Rate Monitoring ............................................................................................... 33 
+Pulse Oximetry....................................................................................................................... 35 
+Heart-Rate Variability............................................................................................................. 39 
+Respiration Rate .................................................................................................................... 40 
+Notes on the Enclosure ................................................................................................................ 43 
+Time-Alignment Method for Comparing PPG Data to ECG Data ................................................ 43 
+SpO2 Calibration........................................................................................................................... 44 
+Additional Resources .................................................................................................................... 44 
+Troubleshooting ............................................................................................................................ 44 
+Maxim Integrated 
+Page 3 of 45 
+Revision History ............................................................................................................................ 45 
+List of Figures 
+Figure 1. MAXREFDES103# wearable form factor in detail. ......................................................... 5 
+Figure 2. MAXREFDES103# system diagram. .............................................................................. 7 
+Figure 3. USB Type-C cable (left) and MAXDAP-TYPE-C Adapter board (right)........................ 8
+Figure 4. PPG measurement. ....................................................................................................... 10 
+Figure 6. MAXDAP-TYPE-C  Adapter .bin firmware updates port connected to the PC. ........... 12 
+Figure 7. DAPLINK drive on the PC. ............................................................................................ 12 
+Figure 8. Reset button on the MAXDAP-TYPE-C Adapter board................................................ 13 
+Figure 9. MAXDAP-TYPE-C Adapter board device port connected to the PC. ..........................13
+Figure 10. Maxim DeviceStudio PC GUI scan options. ............................................................... 14 
+Figure 11. Maxim DeviceStudio PC GUI connected devices....................................................... 14 
+Figure 12. Device tab to update the MAX32664 .msbl. ............................................................... 15 
+Figure 13. Warning message........................................................................................................ 15 
+Figure 14. Upload the embedded heart-rate algorithm to the MAX32664................................... 16 
+Figure 15. .msbl file flashed successfully. .................................................................................... 16 
+Figure 16. CDC DEVICE in Device Manager. .............................................................................. 17 
+Figure 17. Locate and install the driver manually......................................................................... 18 
+Figure 18. Browse to the extracted release package................................................................... 18 
+Figure 19. Select Install this driver software anyway. .................................................................. 19 
+Figure 20. Mbed Serial Port in Device Manager. ......................................................................... 19 
+Figure 21. USB connection to PC using a USB Type-C cable (left) and MAXDAP-TYPE-C Adapter
+board device port (right)................................................................................................................ 19 
+Figure 22. Scan for available devices. ......................................................................................... 20 
+Figure 23. Successful connection over USB. ............................................................................... 21 
+Figure 24. Scan for available Windows BLE devices................................................................... 22 
+Figure 25. Bluetooth LE device selection. .................................................................................... 23 
+Figure 26. Successful connection over Bluetooth LE. ................................................................. 24 
+Figure 27. Configure for Algorithm mode. .................................................................................... 25 
+Figure 28. Measurement data displayed. ..................................................................................... 25 
+Maxim Integrated 
+Page 4 of 45 
+Figure 29. Example log file PPG_.csv. ......................................................................................... 27 
+Figure 30. Power button on the MAXREFDES103#. ................................................................... 28 
+Figure 31. MSD connection to PC using USB Type-C cable. ...................................................... 28 
+Figure 32. Flash Log Parser. ........................................................................................................ 29 
+Figure 33. Install the .apk. ............................................................................................................ 30 
+Figure 34. Run the .apk. ............................................................................................................... 31 
+Figure 35. Grant permissions and allow access. ......................................................................... 31 
+Figure 36. Click on the device named HSPSP02…. .................................................................... 32 
+Figure 37. Main menu of the Maxim Health Sensor Platform app. .............................................. 32 
+Figure 38. Start heart-rate measurement. .................................................................................... 33 
+Figure 39. Heart-rate measurement. ............................................................................................ 34 
+Figure 40. Positioning the health sensor band. ............................................................................ 35 
+Figure 41. Start SpO2 measurement. .......................................................................................... 35 
+Figure 42. IR and Red signals displayed during SpO2 measurement. ....................................... 36 
+Figure 43. SpO2 measurement. ................................................................................................... 36 
+Figure 44. Motion has turned red to indicate excessive motion. ................................................. 37 
+Figure 45. Stop monitoring icon.................................................................................................... 38 
+Figure 46. Retrieving the .csv log file from the Android device.................................................... 38 
+Figure 47. Start heart-rate variability measurement..................................................................... 39 
+Figure 48. Heart-rate variability measurement. ............................................................................ 40 
+Figure 49. Start the respiration rate measurement. ..................................................................... 41 
+Figure 50. Respiration rate measurement.................................................................................... 41 
+Figure 51. Sleep quality assessment. .......................................................................................... 42 
+Figure 52. PPG and ECG data sets that have been time-aligned. .............................................. 43 
+List of Tables 
+Table 1. Button Functionality .......................................................................................................... 9 
+Table 2. Color Definitions for LED Status....................................................................................... 9 
+Table 3. Data Table Column Definitions for the Log File (PPG_*.csv) ........................................ 26 
+Maxim Integrated 
+Page 5 of 45 
+Detailed Hardware Description 
+Figure 1. MAXREFDES103# wearable form factor in detail. 
+Required Equipment 
+The MAXREFDES103# platform includes the following components: 
+•
+Micro board
+•
+MAX32630 microcontroller
+•
+MAX20303 power-management IC (PMIC)
+•
+Dual-mode Bluetooth® connection
+•
+Tricolor status LED
+•
+Sensor board
+•
+MAX86141 analog frontend and optical heart rate sensor with one green LED, one red
+LED, one IR LED, and two photodiodes
+The Bluetooth word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by 
+Maxim is under license. 
+Top View
+Left
+Right
+Bottom View
+Button F
+ USB Type-C
+Power Button
+LEDs
+Photodiodes
+Status LED
+Serial Number
+MAC Address
+(Last Four Digits)
+Maxim Integrated 
+Page 6 of 45 
+•
+MAX32664 microcontroller with embedded heart-rate algorithm
+•
+Three-axis accelerometer
+•
+MAX4740 quad SPDT switch, which enables different LED and PD configurations in
+combination with the MAX86140/41
+•
+One green LED, two combination RGB LEDs (one of these RGB LEDs is not used by
+the algorithm). The extra LED is reserved for future use: to simplify the design, the
+extra LED and the MAX4740 can be removed for the heart rate, SpO2 use case)
+•
+MAXDAP-TYPE-C Adapter board to be used during a firmware upgrade for the micro
+board
+•
+Two USB Micro-B cables for firmware upgrade of the micro board or for PC communication
+with the micro board or charging of the health sensor band
+•
+Health sensor band enclosure
+•
+Battery
+•
+One USB Type-C™ cable for PC communication with the micro board (Windows® 7 or
+Windows 10) or charging of the health sensor band
+Additional requirements: 
+•
+PC (Windows 10 only) with Bluetooth connection for data streaming and logging
+•
+Android® device with Bluetooth connection for data streaming and logging
+Android is a registered trademark of Google Inc. 
+USB Type-C is a trademark of Universal Serial Bus Implementers Forum, Inc. 
+Windows is a registered trademark of Microsoft Corporation.
+Maxim Integrated 
+Page 7 of 45 
+System Diagram 
+Figure 2. MAXREFDES103# system diagram. 
+Arm and Cortex are registered trademarks of Arm Limited. 
+        MAX32630
+Arm® Cortex®
+M4F MCU
+MAX20303
+POWER-MANAGEMENT IC
+PAN1326B
+BLUETOOTH/BLE
+BMI160
+HOST ACCELEROMETER
+I2C
+QSPI
+MX25U51245GZ4I54
+64MB FLASH MEMORY
+MAX32664
+Arm Cortex M4F MCU
+        MAX86141
+OPTICAL SENSOR
+SENSOR BOARD
+SENSOR HUB
+I2C
+UART
+BOOTLOADER
+MICROCONTROLLER BOARD
+HR, SpO2 
+ALGORITHM
+KX122
+3-AXIS ACCEL (DNI 
+IF HOST SUPPLIES 
+ACCEL DATA)
+SPI1
+USB-C CONNECTOR
+I2C
+MAX4740
+QUAD SPDT SWITCH
+LED1
+DRV
+LED2
+DRV
+GPIO1
+LED4 LED1 LED5 LED2 LED6 LED3
+LED3
+DRV
+Maxim Integrated 
+Page 8 of 45 
+Operating the Health Sensor Band 
+Power On/Off 
+The MAXREDES103# can be powered on by pressing and holding the power button for at least 
+one second. 
+Alternatively, the device powers on when connected to a PC using a USB Type-C cable or when 
+connected to a MAXDAP-TYPE-C Adapter board. 
+Figure 3. USB Type-C cable (left) and MAXDAP-TYPE-C board (right).
+The MAXDAP-TYPE-C Adapter board has two USB Micro-B connectors. The bottom connector 
+next to the push button updates the .bin firmware of the micro board. The right connector next to 
+the Device label is used for the serial connection between the MAXREFDES103# and the PC. 
+Both connectors provide power to the MAXREFDES103#. 
+Press and hold the power button on the MAXREFDES103# for at least 15 seconds to power off. 
+Note: A hard reset can be performed on the device by using the power-off and power-on 
+procedures if the device becomes unresponsive. 
+.bin 
+Firmware
+Updates
+Device
+Maxim Integrated 
+Page 9 of 45 
+Button Functionality 
+Table 1 describes the functionality of the two buttons. 
+Table 1. Button Functionality 
+BUTTON 
+SHORT PRESS 
+LONG PRESS (3S) 
+EXTRA 
+LONG 
+PRESS (15S) 
+Power Button 
+Turn off/on status LED 
+(press for 1s to power on) 
+Press and hold the power button on 
+the MAXREFDES103# until the LED 
+status turns magenta and blinks fast 
+to power off 
+Power off 
+Button F 
+Start/stop data collection 
+(flash logging) 
+N/A 
+N/A 
+Color Definitions for the LED Status 
+Table 2 describes the state of the device for a given color and blinking status. 
+Table 2. Color Definitions for LED Status 
+LED 
+COLOR 
+SOLID (NO BLINKING) 
+FAST BLINK 
+SLOW BLINK 
+Red 
+Failure detected (needs 
+system reset) 
+Communications with the 
+MAX32664 failed 
+Battery critically low (< 
+10%) 
+Green 
+USB connected (no data 
+streaming) 
+Streaming USB data 
+Device is ready (no USB 
+connection) 
+Blue 
+Reserved 
+Streaming Bluetooth LE data 
+Bluetooth Low Energy 
+(Bluetooth LE or BLE) 
+connected (no data 
+streaming) 
+Magenta 
+Reserved 
+Press and hold the power 
+button on the 
+MAXREFDES103# until the 
+LED status turns magenta and 
+blinks fast to power off 
+Reserved 
+Cyan 
+Reserved 
+Flash logging active 
+Five blinks indicate that 
+flash logging is complete 
+Yellow 
+System is initializing 
+The LED status flashes yellow 
+for 2s after the MAX32664 
+programming is complete 
+Battery low (10% to 
+25%) 
+White 
+Reserved 
+Reserved 
+MSD mode 
+Off 
+LEDs are turned off 
+N/A 
+N/A 
+Maxim Integrated 
+Page 10 of 45 
+How to Position the Device on the Wrist 
+Position the health sensor band approximately one finger width up the arm from the wrist bone. 
+Wear the health sensor band on the non-dominant hand as this improves the quality of the data. 
+The health sensor band must fit tightly but comfortably around the wrist. Ensure the skin has direct 
+contact with the openings for the LED/photodiodes at the center of the back of the health sensor 
+band. 
+Figure 4. PPG measurement. 
+Maxim Integrated 
+Page 11 of 45 
+Software Updates 
+The MAXREFDES103# is preloaded with the firmware available during production. The firmware 
+is deprecated. A firmware upgrade is necessary to ensure the most recent set of firmware is 
+loaded.  
+Installing the Maxim DeviceStudio PC GUI 
+1. Uninstall any previously installed versions of the Maxim DeviceStudio PC GUI or
+DeviceStudio PC GUI.
+2. Download and extract the Eval Package for either Windows 10 (supports USB and
+Bluetooth) or Windows 7 (supports only USB) from the Maxim website for the
+MAXREFDES103#.
+Note: The software package includes the latest firmware .bin, algorithm .msbl, and the
+corresponding Windows application .msi. All three must be updated to ensure
+compatibility.
+3. Double click the .msi file. Check the box for I accept the terms in the License
+Agreement. Click Install and then Finish.
+Figure 5. Install the .msi file. 
+Maxim is a registered trademark of Maxim Integrated Products, Inc. 
+The following three software and firmware must all be updated using the 
+latest software release package. 
+1. Install the Maxim DeviceStudio PC GUI using the .msi file.
+2. Flash the micro board .bin file using drag and drop to the DAPLINK folder.
+3. Flash the algorithm .msbl file to MAX32664 using the Maxim DeviceStudio
+PC GUI.
+Maxim Integrated 
+Page 12 of 45 
+Updating the Micro Board Firmware (.bin) on the MAXREFDES103# 
+Firmware upgrades to the MAX32630 can be performed using the provided MAXDAP-TYPE-C  
+Adapter board per the following steps. 
+Note: The software package includes the latest .bin firmware, .msbl algorithm, and the 
+corresponding .msi Windows application. All three components must be updated to ensure 
+compatibility. 
+1. Connect the MAXDAP-TYPE-C Adapter board .bin firmware updates port to the PC using
+the USB Micro-B cable.
+Figure 6. MAXDAP-TYPE-C Adapter .bin firmware updates port connected to the PC. 
+2. Wait for the Windows drivers to install. The PC recognizes the device, which shows up as
+a drive named DAPLINK on the PC, after the drivers are installed.
+Figure 7. DAPLINK drive on the PC. 
+3. Drag and drop the .bin binary file into the DAPLINK drive on the PC to flash the host
+firmware to the MAX32630.
+4. The MAXREFDES103# does not automatically reset after flashing the micro board with
+the new firmware. Press and release the reset button on the MAXDAP-TYPE-C Adapter
+board to restart the health band. The button is located below the top USB Micro-B
+connector.
+.bin 
+Firmware
+Updates
+Maxim Integrated 
+Page 13 of 45 
+Figure 8. Reset button on the MAXDAP-TYPE-C Adapter board. 
+Updating the MAX32664 Sensor Hub Algorithm Firmware (.msbl) 
+The host firmware binary is updated to the micro board. The .msbl Biometric Sensor Hub 
+algorithm must be updated with the Maxim DeviceStudio PC GUI with the following steps: 
+Note: The software package includes the latest .bin firmware, .msbl algorithm, and the 
+corresponding .msi Windows application. All three components must be updated to ensure 
+compatibility. 
+1. Open the Maxim DeviceStudio PC GUI Windows application.
+2. Connect the MAXDAP-TYPE-C Adapter board device port to the PC using the USB
+Micro-B cable. Wait for five seconds.
+Figure 9. MAXDAP-TYPE-C  board device port connected to the PC.
+3. Select the Serial over USB/Bluetooth scan option. Click Scan.
+Reset
+Device
+Maxim Integrated 
+Page 14 of 45 
+Figure 10. Maxim DeviceStudio PC GUI scan options. 
+4. Verify that the Devices list in the Connected Devices section shows PPG.
+Figure 11. Maxim DeviceStudio PC GUI connected devices. 
+Maxim Integrated 
+Page 15 of 45 
+5. Go to the Device tab and select Update SmartSensor_MAX32664 Software. Select
+Update Firmware, select the *.msbl file from the extracted Eval Package, and click Open.
+Figure 12. Device tab to update the MAX32664 .msbl. 
+6. Click OK on the Warning! pop-up window.
+Figure 13. Warning message. 
+The embedded algorithm for heart rate and SpO2 measurement is uploaded to the 
+MAX32664 microcontroller on the sensor board. 
+Maxim Integrated 
+Page 16 of 45 
+Figure 14. Upload the embedded heart-rate algorithm to the MAX32664. 
+Figure 15. .msbl file flashed successfully. 
+IMPORTANT: Verify the version numbers shown in the Maxim DeviceStudio 
+PC GUI match those in the latest software release package: 
+1. Verify the version number for Host Version x.y.z matches the version of
+the latest mbed-osXXX_x.y.z.bin file.
+2. Verify the version number for Sensor Hub Version 30.y.z matches the
+version of the latest MAX32664C_XXX_30.y.z.msbl file.
+3. Verify the version number in the dark red box Versionw.x.y.z matches the
+version of the latest SetupHSP_XXX_w.x.y.z_XXX.msi file.
+Maxim Integrated 
+Page 17 of 45 
+Evaluation GUIs 
+The MAXREFDES103# is compatible with two evaluation GUIs: the Maxim DeviceStudio PC GUI 
+and the Maxim Health Sensor Platform Android App GUI. 
+The Maxim DeviceStudio PC GUI can configure the algorithm, as well as view and log the 
+processed/raw data. The algorithm is disabled in the raw data mode and the AFE settings can be 
+configured. The embedded Maxim-supplied algorithm is configured and processed in the 
+algorithm mode, and the raw data for the heart rate and SpO2 are displayed. The Maxim 
+DeviceStudio PC GUI also has a parser utility that converts the logged data in the flash memory 
+to the .csv format. 
+The Maxim Health Sensor Platform Android app GUI displays processed data and logging of data 
+through an Android app. The app displays the processed data from the embedded algorithm for: 
+•
+Heart Rate
+•
+SpO2
+The app includes additional algorithms in addition to displaying the data from the embedded 
+algorithm: 
+•
+Heart Rate Variability
+•
+Respiration Rate
+•
+Sleep Quality
+Using the Maxim DeviceStudio PC GUI 
+The Windows 10 Maxim DeviceStudio PC GUI supports connection to the MAXREFDES103# 
+through USB or Bluetooth LE. The Windows 7 Maxim DeviceStudio PC GUI only supports 
+connection to the MAXREFDES103# through USB. 
+Installing the Windows 7 Driver for the Maxim DeviceStudio PC GUI 
+Installing the driver manually might be required to use the Maxim DeviceStudio PC GUI on a 
+Windows 7 PC. Perform the following steps to manually install the USB serial driver: 
+1. Uninstall any previously installed versions of the Maxim DeviceStudio PC GUI 
+or DeviceStudio PC GUI.
+2. Download the Windows 7 Eval Package from the Maxim website for the 
+MAXREFDES103#.
+3. Extract the .zip file to a known location.
+4. Open Device Manager in the Windows Control Panel.
+5. The MAXREFDES103# appears under Other devices as CDC DEVICE if manual 
+driver installation is needed. Right-click CDC DEVICE and select Properties.
+Figure 16. CDC DEVICE in Device Manager. 
+Maxim Integrated 
+Page 18 of 45 
+6. Click Change Settings and then click Update Driver… if Update Driver… grays out.
+7. Select Browse my computer for driver software.
+Figure 17. Locate and install the driver manually. 
+8. Navigate to the location of the.zip file extracted in step 3. Click Next.
+Figure 18. Browse to the extracted release package. 
+Maxim Integrated 
+Page 19 of 45 
+9. Click Install this driver software anyway when prompted by the Windows Security
+window.
+Figure 19. Select install this driver software anyway. 
+10. The MAXREFDES103# appears as an Mbed® Serial Port after the driver is installed
+successfully. (The COM port number used may be different from COM4.)
+Figure 20. Mbed Serial Port in Device Manager. 
+USB Connection 
+1. Connect the health sensor band to the PC with a USB Type-C cable (or with the MAXDAP-TYPE-C
+Adapter board using a USB Micro-B cable).
+Figure 21. USB connection to PC using a USB Type-C cable (left) and MAXDAP-TYPE-C
+Adapter board device port (right). 
+Mbed is a registered trademark of Arm Limited. 
+Device
+Maxim Integrated 
+Page 20 of 45 
+2. Select Serial over USB/Bluetooth under Scan Mode. Click Scan.
+Figure 22. Scan for available devices. 
+Maxim Integrated 
+Page 21 of 45 
+3. Verify the Devices list in the Connected Devices section shows PPG.
+Figure 23. Successful connection over USB. 
+Maxim Integrated 
+Page 22 of 45 
+Bluetooth LE Connection for Windows 10 
+1. Select Windows BLE under Scan Mode. Click Scan.
+Figure 24. Scan for available Windows BLE devices. 
+2. Select the health sensor device for pairing (the highest signal strength in dBm is usually
+the closest health sensor device, and each MAXREFDES103# is labeled with the last four
+digits of the MAC address). Click Connect.
+Maxim Integrated 
+Page 23 of 45 
+Figure 25. Selecting the Bluetooth LE device. 
+Maxim Integrated 
+Page 24 of 45 
+3. Verify the Devices list under Connected Devices shows PPG.
+Figure 26. Successful connection over Bluetooth LE. 
+Starting the PPG Measurement 
+1. Click Launch Tool.
+2. Select Algorithm to allow the MAX32664 algorithm to dynamically adjust the AFE settings
+and measure the heart rate and SpO2.
+3. Select 0:Continuous HRM and SpO2 to configure the algorithm to run continuously.
+4. Select SCD to enable skin contact detection.
+5. Select AEC to enable automatic exposure control.
+6. Click Default to configure the AEC to the default settings.
+7. Select Accelerometer to plot the accelerometer data.
+8. Select Algorithm Data to see the algorithm data: HR (bpm), HR confidence (%), RR peak
+interval (R-to-R msec), RR Confidence, Activity, SpO2 (%), SpO2 Confidence (%), R
+Value, SpO2 % Completion (for one-shot), Low Signal Flag, Motion Flag, SpO2 State, and
+SCD State.
+9. Select Log to File and Write Header to save the data to a file.
+10. Click Start Monitoring to show the measurement data.
+Maxim Integrated 
+Page 25 of 45 
+Figure 27. Configure for Algorithm mode. 
+Figure 28. Measurement data displayed. 
+Maxim Integrated 
+Page 26 of 45 
+11. The .csv log file can be viewed on the PC by navigating to the C:\MaximLogs folder and
+opening it with Excel or a text editor.
+Data Format of the Log File 
+Table 3. Data Table Column Definitions for the Log File (PPG_*.csv) 
+LOG FILE HEADINGS 
+DESCRIPTION 
+Time 
+Timestamp in minutes, seconds, and tenths of seconds (MM:SS.T) 
+Sample Count 
+Data index ranging from 0 to 255 for monitoring if samples are dropped 
+during Bluetooth transmission 
+Green Count 
+Green counts detected by photodiode 1 
+Green2 Count 
+Green counts detected by photodiode 2 
+IR Count 
+IR counts 
+Red Count 
+Red counts 
+X Axis Acceleration (g) 
+Acceleration in x-axis, in unit of g 
+Y Axis Acceleration (g) 
+Acceleration in y-axis, in unit of g 
+Z Axis Acceleration (g) 
+Acceleration in z-axis, in unit of g 
+Operating Mode 
+0: Continuous HRM and continuous SpO2 
+1: Continuous HRM and one-shot SpO2 
+2: Continuous HRM 
+3: One-shot HRM 
+4: One-shot HRM and one-shot SpO2 
+5: Activity tracking 
+6: SpO2 calibration 
+Heart Rate (bpm) 
+Heart rate, in unit of beats per min 
+HR Confidence (%) 
+Heart-rate algorithm extraction confidence; a threshold confidence > 85% is 
+recommended 
+RR 
+R-to-R peak interbeat interval time (ms) of the QRS heart beat wave 
+RR Confidence (%) 
+R-to-R confidence level, 0 to 100% 
+Activity 
+0: Rest 
+1: Other 
+2: Walk 
+3: Run 
+4: Bike 
+5: Rhythmic 
+R Value 
+SpO2 R value (R is defined in Maxim Application Note 6845) 
+SPO2 Confidence (%) 
+SpO2 confidence level; 0 to 100% 
+SPO2 (%) 
+SpO2 value; 0 to 100% 
+SPO2 Percent Complete 
+SpO2 percent complete (only applicable for one-shot mode); 0 to 100% 
+Low Signal Quality 
+0: Good SpO2 signal quality 
+1: Low SpO2 signal quality 
+Motion Flag 
+0: Little or no motion 
+1: Excessive motion 
+WSPO2 Low Pi 
+0: Normal Perfusion Index 
+1: Low Perfusion Index 
+Unreliable R 
+0: Measurement of SpO2 R is reliable 
+1: Measurement of SpO2 R is not reliable 
+SPO2 State 
+0: LED adjustment 
+1: Computation 
+2: Success 
+3: Timeout 
+SCD State 
+Skin contact state: 
+0: No decision 
+Maxim Integrated 
+Page 27 of 45 
+1: Off skin 
+2: Contact with object 
+3: On skin 
+SAMPLE Time 
+Timestamp in seconds 
+Figure 29. Example log file PPG_.csv. 
+Flash Logging of Data 
+Perform the following steps to log PPG data to the onboard flash memory: 
+Start flash logging from the Maxim DeviceStudio PC GUI with the following steps: 
+1. Set up PPG measurement on the Maxim DeviceStudio PC GUI as instructed in the Using
+the Maxim DeviceStudio PC GUI section and ensure the Watch Flash box is checked and
+the Log to File box is unchecked.
+2. Click Start Monitoring. Data is not streamed to the Maxim DeviceStudio PC GUI or
+Android app GUI while flash logging is enabled.
+3. Only heart rate estimations are transmitted over the standard hearth rate Bluetooth low
+energy service while the flash logging is enabled and measurement is started. A BLE
+master device can connect to this service and observe heart rate outputs through a third-
+party health monitoring BLE application, which supports the standard Heart Rate BLE
+profile.
+4. Disconnect the USB Type-C cable or Bluetooth LE connection at this point to log data
+while untethered.
+Start flash logging from the health band: 
+1. Press and release Button F.
+Start flash logging from the Android app: 
+1. Click the three vertical dots near the top right and select the Log to Flash box.
+Flash logging can be stopped by pressing the Stop button in the Maxim DeviceStudio PC GUI or 
+Android app GUI if the MAXREFDES103# is still tethered to the PC device. Alternatively, press 
+and release Button F to stop flash logging. 
+Maxim Integrated 
+Page 28 of 45 
+Flash logging is not enabled if the battery charge is less than 10%. 
+Downloading the Log File 
+Download and parse the log file using the following steps after flash logging is complete: 
+1. Ensure the USB Type-C cable is not connected, and power off the MAXREFDES103# by
+holding the power button down for 15 seconds.
+Figure 30. Power button on the MAXREFDES103#. 
+The MAXREFDES103# is powered down. Hold Button F on the MAXREFDES103# 
+and insert the USB Type-C cable (or the MAXDAP-TYPE-C Adapter board
+with a USB  Micro-B cable (Figure 31)) into the USB Type-C connector of the 
+MAXREFDES103#. Continue holding Button F until the status LED slowly flashes 
+white. 
+Figure 31. MSD connection to the PC using the USB Type-C cable. 
+2. The MAXREFDES103# boots into the mass storage device mode if done correctly. The
+MAXREFDES103# cannot connect to the Maxim DeviceStudio PC GUI or Android app
+GUI when in the mass storage device mode.
+Power Button
+Button F
+USB-C
+Status LED
+Maxim Integrated 
+Page 29 of 45 
+3. The device appears in Windows Explorer as a USB drive. Files can be copied and pasted
+from the device.
+4. Copy the .maximlog file to the PC hard drive.
+Note: The log files are in raw binary format and must be parsed to convert them to a
+readable .csv format.
+5. Open the Flash Log Parser from the Tools menu in the Maxim DeviceStudio PC GUI.
+6. Select the .maximlog file, choose an output folder, and click PARSE. A .csv file is
+generated in the output folder containing the parsed log file.
+Figure 32. Flash log parser. 
+Maxim Integrated 
+Page 30 of 45 
+Maxim Health Sensor Platform Android App GUI 
+Download the latest .bin, .msbl, and .apk from the Maxim MAX32664 webpage. Flash the 
+MAXREFDES103# with the latest .bin and .msbl as previously described. 
+Installing the App 
+1. Install and run the .apk on the Android device after flashing the .bin, .msbl, and.apk.
+Figure 33. Install the .apk. 
+The following three firmware and software must all be updated using the latest 
+and same software release package. 
+1. Flash the micro board .bin file using drag and drop to the DAPLINK folder,
+2. Flash the algorithm .msbl file to the MAX32664 using the Maxim
+DeviceStudio PC GUI.
+3. Install the Maxim Health Sensor Platform Android App .apk.
+Maxim Integrated 
+Page 31 of 45 
+Figure 34. Run the .apk. 
+2. Grant the permissions and device location access when the .apk is installed.
+Figure 35. Grant permissions and allow access. 
+Maxim Integrated 
+Page 32 of 45 
+3. Click on the device HSPSPO2…
+Figure 36. Click on the device HSPSP02… 
+The main menu displays. 
+Figure 37. Main menu of the Maxim health sensor platform app. 
+Maxim Integrated 
+Page 33 of 45 
+Optical Heart-Rate Monitoring 
+1. Click Optical HRM in the main menu. The graphing of the green signal can be seen by
+deselecting the IR and selecting the Green button. Click the play icon (START
+MONITORING) in the upper right corner of the app to initiate the heart-rate measurement.
+Figure 38. Start heart-rate measurement. 
+2. The measurement completes after a brief period and the heart-rate measurement
+displays. Click the stop icon (STOP MONITORING) in the upper right corner of the app to
+stop the measurement.
+IMPORTANT: Verify the version numbers on the App match those in the 
+latest software release package: 
+1. Verify the version number in the App Version x.y.z matches the version of
+the latest wellness_suite_vx.y.z.apk file.
+2. Verify the version number for Server x.y.z matches the version of the
+latest mbed-osXXX_x.y.z.bin file.
+3. Verify the version number for Hub Version 30.y.z matches the version of
+the latest MAX32664C_XXX_30.y.z.msbl file.
+Maxim Integrated 
+Page 34 of 45 
+Figure 39. Heart-rate measurement. 
+Maxim Integrated 
+Page 35 of 45 
+Pulse Oximetry 
+1. Verify the health sensor band is properly placed about two fingers away from the wrist
+bone for SpO2 measurements (Figure 40). Also, the strap tightness is very important
+(there must be almost no gap between the device and the wrist when the enclosure is
+lifted slightly).
+Figure 40. Positioning the health sensor band. 
+2. Click the back button of the Android device to go back to the main menu. Click Pulse
+Oximetry. Specify the mode of operation for the algorithm by selecting Continuous or
+One Shot. Click the play icon to initiate the SpO2 measurement. Note the date and time
+information to recognize the data log files generated by the Android app.
+Figure 41. Start SpO2 measurement. 
+3. The IR and Red signals are graphed if the IR and Red buttons are selected. The signals
+must have peaks and valleys to retrieve a valid SpO2 reading (Figure 42). Adjust the strap
+tightness or health sensor enclosure position if the waveform is not correct .
+Maxim Integrated 
+Page 36 of 45 
+Figure 42. IR and Red signals displayed during the SpO2 measurement. 
+The measurement completes after a brief period and the SpO2 measurement displays. 
+Figure 43. SpO2 measurement. 
+4. The feedback on the signal quality is displayed by the color of the Snr, Motion, Pi, and
+Reliable R indicators. These indicators turn red during the following conditions:
+•
+Snr indicates the signal has a low signal-to-noise ratio.
+•
+Motion indicates movement on the health sensor band is excessive and wrist
+movement must be minimized to retrieve proper SpO2 reading.
+Maxim Integrated 
+Page 37 of 45 
+•
+Pi indicates if the IR or Red signal’s observed perfusion index is too low.
+•
+Reliable R indicates the calculated R values are not consistent and so SpO2 is not
+being reported.
+ Figure 44. Motion turns red to indicate excessive motion. 
+Maxim Integrated 
+Page 38 of 45 
+5. Click the stop icon to terminate the measurement.
+Figure 45. Stop monitoring icon. 
+6. The app logs raw data and the algorithm results in a .csv file by default (logging can be
+disabled by clicking the three vertical dots in the top right and deselecting the log). The
+.csv files can be retrieved from the Android device using the following steps:
+•
+Connect an Android device to the PC.
+•
+Provide proper access when prompted.
+•
+Browse 
+to 
+the 
+MaximSensorsApp folder 
+and 
+retrieve 
+the 
+related 
+file
+(MaximSensorsApp_yyyy-mm-dd-HH:MM:SS_SpO2.csv):
+Figure 46. Retrieving the .csv log file from the Android device. 
+Follow this suggested testing protocol for the most efficient SpO2 measurement: 
+Maxim Integrated 
+Page 39 of 45 
+•
+Subject sits still for three minutes without talking or moving. Placing the arm on top of
+a table prevents unexpected wrist movements.
+•
+Wear and position the health sensor band as described earlier.
+•
+Connect to either the Maxim DeviceStudio PC GUI or Android app GUI as described
+earlier.
+•
+Verify the proper PPG waveforms for IR/Red are observed without any noise or
+artifact.
+•
+Reference SpO2 data is recorded throughout the session. Reference SpO2 can be
+recorded visually by reading the reference displayed in the finger clip or using the
+Android app.
+•
+The number of participants must be at least 20 for a meaningful evaluation.
+Heart-Rate Variability 
+1. Click the back button of the Android device to go back to the main menu. Click Heart Rate
+Variability. The individual graphing of the avnn, sdnn, rmssd, or pnn5 data can be
+selected by selecting the button of interest and deselecting the other three. For instance,
+avnn is selected in Figure 47 and the other measurements are deselected. Click the play
+icon to start the heart-rate variability monitoring.
+Figure 47. Start heart-rate variability measurement. 
+2. The measurement completes after a brief period and the data for heart-rate variability
+displays.
+Maxim Integrated 
+Page 40 of 45 
+Figure 48. Heart-rate variability measurement. 
+3. Click the stop icon to terminate the measurement.
+Respiration Rate 
+1. Click the back button of the Android device to go back to the main menu. Click Respiration
+Rate. Click the play icon to initiate the respiration rate measurement.
+Maxim Integrated 
+Page 41 of 45 
+Figure 49. Start the respiration rate measurement. 
+2. The respiration rate displays after a brief period.
+Figure 50. Respiration rate measurement. 
+3. Click the stop icon to terminate the measurement.
+Maxim Integrated 
+Page 42 of 45 
+Figure 51. Sleep quality assessment. 
+Maxim Integrated 
+Page 43 of 45 
+Notes on the Enclosure 
+The MAXREFDES103# is not an industrial-grade health band. It is intended for performance 
+demonstration and typical design guidance. Excessive opening and closing of the enclosure lid 
+can compromise the tightness of the lid closure. Tape the lid to the sides of the enclosure if this 
+happens. 
+Do not use solvents such as alcohol to clean the mesa sticker or the cover film as they can 
+damage these items. The cover film on the sensors prevents dirt or sweat from interfering with 
+the optical components. 
+Time-Alignment Method to Compare the PPG Data to ECG Data 
+There can be some time differences between the two data sets when comparing the PPG data 
+from the MAXREFDES103# to the data from an ECG reference device. Consequently, post-
+process the data to time-align the PPG and ECG data sets, as outlined in the following procedure. 
+(The MAXREFDES103# does not support ECG measurements. This section assists users who 
+want to compare the accuracy to an ECG reference device). 
+1. Down sample the PPG data to 1Hz to match the sampling rate data of the ECG data.
+2. Using the Matlab function xcorr, find the time_difference, which provides the maximum
+correlation between the data sets.
+•
+Crop the first time_difference seconds from the PPG data set if the time_difference is
+greater than zero.
+•
+Crop the first time_difference seconds from the ECG data set if the time_difference is
+less than zero.
+3. Crop the excessive data at the end to make both data sets the same size if one data set
+is larger than the other.
+4. Crop the first 30 seconds from the data sets to remove the data captured during
+initialization.
+Figure 52. Time-aligned PPG and ECG data sets.
+Maxim Integrated 
+Page 44 of 45 
+SpO2 Calibration 
+The SpO2 coefficients must be determined using the final product form factor and product cover 
+lens to obtain accurate SpO2 measurements. The SpO2 coefficients are set by sending a 
+message through the I2C interface, which is detailed in the MAX32664 User Guide. 
+Refer to the Maxim Application Note 6845, Guidelines for SPO2 Measurement Using the Maxim® 
+MAX32664 Sensor Hub for calculations used to determine the SpO2 value and an explanation of 
+how to calculate the SpO2 coefficients for the end product. 
+Additional Resources 
+•
+MAX32664 user guide, application notes, c-keyed .msbl, sample host code:
+MAX32664 Ultra-Low Power Biometric Sensor Hub
+•
+Interface guide for MAX32664 sensor hub-based reference design platforms.
+Troubleshooting 
+•
+The MAX32625-TYPE-C does not show up as DAPLINK or the 
+drag and drop into the DAPLINK fails to program the 
+MAX32630FTHR. Follow the instructions in the given link to program the 
+MAX32625PICO with the file max32625pico_max32630hsp.bin (interface
+version 243): https://os.mbed.com/teams/MaximIntegrated/wiki/MAX32625PICO-Firmware-
+Updates
+https://os.mbed.com/teams/MaximIntegrated/wiki/MAX32625PICO-Firmware-Updates
+Maxim Integrated 
+Page 45 of 45 
+Revision History 
+REVISION 
+NUMBER 
+REVISION 
+DATE 
+DESCRIPTION 
+PAGES 
+CHANGED 
+0 
+1/20 
+Initial release 
+— 
+1 
+1/20 
+Change time for power off to 15s. 
+Update button and LED status description. 
+Change Log to Flash to Watch Flash for PC GUI. 
+8, 9, 27, 28 
+2 
+6/20 
+Updated Figure 15, 37. Updated Starting the PPG 
+Measurement. Updated Flash Logging of Data. Updated 
+entire document for the names of the Maxim DeviceStudio 
+PC GUI and Android App GUI. Added Additional Resources 
+and Troubleshooting sections. Updated Software Updates 
+and Maxim Health Sensor Platform Android App GUI 
+sections. 
+All 
+©2020 by Maxim Integrated Products, Inc. All rights reserved. Information in this publication concerning the devices, 
+applications, or technology described is intended to suggest possible uses and may be superseded. MAXIM INTEGRATED 
+PRODUCTS, INC. DOES NOT ASSUME LIABILITY FOR OR PROVIDE A REPRESENTATION OF ACCURACY OF THE 
+INFORMATION, DEVICES, OR TECHNOLOGY DESCRIBED IN THIS DOCUMENT. MAXIM ALSO DOES NOT ASSUME 
+LIABILITY FOR INTELLECTUAL PROPERTY INFRINGEMENT RELATED IN ANY MANNER TO USE OF INFORMATION, 
+DEVICES, OR TECHNOLOGY DESCRIBED HEREIN OR OTHERWISE. The information contained within this document has 
+been verified according to the general principles of electrical and mechanical engineering or registered trademarks of Maxim 
+Integrated Products, Inc. All other product or service names are the property of their respective owners. 
