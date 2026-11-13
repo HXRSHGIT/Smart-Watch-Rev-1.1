@@ -42,7 +42,7 @@ Board name `max86141_spo2_1mm_apps_p3`, schematic dated 2019-09-03 (BOM variant 
 
 - The pin-to-net wiring of the MAX86141 (checked ball by ball against the datasheet, see `REQUIREMENTS_FROM_DATASHEETS.md`).
 - The photodiode ground handling: PD_GND is a separate net, joined to the board ground at a single point (the schematic carries that note, and datasheet Rev 5 repeats it in the layout guidelines).
-- The 100 kOhm pull-ups on the open-drain INT and GPIO lines.
+- The 100 kOhm pull-ups on the open-drain INT and GPIO lines are not reused in iteration 1: those three balls are left open (see `JLCPCB_DESIGN_RULES.md`).
 - 0 Ohm links in the LED and photodiode lines for bring-up.
 
 ### What we change, and why

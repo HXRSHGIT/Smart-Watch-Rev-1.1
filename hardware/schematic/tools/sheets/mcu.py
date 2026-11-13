@@ -3,10 +3,11 @@ from .common import U, P, part, note
 
 NRF = "nRF54L15 DS v1.0 Table 87 / Fig 180"
 
-UNIT2_PORTS = {"23": "PPG_INT", "24": "IMU_INT1", "27": "IMU_INT2", "28": "I2C_SDA", "29": "I2C_SCL", "9": "PMIC_IRQ"}
-UNIT2_NC = ("3", "4", "5", "6", "7", "8", "37", "38", "39", "40", "41", "42")
+UNIT2_PORTS = {"24": "IMU_INT1", "27": "IMU_INT2", "28": "I2C_SDA", "29": "I2C_SCL", "9": "PMIC_IRQ"}
+UNIT2_NC = ("3", "4", "5", "6", "7", "8", "23", "37", "38", "39", "40", "41", "42")   # 23: MAX86141 INT, not wired (see JLCPCB_DESIGN_RULES.md)
 UNIT3_PORTS = {"11": "CS_FLASH", "12": "SPI_SCK", "13": "SPI_MOSI", "14": "TEMP_INT", "15": "SPI_MISO", "16": "CS_PPG",
-               "17": "CHG_FLAG", "18": "SWO", "19": "LED_BOOST_EN", "20": "PPG_GPIO1", "21": "PPG_GPIO2"}
+               "17": "CHG_FLAG", "18": "SWO", "19": "LED_BOOST_EN"}
+UNIT3_NC = ("20", "21")       # were the MAX86141 GPIO1 and GPIO2 lines, not wired
 
 
 def draw(d):
@@ -129,6 +130,8 @@ def draw(d):
             d.port(name, x + 14 * U, y, "R", "bidirectional")
     for pin in UNIT2_NC:
         d.nc(*u2.p(pin))
+    for pin in UNIT3_NC:
+        d.nc(*u3.p(pin))
 
     nx_ = 268 * U
     h = note(d, "Supply: all five VDD pins run from the 1.8 V rail. 10 uF plus four 100 nF as in Table 87. Place each 100 nF "

@@ -68,8 +68,9 @@ def main():
     (OUT / "fp-lib-table").write_text(
         '(fp_lib_table\n\t(version 7)\n\t(lib (name "smartwatch")(type "KiCad")(uri "${KIPRJMOD}/libs/smartwatch.pretty")(options "")(descr "Smart Watch footprints"))\n)\n',
         encoding="utf-8")
-    (OUT / f"{PROJECT}.kicad_pro").write_text(json.dumps({"meta": {"filename": f"{PROJECT}.kicad_pro", "version": 3}}, indent=2),
-                                              encoding="utf-8")
+    if not (OUT / f"{PROJECT}.kicad_pro").exists():      # an existing project file holds the JLCPCB rules (tools/jlc_rules.py): keep it
+        (OUT / f"{PROJECT}.kicad_pro").write_text(json.dumps({"meta": {"filename": f"{PROJECT}.kicad_pro", "version": 3}}, indent=2),
+                                                  encoding="utf-8")
     (OUT / f"{PROJECT}.kicad_sch").write_text(root.render(), encoding="utf-8")
     for name, d in drawn.items():
         (OUT / f"{name}.kicad_sch").write_text(d.render(), encoding="utf-8")

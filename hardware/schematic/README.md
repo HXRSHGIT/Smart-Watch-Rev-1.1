@@ -51,12 +51,12 @@ python tools/dev.py mcu A3 110     # preview one sheet as build/dev/mcu.png
 | P2.05 | chip select, MAX86141 |
 | P2.00 | chip select, flash |
 | P0.04 SCL, P0.03 SDA | I2C (TWIM30) to BMI270, MAX30208 and the nPM1300 (0x6B) |
-| P0.00, P0.01, P0.02 | MAX86141 INT, BMI270 INT1, BMI270 INT2 |
+| P0.01, P0.02 | BMI270 INT1, BMI270 INT2 (P0.00 is free: the MAX86141 INT is not wired, see `../JLCPCB_DESIGN_RULES.md`) |
 | P2.03 | MAX30208 alarm (GPIO0) |
 | P1.08 | nPM1300 interrupt (GPIO1) |
 | P2.06 | OCVPB21 FLAG |
 | P2.08 | LED boost enable |
-| P2.09, P2.10 | MAX86141 GPIO1, GPIO2 |
+| P2.09, P2.10 | free (the MAX86141 GPIO1 and GPIO2 are not wired) |
 | P2.07 | SWO (trace output to the test pads) |
 | P1.00, P1.01 | 32.768 kHz crystal |
 | P1.02, P1.03 | NFC pins, unused |

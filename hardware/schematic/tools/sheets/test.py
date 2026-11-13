@@ -37,6 +37,6 @@ def draw(d):
              nx, 28 * U, 50)
     h2 = note(d, "Test points are plain 1.0 mm pads. Put them on one side of the board where the production fixture can reach "
                  "them (research/storage-nfc-dft/DFT_PROGRAMMING.md). The bus test points sit on the sheets that own the bus: "
-                 "I2C on the sensors sheet, SPI on the memory sheet, PPG_INT on the optical sheet.", nx, 28 * U + h + 3, 50)
+                 "I2C on the sensors sheet and SPI on the memory sheet.", nx, 28 * U + h + 3, 50)
     note(d, "Open items: confirm the Tag-Connect pin order, and decide which test points stay on the final board.",
          nx, 28 * U + h + h2 + 6, 50)

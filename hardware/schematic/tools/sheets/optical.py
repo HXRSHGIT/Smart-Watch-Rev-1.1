@@ -44,22 +44,15 @@ def draw(d):
     d.w(g2, (g2[0], g2[1] + 3 * U))
     d.gnd(g2[0], g2[1] + 3 * U)
 
-    # ------------------------------------------------------------------ left: interrupt lines and SPI
+    # ------------------------------------------------------------------ left: SPI; INT, GPIO1, GPIO2 are open (B2, B3, B4)
     px = 24 * U
-    for pin, name, shape, pull, ref in (("B2", "PPG_INT", "output", True, "R4"), ("B3", "PPG_GPIO1", "bidirectional", True, "R5"),
-                                        ("B4", "PPG_GPIO2", "bidirectional", False, None), ("A5", "CS_PPG", "bidirectional", False, None),
-                                        ("A2", "SPI_SCK", "bidirectional", False, None), ("A4", "SPI_MOSI", "bidirectional", False, None),
-                                        ("A3", "SPI_MISO", "output", False, None)):
+    for pin, name, shape in (("A5", "CS_PPG", "bidirectional"), ("A2", "SPI_SCK", "bidirectional"),
+                             ("A4", "SPI_MOSI", "bidirectional"), ("A3", "SPI_MISO", "output")):
         x, y = u.p(pin)
         d.w((px, y), (x, y))
         d.port(name, px, y, "L", shape)
-        if pull:
-            r = part(d, "R", ref, "100k", "0201", 46, y / U - 2, "pull-up", "MAXREFDES103 " + ("R12" if ref == "R4" else "R23"))
-            d.rail("+1V8", *r.p(1))
-
-    ix, iy = u.p("B2")
-    d.put("Connector:TestPoint", 32 * U, iy, 180, ref="TP11", value="TP PPG_INT", footprint="TestPoint:TestPoint_Pad_D1.0mm",
-          prefix="TP", tside="R")
+    for pin in ("B2", "B3", "B4"):      # interior balls of the 0.4 mm array cannot be routed out on JLCPCB's plain process
+        d.nc(*u.p(pin))
 
     # ------------------------------------------------------------------ right: LED drive
     sfh = d.put("smartwatch:SFH7016", 146 * U, u.p("D1")[1] + 7 * U, 0, ref="D1", value="SFH 7016",
@@ -108,8 +101,10 @@ def draw(d):
                  "only, through net tie NT3 (datasheet layout guidelines p.49).", nx, 28 * U + h + 3, 56)
     h3 = note(d, "LED channel order follows MAXREFDES103: LED1 = green, LED2 = IR, LED3 = red. R6, R7 and R8 are 0 Ohm links "
                  "so the LED current can be measured during bring-up.", nx, 28 * U + h + h2 + 6, 56)
-    h4 = note(d, "PPG_INT and PPG_GPIO1 are open-drain outputs, so R4 and R5 (100 kOhm) pull them up to 1.8 V. "
-                 "SDO is high impedance while CSB is high, so the SPI bus can be shared.", nx, 28 * U + h + h2 + h3 + 9, 56)
+    h4 = note(d, "INT (B2), GPIO1 (B3) and GPIO2 (B4) are left open: these interior balls cannot be routed out of the 0.4 mm "
+                 "pitch array on JLCPCB's plain process. Firmware polls the Interrupt Status 1 register (0x00) and the FIFO "
+                 "counter over SPI. SDO is high impedance while CSB is high, so the SPI bus can be shared.",
+              nx, 28 * U + h + h2 + h3 + 9, 56)
     h5 = note(d, "VEMD8080: anode is pin 5, cathodes are pins 1-4 and 6-8 (one net, drawn as one pin). Numbering and pad "
                  "pattern checked against the Vishay package drawing (top view).",
               nx, 28 * U + h + h2 + h3 + h4 + 12, 56)

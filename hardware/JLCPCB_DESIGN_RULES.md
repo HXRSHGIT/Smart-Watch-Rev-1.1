@@ -41,17 +41,17 @@ Decision (2026-11-13): the board is made at JLCPCB and designed to what JLCPCB s
 
 | Part | Geometry | Result |
 |---|---|---|
-| MAX86141 (WLP-20, 5 x 4) | 0.21 mm round pads, 0.4 mm pitch, pad gap 0.19 mm | 14 outer balls escape on the surface. C3, C4 (ground) join D3, and C2 joins D2 (same 1.8 V net), so those three leave through the outer row. **B2 INT, B3 GPIO1, B4 GPIO2 cannot escape**: a 0.09 mm trace plus two 0.09 mm clearances needs 0.27 mm, the gap is 0.19 mm, and a full ball array leaves no diagonal exit. |
+| MAX86141 (WLP-20, 5 x 4) | 0.21 mm round pads, 0.4 mm pitch, pad gap 0.19 mm | 14 outer balls escape on the surface. C3, C4 (ground) join D3, and C2 joins D2 (same 1.8 V net), so those three leave through the outer row. **B2 INT, B3 GPIO1, B4 GPIO2 cannot escape and are left open (option A, section 5)**: a 0.09 mm trace plus two 0.09 mm clearances needs 0.27 mm, the gap is 0.19 mm, and a full ball array leaves no diagonal exit. |
 | OCVPB21 (WLCSP-13) | 0.20 mm round pads, 0.4 mm pitch | Fits. B2 (OUT_5V) is enclosed by four unused balls, but the C1 ball position is empty, so a trace leaves through the diagonal gap between B1 and C2 (0.366 mm wide, a 0.09 mm trace plus clearances needs 0.27 mm). |
 | nRF54L15 (QFN-48), BMI270, MAX30208, flash | standard pitch 0.4 to 0.8 mm, escape on the surface | Fits. JLCPCB lists a 0.25 x 0.25 mm minimum SMD pad; QFN pads at 0.4 mm pitch are narrower, so confirm with the free JLCDFM check when Gerbers exist. |
 
-## 5. Decision for the user: MAX86141 INT, GPIO1, GPIO2
+## 5. MAX86141 INT, GPIO1, GPIO2: decided 2026-11-13, option A (applied in the schematic)
 
 JLCPCB's two ways to put a via inside a pad do not fit a 0.21 mm pad on the plain process: filled via-in-pad needs a pad of the drill plus 0.15 mm (0.30 mm for the 0.15 mm mechanical minimum, 0.35 mm recommended), and the laser microvia (HDI) needs 0.25 mm for its 0.1 mm via.
 
 | Option | What it means | Cost |
 |---|---|---|
-| A. Leave INT, GPIO1, GPIO2 unconnected (recommended for iteration 1) | The firmware polls the Interrupt Status 1 register (0x00, MAX86141 rev 5 datasheet page 58) and reads the FIFO over SPI; the A_FULL and DATA_RDY flags are in that register whether or not the INT pin is wired. Everything else fits the plain 4-layer process. Schematic change: leave B2, B3, B4 open and remove the PPG_INT, PPG_GPIO1, PPG_GPIO2 nets with R4, R5 and test point TP11. | Cheapest and certain. No data-ready interrupt, so the nRF54L15 cannot sleep until the sensor is ready. |
+| **A. Leave INT, GPIO1, GPIO2 unconnected (chosen)** | The firmware polls the Interrupt Status 1 register (0x00, MAX86141 rev 5 datasheet page 58) and reads the FIFO over SPI; the A_FULL and DATA_RDY flags are in that register whether or not the INT pin is wired. Everything else fits the plain 4-layer process. Done: B2, B3, B4 are no-connects; the PPG_INT, PPG_GPIO1, PPG_GPIO2 nets, R4, R5 and TP11 are removed; nRF54L15 pins 20, 21 and 23 are no-connects. Time stamping without INT: `research/sensors/TIME_SYNC.md` section 3.6. | Cheapest and certain. No data-ready interrupt, so the nRF54L15 cannot sleep until the sensor is ready. |
 | B. Keep INT with HDI (1st order, laser via) | Enlarge ball B2 to a 0.25 mm pad with a 0.1 mm laser via; GPIO1 and GPIO2 stay unused. | Higher price and longer lead time. Enlarging B2 to 0.25 mm leaves a 0.17 mm gap to its 0.21 mm neighbours (JLCPCB's pad-to-pad limit is 0.15 mm). |
 | C. Ask JLCPCB in writing whether a 0.1 mm filled via-in-pad is possible in a 0.25 mm pad on a plain multilayer board | Their capability page allows 0.1 mm drills below 1 mm thickness with ENIG, but the via-in-pad guide only lists 0.1 mm for laser. | Free, but an answer is not guaranteed. |
 

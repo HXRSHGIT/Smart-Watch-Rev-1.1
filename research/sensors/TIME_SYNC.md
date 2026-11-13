@@ -64,6 +64,16 @@ Every exported sample carries:
 
 Then offline analysis can redo the alignment (BLE_SECURITY_DFU §3).
 
+### 3.6 Iteration 1: no MAX86141 INT pin (polled FIFO)
+
+The first board leaves the MAX86141 INT ball open (`hardware/JLCPCB_DESIGN_RULES.md`), so §3.1 cannot timestamp its interrupt. The BMI270 INT stays wired and §3.1 to §3.3 are unchanged for it. For the MAX86141:
+
+- Wake on the RTC at a fixed interval, read the FIFO sample counter and the overflow counter over SPI, burst-read the samples, and note SoC time at the read (RTC capture at the start of the SPI transfer).
+- Keep a running total `n` of samples produced (read plus still in the FIFO, plus overflow). Each read gives `t_read = t0 + (n + u) * P`, where `u` in [0, 1) is the unknown age of the newest sample. Fit `t0` and `P` by least squares over many reads, using `n + 0.5`. This replaces `t_int` in §3.2 and §3.3.
+- Add 3 ms or more of random jitter to the poll interval, so the reads do not stay locked to the sample clock. Poll at least four times per FIFO fill time (128 samples) so the FIFO cannot overflow when BLE or flash work delays a read.
+- Simulation (idealised: exact counter, no lost samples, 0.5 ms read jitter, up to 50 ppm clock error, 400 trials each): with 3 ms dither and 30 reads the worst error was 0.46 to 0.69 of one sample period at 100, 50 and 25 sps, and 0.24 with 120 reads. The requirement is 1.0 (§1). This shows feasibility, not proof.
+- Validation: the tap test and drift test in §4, unchanged. If the result is worse than ±1 sample, the product board brings INT back (1st-order HDI with a laser via under ball B2).
+
 ## 4. Validation
 
 1. **Tap test:** tap the sensor area sharply. The tap shows up in the accel and, mechanically, as a spike in the PPG. Cross-correlate the two. Lag after alignment should be within ±1 sample. Repeat 50 times and check the spread.

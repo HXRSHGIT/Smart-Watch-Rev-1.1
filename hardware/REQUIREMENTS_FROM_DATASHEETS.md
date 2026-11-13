@@ -75,9 +75,9 @@ The community KiCad block of this circuit (checked against Figure 180) differs f
 | A4 | SDI | SPI MOSI from the processor |
 | A5 | CSB | chip select, active low |
 | B1 | LED3_DRV | LED cathode, driver 3 |
-| B2 | INT | open-drain interrupt, needs a pull-up to `VDD_1V8` |
-| B3 | GPIO1 | open-drain GPIO, may be left open if unused |
-| B4 | GPIO2 | open-drain GPIO, may be left open if unused |
+| B2 | INT | open-drain interrupt, needs a pull-up to `VDD_1V8` if wired. **Iteration 1: left open** (ball cannot be routed out on JLCPCB's plain process); firmware polls Interrupt Status 1 (0x00). |
+| B3 | GPIO1 | open-drain GPIO, may be left open if unused (**open in iteration 1**) |
+| B4 | GPIO2 | open-drain GPIO, may be left open if unused (**open in iteration 1**) |
 | B5 | VREF | 1.0 uF to ground. Nominal 1.21 V, so a 6.3 V part is enough. |
 | C1 | LED2_DRV | LED cathode, driver 2 |
 | C2 | VDD_DIG | `VDD_1V8`, shorted to VDD_ANA at the board |
@@ -105,7 +105,7 @@ The community KiCad block of this circuit (checked against Figure 180) differs f
 | VDD_ANA + VDD_DIG (shorted) | **22 uF 0402** and **0.1 uF** to ground (effective about 10 uF after derating) | Layout guidelines p. 49 |
 | VREF | 1.0 uF ceramic to ground | Pin table, p. 49 |
 | VLED | 10 uF to PGND | Pin table |
-| INT, GPIO1 pull-ups | 100 kOhm to `VDD_1V8` | reference design R12, R23 |
+| INT, GPIO1 pull-ups | 100 kOhm to `VDD_1V8`, only if the pins are wired. Not fitted in iteration 1 (pins open). | reference design R12, R23 |
 | Ground | GND_ANA, GND_DIG and PGND shorted at the edge of the ball array, one via to the plane. Individual vias for each decoupling cap. | Layout guidelines |
 | Photodiode node | PD_IN fully shielded by PD_GND on the top layer, no other traces in the PD_GND area, PD_GND attached to board ground at one point | Layout guidelines |
 | Photodiode capacitance | VEMD8080 is 47 pF, so PDBIAS setting 0x1 (0 to 65 pF) | Table 16 |
@@ -222,7 +222,7 @@ Limits: input 4.25 to 5.55 V, transient up to 13.2 V; **operating temperature -3
 | Block | Capacitors | Resistors | Inductors / ferrites | Crystals |
 |---|---|---|---|---|
 | nRF54L15 | 13 (C1 to C13) | 1 (R1) | 5 (L1 to L4, FB1) | 2 |
-| MAX86141 | 4 (22 uF, 0.1 uF, 1 uF, 10 uF) | 2 (INT, GPIO1 pull-ups) | 0 | 0 |
+| MAX86141 | 4 (22 uF, 0.1 uF, 1 uF, 10 uF) | 0 (INT and GPIO1 pull-ups dropped, pins open) | 0 | 0 |
 | BMI270 | 2 (VDD, VDDIO) | 0 | 0 | 0 |
 | MAX30208 | 1 | 0 | 0 | 0 |
 | LED boost (TPS61240) | 2 (CIN, COUT) | 0 | 1 | 0 |
@@ -265,10 +265,10 @@ Not counted yet: nPM1300 and its inductors and capacitors, the flash, the I2C pu
 | SPI MOSI / MISO | P2.02 (13) / P2.04 (15) | SPIM00 SDO / SDI |
 | CS MAX86141 / CS flash | P2.05 (16) / P2.00 (11) | SPIM00 CSN / DCX pins used as plain GPIO |
 | I2C SCL / SDA | P0.04 (29) / P0.03 (28) | TWIM30 in the low-power domain; P0.04 is a clock pin |
-| PPG INT, IMU INT1, IMU INT2 | P0.00, P0.01, P0.02 | low-power domain inputs for wake-up |
+| IMU INT1, IMU INT2 (PPG INT not wired in iteration 1) | P0.01, P0.02 | low-power domain inputs for wake-up; P0.00 stays free for a wired PPG INT later |
 | TEMP alarm, charger FLAG | P2.03, P2.06 | plain inputs |
 | LED boost enable | P2.08 | plain output, 100 kOhm pull-down on the board (errata 103) |
-| PPG GPIO1, GPIO2 | P2.09, P2.10 | spare lines to the MAX86141 |
+| PPG GPIO1, GPIO2 | P2.09, P2.10 | free in iteration 1 (the MAX86141 GPIO balls are open) |
 | PMIC interrupt | P1.08 | the only P1 pin that is not in any power-on errata list |
 | SWO | P2.07 | trace output pin, to the programming pads |
 | Not used | P1.02-P1.07, P1.09-P1.14 | NFC pins and errata 100 pins |

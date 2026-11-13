@@ -36,13 +36,13 @@ def grp(**kw):
 EXPECTED_PINS = {
     "U1": {"+1V8": "47 48 10 22 36", "GND": "44 49", "DCC": "46", "DECD": "45", "DECA": "43 33", "VSS_PA": "32",
            "XC1": "34", "XC2": "35", "XL1": "1", "XL2": "2", "RF_ANT": "31", "SWDIO": "25", "SWDCLK": "26",
-           "NRESET_MCU": "30", "PPG_INT": "23", "IMU_INT1": "24", "IMU_INT2": "27", "I2C_SDA": "28", "I2C_SCL": "29",
+           "NRESET_MCU": "30", "IMU_INT1": "24", "IMU_INT2": "27", "I2C_SDA": "28", "I2C_SCL": "29",
            "PMIC_IRQ": "9", "CS_FLASH": "11", "SPI_SCK": "12", "SPI_MOSI": "13", "TEMP_INT": "14", "SPI_MISO": "15",
-           "CS_PPG": "16", "CHG_FLAG": "17", "SWO": "18", "LED_BOOST_EN": "19", "PPG_GPIO1": "20", "PPG_GPIO2": "21",
-           "NC": "3 4 5 6 7 8 37 38 39 40 41 42"},
+           "CS_PPG": "16", "CHG_FLAG": "17", "SWO": "18", "LED_BOOST_EN": "19",
+           "NC": "3 4 5 6 7 8 20 21 23 37 38 39 40 41 42"},
     "U2": {"VLED": "A1", "GND": "D3 C4 C3", "+1V8": "D2 C2", "VREF": "B5", "LED1_DRV": "D1", "LED2_DRV": "C1",
            "LED3_DRV": "B1", "PD1_IN": "D5", "PD2_IN": "D4", "PD_GND": "C5", "CS_PPG": "A5", "SPI_SCK": "A2",
-           "SPI_MOSI": "A4", "SPI_MISO": "A3", "PPG_INT": "B2", "PPG_GPIO1": "B3", "PPG_GPIO2": "B4"},
+           "SPI_MOSI": "A4", "SPI_MISO": "A3", "NC": "B2 B3 B4"},
     "D1": {"VLED": "2 5", "LED_G": "3", "LED_R": "4", "LED_IR": "1", "NC": "6"},
     "PD1": {"PD_GND": "5", "PD1_IN": "1 2 3 4 6 7 8"},
     "PD2": {"PD_GND": "5", "PD2_IN": "1 2 3 4 6 7 8"},
@@ -76,7 +76,6 @@ EXPECTED_2PIN = {
     "R2": ("RF_C", "ANT_A"), "C14": ("ANT_A", "GND"), "R3": ("ANT_A", "ANT_FEED"),
     # optical
     "C15": ("+1V8", "GND"), "C16": ("+1V8", "GND"), "C17": ("VREF", "GND"), "C18": ("VLED", "GND"),
-    "R4": ("+1V8", "PPG_INT"), "R5": ("+1V8", "PPG_GPIO1"),
     "R6": ("LED_G", "LED1_DRV"), "R7": ("LED_IR", "LED2_DRV"), "R8": ("LED_R", "LED3_DRV"), "NT3": ("PD_GND", "GND"),
     # sensors
     "C19": ("+1V8", "GND"), "C20": ("+1V8", "GND"), "C21": ("+1V8", "GND"),
@@ -98,7 +97,7 @@ EXPECTED_VALUES = {"R12": "0R", "R13": "0R", "R11": "100k", "R14": "180R", "C14"
                    "R16": "68k", "C24": "22uF", "L6": "2.2uH", "C25": "1uF", "C26": "1uF", "C27": "10uF", "C28": "10uF", "C29": "10uF", "C30": "2.2uF",
                    "C31": "100nF", "R17": "10k", "R18": "100k", "C32": "100nF"}
 EXPECTED_TP = {"TP1": "+1V8", "TP2": "VSYS", "TP3": "VLED", "TP4": "GND", "TP5": "GND", "TP6": "I2C_SDA", "TP7": "I2C_SCL",
-               "TP8": "SPI_SCK", "TP9": "SPI_MOSI", "TP10": "SPI_MISO", "TP11": "PPG_INT"}
+               "TP8": "SPI_SCK", "TP9": "SPI_MOSI", "TP10": "SPI_MISO"}
 KNOWN_ERC = {}
 
 

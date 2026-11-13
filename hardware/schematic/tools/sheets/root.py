@@ -4,7 +4,7 @@ from .common import U, P, note
 MY = 36           # top of the processor block, grid units
 # processor block pins: slot number -> net. Right-hand slots line up with the pin of the target block, so the wires run straight.
 MCU_LEFT = {0: "CHG_FLAG", 8: "LED_BOOST_EN", 15: "SWDIO", 16: "SWDCLK", 17: "NRESET", 18: "SWO"}
-MCU_RIGHT = {0: "PPG_INT", 1: "PPG_GPIO1", 2: "PPG_GPIO2", 3: "CS_PPG", 4: "SPI_SCK", 5: "SPI_MOSI", 6: "SPI_MISO",
+MCU_RIGHT = {3: "CS_PPG", 4: "SPI_SCK", 5: "SPI_MOSI", 6: "SPI_MISO",
              10: "CS_FLASH", 17: "PMIC_IRQ", 23: "I2C_SDA", 24: "I2C_SCL", 25: "IMU_INT1", 26: "IMU_INT2", 27: "TEMP_INT",
              31: "RF_ANT", 32: "VSS_PA"}
 LX, MX, RX, BW = 24, 104, 186, 44        # block x positions and widths, grid units
@@ -30,7 +30,7 @@ def draw(d, ids):
     ls = block(d, "led_supply", LX, MY + 16, BW, [], ["LED_BOOST_EN"], ids)
     te = block(d, "test", LX, MY + 30, BW, [], ["SWDIO", "SWDCLK", "NRESET", "SWO"], ids)
     # right column, top to bottom, each block level with its first processor pin
-    op = block(d, "optical", RX, MY, BW, ["PPG_INT", "PPG_GPIO1", "PPG_GPIO2", "CS_PPG", "SPI_SCK", "SPI_MOSI", "SPI_MISO"], [], ids)
+    op = block(d, "optical", RX, MY + 6, BW, ["CS_PPG", "SPI_SCK", "SPI_MOSI", "SPI_MISO"], [], ids)   # +6 = three slots, level with CS_PPG
     me = block(d, "memory", RX, MY + 20, BW, ["CS_FLASH", "SPI_SCK", "SPI_MOSI", "SPI_MISO"], [], ids)
     pw = block(d, "power", RX, MY + 34, BW, ["PMIC_IRQ", "I2C_SDA", "I2C_SCL"], [], ids)
     se = block(d, "sensors", RX, MY + 46, BW, ["I2C_SDA", "I2C_SCL", "IMU_INT1", "IMU_INT2", "TEMP_INT"], [], ids)

@@ -25,10 +25,10 @@ Produced by `tools/pinmap.py` from the KiCad netlist. Do not edit by hand.
 | 17 | P2.06 | CHG_FLAG | R15.2, U6.E3 |
 | 18 | P2.07/SWO | SWO | J3.6 |
 | 19 | P2.08 | LED_BOOST_EN | R11.1, U5.4 |
-| 20 | P2.09 | PPG_GPIO1 | R5.2, U2.B3 |
-| 21 | P2.10 | PPG_GPIO2 | U2.B4 |
+| 20 | P2.09 | (not connected) |  |
+| 21 | P2.10 | (not connected) |  |
 | 22 | VDD | +1V8 | C10.1, C15.1, C16.1, C19.1, C20.1, C21.1, C29.1, C3.1, C31.1, C32.1 ... |
-| 23 | P0.00 | PPG_INT | R4.2, TP11.1, U2.B2 |
+| 23 | P0.00 | (not connected) |  |
 | 24 | P0.01 | IMU_INT1 | U3.4 |
 | 25 | SWDIO | SWDIO | J3.2 |
 | 26 | SWDCLK | SWDCLK | J3.4 |
@@ -66,9 +66,9 @@ Produced by `tools/pinmap.py` from the KiCad netlist. Do not edit by hand.
 | A4 | SDI | SPI_MOSI | TP9.1, U1.13, U8.5 |
 | A5 | CSB | CS_PPG | U1.16 |
 | B1 | LED3_DRV | (wire) | R8.1 |
-| B2 | INT | PPG_INT | R4.2, TP11.1, U1.23 |
-| B3 | GPIO1 | PPG_GPIO1 | R5.2, U1.20 |
-| B4 | GPIO2 | PPG_GPIO2 | U1.21 |
+| B2 | INT | (not connected) |  |
+| B3 | GPIO1 | (not connected) |  |
+| B4 | GPIO2 | (not connected) |  |
 | B5 | VREF | (wire) | C17.1 |
 | C1 | LED2_DRV | (wire) | R7.1 |
 | C2 | VDD_DIG | +1V8 | C10.1, C15.1, C16.1, C19.1, C20.1, C21.1, C29.1, C3.1, C31.1, C32.1 ... |
