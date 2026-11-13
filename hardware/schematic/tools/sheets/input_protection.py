@@ -22,6 +22,13 @@ def draw(d):
     p1, p2 = j1.p(1), j2.p(1)
     d.w(p1, (42 * U, p1[1]), (42 * U, ina[1]), ina)
     d.w(p2, (42 * U, p2[1]), (42 * U, inb[1]), inb)
+    # 2.54 mm header on the same two nets as the pads (before the OCVPB21, so it is protected too): bench supply or USB breakout
+    j5 = d.put("Connector_Generic:Conn_01x02", 22 * U, (p1[1] + p2[1]) / 2 - U, 180, ref="J5", value="5 V in",
+               footprint="Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+               props={"Source": "iteration 1: 5 V input without pogo contact"}, prefix="J", tside="L")
+    # rotated 180 degrees pin 2 is the upper pin: pin 2 to POGO_A (above), pin 1 to POGO_B (below), so no wires cross
+    d.w(j5.p(2), (40 * U, j5.p(2)[1]), (40 * U, p1[1]))
+    d.w(j5.p(1), (40 * U, j5.p(1)[1]), (40 * U, p2[1]))
     d.caption("POGO A", 14 * U, ina[1] / U * U - 10 * U)
     d.caption("POGO B", 14 * U, p2[1] + 6 * U)
 
@@ -64,7 +71,10 @@ def draw(d):
               nx, 28 * U + h + 3, 88)
     h3 = note(d, "FLAG is open drain. R15 pulls it up to 1.8 V, so the processor reads a low level when a fault is "
                  "reported (CHG_FLAG).", nx, 28 * U + h + h2 + 6, 88)
+    h4 = note(d, "J5 is a 2.54 mm header on the same POGO_A and POGO_B nets as the pads, for a bench supply or a USB "
+                 "breakout (5 V and ground wires only) in iteration 1. Either polarity (pin 1 = POGO_B, pin 2 = POGO_A), 5.0 to 5.5 V. It sits before the "
+                 "OCVPB21, so the bridge, overvoltage and current limit protect it as well.", nx, 28 * U + h + h2 + h3 + 9, 88)
     note(d, "Operating temperature of this part is -30 to +65 degC. Keep that in mind for the charging case. The data "
             "pins are not used with two pogo pads, so they are left open (crosses). C24 is 22 uF 16 V X5R 0805: X5R loses "
             "capacitance under DC bias, so 22 uF is chosen to keep 10 uF or more at 5 V. Confirm with the DC-bias curve of "
-            "the part that is bought.", nx, 28 * U + h + h2 + h3 + 9, 88)
+            "the part that is bought.", nx, 28 * U + h + h2 + h3 + h4 + 12, 88)

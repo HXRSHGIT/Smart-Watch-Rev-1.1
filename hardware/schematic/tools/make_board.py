@@ -1,8 +1,10 @@
 """Make smartwatch.kicad_pcb from the schematic: footprints, nets and symbol links exactly as KiCad's own netlist has them.
 
 Run with KiCad's Python (it has pcbnew):
-  "%LOCALAPPDATA%/Programs/KiCad/9.0/bin/python.exe" tools/make_board.py [out.kicad_pcb]
+  "%LOCALAPPDATA%/Programs/KiCad/9.0/bin/python.exe" tools/make_board.py [out.kicad_pcb] [--force]
 Footprints are laid out in a loose grid so nothing overlaps; placement is done afterwards.
+This rebuilds the board from scratch, so it refuses to overwrite an existing board outside build/ unless --force is given:
+once placement has started, schematic changes go in with Update PCB from Schematic (F8) in KiCad.
 """
 import os, re, subprocess, sys, tempfile
 import xml.etree.ElementTree as ET
@@ -10,7 +12,10 @@ import pcbnew
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PRJ = os.path.dirname(HERE)                                  # hardware/schematic
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(PRJ, "build", "smartwatch.kicad_pcb")
+ARGS = [a for a in sys.argv[1:] if a != "--force"]
+OUT = ARGS[0] if ARGS else os.path.join(PRJ, "build", "smartwatch.kicad_pcb")
+if os.path.exists(OUT) and "--force" not in sys.argv and os.path.dirname(os.path.abspath(OUT)) != os.path.join(PRJ, "build"):
+    sys.exit(f"{OUT} exists: this would erase its placement. Use Update PCB from Schematic in KiCad, or pass --force.")
 CLI = os.path.join(os.path.dirname(sys.executable), "kicad-cli.exe")
 KB = os.path.dirname(os.path.dirname(sys.executable))        # .../KiCad/9.0
 VARS = {"KIPRJMOD": PRJ, "KICAD9_FOOTPRINT_DIR": os.path.join(KB, "share", "kicad", "footprints")}

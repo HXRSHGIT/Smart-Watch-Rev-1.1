@@ -139,8 +139,8 @@ Produced by `tools/pinmap.py` from the KiCad netlist. Do not edit by hand.
 | B3 | USB_INC | (not connected) |  |
 | C2 | RECTIF | (not connected) |  |
 | C3 | GND_ESD | GND | C1.2, C10.2, C11.2, C12.2, C13.2, C14.2, C15.2, C16.2, C17.2, C18.2 ... |
-| D1 | IN_A | (wire) | J1.1 |
-| D3 | IN_B | (wire) | J2.1 |
+| D1 | IN_A | (wire) | J1.1, J5.2 |
+| D3 | IN_B | (wire) | J2.1, J5.1 |
 | E1 | RLIM | (wire) | R14.1 |
 | E2 | GND_BRIDGE | GND | C1.2, C10.2, C11.2, C12.2, C13.2, C14.2, C15.2, C16.2, C17.2, C18.2 ... |
 | E3 | FLAG | CHG_FLAG | R15.2, U1.17 |
@@ -193,13 +193,13 @@ Produced by `tools/pinmap.py` from the KiCad netlist. Do not edit by hand.
 
 | Pin | Name | Net | Also connected to |
 |---|---|---|---|
-| 1 | Pin_1 | (wire) | U6.D1 |
+| 1 | Pin_1 | (wire) | J5.2, U6.D1 |
 
 ## J2  Pogo pad  (Pogo_Pad_D2.6mm)
 
 | Pin | Name | Net | Also connected to |
 |---|---|---|---|
-| 1 | Pin_1 | (wire) | U6.D3 |
+| 1 | Pin_1 | (wire) | J5.1, U6.D3 |
 
 ## J3  TC2030-NL  (Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical)
 

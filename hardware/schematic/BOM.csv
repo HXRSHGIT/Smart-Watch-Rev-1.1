@@ -38,6 +38,7 @@ J1,Pogo pad,smartwatch:Pogo_Pad_D2.6mm,,,research/power-battery/POGO_CHARGING.md
 J2,Pogo pad,smartwatch:Pogo_Pad_D2.6mm,,,research/power-battery/POGO_CHARGING.md,
 J3,TC2030-NL,Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical,,,,
 J4,Battery,Connector_JST:JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal,not fitted in iteration 1 (no battery),,battery cell and connector: open item,
+J5,5 V in,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,,,iteration 1: 5 V input without pogo contact,
 L1,4.7uH,Inductor_SMD:L_0603_1608Metric,120 mA 20% 650 mOhm,,nRF54L15 DS v1.0 Table 87 / Fig 180,
 L2,2.7nH,Inductor_SMD:L_0201_0603Metric,0.1 nH 600 mA,LQP03HQ2N7B02,nRF54L15 DS v1.0 Fig 180 / Table 87,
 L3,3.5nH,Inductor_SMD:L_0201_0603Metric,0.1 nH 500 mA,LQP03HQ3N5B02,nRF54L15 DS v1.0 Fig 180 / Table 87,

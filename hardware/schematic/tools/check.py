@@ -59,7 +59,7 @@ EXPECTED_PINS = {
            "PMIC_IRQ": "8", "NC": "5 7 9 10 11 25 26 27"},
     "U8": {"+1V8": "8", "GND": "4", "CS_FLASH": "1", "SPI_SCK": "6", "SPI_MOSI": "5", "SPI_MISO": "2", "NC": "3 7"},
     "J4": {"VBAT": "1", "NTC": "2", "GND": "3"},
-    "J1": {"POGO_A": "1"}, "J2": {"POGO_B": "1"},
+    "J1": {"POGO_A": "1"}, "J2": {"POGO_B": "1"}, "J5": {"POGO_B": "1", "POGO_A": "2"},
     "X2": {"XC1": "1", "XC2": "3", "GND": "2 4"}, "X1": {"XL1": "1", "XL2": "2"},
 }
 
@@ -262,6 +262,7 @@ for ref, fp in (("U1", "Package_DFN_QFN.pretty/QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6
                 ("J3", "Connector.pretty/Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"),
                 ("U7", "Package_DFN_QFN.pretty/QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm"), ("U8", "@MX25R3235F_USON-8_4x3mm_P0.8mm"),
                 ("J4", "Connector_JST.pretty/JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal"),
+                ("J5", "Connector_PinHeader_2.54mm.pretty/PinHeader_1x02_P2.54mm_Vertical"),
                 ("SW1", "Button_Switch_SMD.pretty/SW_SPST_B3U-1000P"),
                 ("U2", "@MAX86141_WLP-20_2.048x1.848mm_P0.4mm"), ("U4", "@MAX30208_TLGA-10_2x2mm"),
                 ("U6", "@OCVPB21-13F6_WLCSP-13_P0.4mm"), ("D1", "@SFH7016_1.85x1.65mm"), ("PD1", "@VEMD8080_4.8x2.5mm"),

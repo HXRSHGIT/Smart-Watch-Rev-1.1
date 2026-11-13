@@ -36,6 +36,7 @@ def make_lib():
         lib.add_stock("Device", n)
     lib.add_stock("Connector", "TestPoint")
     lib.add_stock("Connector_Generic", "Conn_01x01")
+    lib.add_stock("Connector_Generic", "Conn_01x02")
     lib.add_stock("power", "PWR_FLAG")
     lib.add_stock("Switch", "SW_SPST")
     return lib
