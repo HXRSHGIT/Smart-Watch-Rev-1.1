@@ -18,13 +18,14 @@ Purpose: choose the PCB fab and its design rules before routing. Nothing here ha
 
 ## 2. What the reference board does (MAXREFDES103 sensor board, same MAX86141)
 
-From `hardware/reference/MAXREFDES103/Sensor Board/Sensor Board - FAB/max86141_spo2_1mm_apps_p3_fab_drawing.pdf`:
+From `reference-designs/MAXREFDES103/Sensor Board/Sensor Board - FAB/max86141_spo2_1mm_apps_p3_fab_drawing.pdf` on the `reference-library` branch (the vendor files are not on `main`):
 
 - 4 layers: TOP 1 oz, L02_GND 0.5 oz, L03_SIG 0.5 oz, BOTTOM 1 oz. Isola 370HR or equivalent, dielectric thickness TBD. Finished thickness 0.031 in (0.79 mm) +/- 0.010 in.
 - Finish: immersion gold 3 to 8 microinches over electroless nickel.
 - Drill chart: 4.0 mil plated x 60, 6.0 mil plated x 43, 12.01 mil plated x 1.
 - Note 20: fill and cap all 0.004 in drilled vias with non-conductive epoxy.
-- Not stated in the drawing: the drilling method for the 4 mil holes (laser or mechanical), and trace/space.
+- Not stated in the drawing: the drilling method for the 4 mil holes, and trace/space.
+- Inference, not stated: the drill chart is one table titled "TOP to BOTTOM" and the lamination diagram shows no blind or buried layers, so the 4 mil holes are probably through vias. That would be 0.1 mm holes in a 0.79 mm board (about 8:1), filled and capped inside the pads.
 
 ## 3. What public fab pages say (checked 2026-11-13; the sources disagree in places, so confirm with the fab)
 
@@ -52,4 +53,5 @@ Suggested path: send the question list in section 5 to both JLCPCB (HDI orders g
 3. Minimum trace/space on the outer layers (can a trace pass between two 0.21 mm pads with a 0.19 mm gap?), and minimum solder mask dam / mask opening style for these pads (non-solder-mask-defined).
 4. Controlled impedance: 50 ohm single-ended on the top layer over layer 2, your stack-up and tolerance.
 5. Panelisation and minimum board size for 45 x 30 mm, and lead time and price for 5 and 20 boards.
-6. Can you assemble 0.4 mm pitch WLP/WLCSP parts, or do we place them ourselves?
+6. Can you drill 0.1 mm (4 mil) through a 0.8 mm 4-layer board and fill and cap it, as the MAXREFDES103 sensor board does? If yes, is that cheaper than laser HDI?
+7. Can you assemble 0.4 mm pitch WLP/WLCSP parts, or do we place them ourselves?
