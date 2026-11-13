@@ -27,7 +27,7 @@ def draw(d):
 
     # protected output: 10 uF on the output, then the rail symbol
     out = u.p("B2")
-    c24 = part(d, "C", "C24", "10uF", "0603", 88, out[1] / U + 2, "10V low ESR, >= 10 uF", OV + " Table 2")
+    c24 = part(d, "C", "C24", "22uF", "0805", 88, out[1] / U + 2, "X5R 16V low ESR, >= 10 uF effective at 5 V", OV + " Table 2")
     d.w(out, (104 * U, out[1]))
     d.rail("VBUS_PROT", 104 * U, out[1] - 3 * U)
     d.w((104 * U, out[1]), (104 * U, out[1] - 3 * U))
@@ -59,11 +59,12 @@ def draw(d):
 
     nx = 136 * U
     h = note(d, "OCVPB21-13F6 combines a polarity bridge, ESD clamps, overvoltage cut-off and a current limit. "
-                "Input range 4.25 to 5.55 V. OUT_5V needs 10 uF or more (C24).", nx, 28 * U, 88)
+                "Input range 4.25 to 5.55 V. OUT_5V needs 10 uF or more at 5 V (C24, 22 uF).", nx, 28 * U, 88)
     h2 = note(d, "RLIM (R14) sets the current limit: ILIM = (318 - RLIM) / 0.447 mA. 180 Ohm gives about 310 mA.",
               nx, 28 * U + h + 3, 88)
     h3 = note(d, "FLAG is open drain. R15 pulls it up to 1.8 V, so the processor reads a low level when a fault is "
                  "reported (CHG_FLAG).", nx, 28 * U + h + h2 + 6, 88)
     note(d, "Operating temperature of this part is -30 to +65 degC. Keep that in mind for the charging case. The data "
-            "pins are not used with two pogo pads, so they are left open (crosses). C24 is 10 uF 10 V X5R: its effective value "
-            "at 5 V is lower, so pick a part that still gives 10 uF or more at 5 V (for example 22 uF).", nx, 28 * U + h + h2 + h3 + 9, 88)
+            "pins are not used with two pogo pads, so they are left open (crosses). C24 is 22 uF 16 V X5R 0805: X5R loses "
+            "capacitance under DC bias, so 22 uF is chosen to keep 10 uF or more at 5 V. Confirm with the DC-bias curve of "
+            "the part that is bought.", nx, 28 * U + h + h2 + h3 + 9, 88)

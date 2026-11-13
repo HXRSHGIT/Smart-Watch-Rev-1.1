@@ -5,7 +5,7 @@ U = 1.27          # grid unit, mm
 
 FP = {
     "C": {"0201": "Capacitor_SMD:C_0201_0603Metric", "0402": "Capacitor_SMD:C_0402_1005Metric",
-          "0603": "Capacitor_SMD:C_0603_1608Metric"},
+          "0603": "Capacitor_SMD:C_0603_1608Metric", "0805": "Capacitor_SMD:C_0805_2012Metric"},
     "R": {"0201": "Resistor_SMD:R_0201_0603Metric", "0402": "Resistor_SMD:R_0402_1005Metric"},
     "L": {"0201": "Inductor_SMD:L_0201_0603Metric", "0402": "Inductor_SMD:L_0402_1005Metric",
           "0603": "Inductor_SMD:L_0603_1608Metric", "0805": "Inductor_SMD:L_0805_2012Metric"},

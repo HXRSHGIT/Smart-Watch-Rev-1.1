@@ -43,23 +43,25 @@ def draw(d):
     off = d.lib.pins("smartwatch:Battery_Conn_3")[(1, "1")][1]
     j4 = d.put("smartwatch:Battery_Conn_3", (lx - 32) * U, vbat[1] + off, 0, ref="J4", value="Battery",
                footprint="Connector_JST:JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal",
-               props={"Source": "battery cell and connector: open item"}, prefix="J", tside="L")
+               props={"Source": "battery cell and connector: open item", "Spec": "not fitted in iteration 1 (no battery)"},
+               prefix="J", tside="L", dnp=True)
     d.w(j4.p(1), vbat)
     c30 = part(d, "C", "C30", "2.2uF", "0603", lx - 10, Y("19") + 2, "X7R 16V 10%", CFG2 + " C6", tside="L")
     d.w(((lx - 10) * U, vbat[1]), c30.p(1))
     d.gnd(*c30.p(2))
     d.w(j4.p(2), ntc)
-    rn = part(d, "R", "R17", "10k", "0201", lx - 18, Y("18") + 2, "NTC substitute, fit only for a pack WITHOUT thermistor",
-              NP + " NTC thermistor configuration", dnp=True, tside="R")
+    rn = part(d, "R", "R17", "10k", "0201", lx - 18, Y("18") + 2,
+              "NTC substitute: fitted while J4 is empty (iteration 1); remove when a pack WITH thermistor goes on J4",
+              NP + " NTC thermistor configuration", tside="R")
     d.w(((lx - 18) * U, ntc[1]), rn.p(1))
     d.w(j4.p(3), rn.p(2))
     d.gnd(*rn.p(2))
-    d.caption("BATTERY PACK WITH NTC", (lx - 36) * U, vbat[1] - 5 * U, size=1.27)
+    d.caption("BATTERY PACK WITH NTC (NOT FITTED IN ITERATION 1)", (lx - 36) * U, vbat[1] - 5 * U, size=1.27)
 
-    # VSET1: 47 kOhm to ground = 1.8 V at power-up; VSET2: ground = buck 2 off
+    # VSET1: 68 kOhm to ground = 2.0 V at power-up (firmware lowers it to 1.9 V); VSET2: ground = buck 2 off
     v1, v2 = L("17"), L("16")
-    r16 = part(d, "R", "R16", "47k", "0201", lx - 10, Y("17") + 2, "1% (sets BUCK1 = 1.8 V)", NP + " BUCK output voltage selection",
-               tside="L")
+    r16 = part(d, "R", "R16", "68k", "0201", lx - 10, Y("17") + 2, "1% (sets BUCK1 = 2.0 V at power-up, firmware sets 1.9 V)",
+               NP + " BUCK output voltage selection", tside="L")
     d.w(v1, r16.p(1))
     d.gnd(*r16.p(2))
     d.w(v2, ((lx - 4) * U, v2[1]), ((lx - 4) * U, v2[1] + 2 * U))
@@ -165,27 +167,29 @@ def draw(d):
     nx = 182 * U
     w = 70
     h = note(d, "Input: VBUS comes from the OCVPB21 output (VBUS_PROT) with 1 uF (C25). CC1 and CC2 go to ground because "
-                "there is no USB-C connector. The input current limit starts at 100 mA. The only settings above that "
-                "are 500 mA and more, but the OCVPB21 limits at about 310 mA, so keep the nPM1300 at its 100 mA default "
-                "(or set R14 to 51 Ohm for about 600 mA).", nx, 28 * U, w)
-    h2 = note(d, "Buck 1 = 1.8 V from R16 (47 kOhm on VSET1). L6 2.2 uH (DCR 400 mOhm max, Isat above 350 mA), C29 10 uF "
+                "there is no USB-C connector. The input current limit starts at 100 mA and the next step is 500 mA. The "
+                "OCVPB21 limits at about 310 mA (R14 = 51 Ohm for about 600 mA). Iteration 1 has no battery to help "
+                "with load peaks: firmware selects 500 mA after boot, and the real limit is then the OCVPB21.", nx, 28 * U, w)
+    h2 = note(d, "Buck 1 = 2.0 V at power-up from R16 (68 kOhm on VSET1); firmware sets 1.9 V. L6 2.2 uH (DCR 400 mOhm max, Isat above 350 mA), C29 10 uF "
                  "(at least 4 uF effective). 200 mA maximum. PVSS1 is the power ground of buck 1; it joins ground only "
                  "through net tie NT4.", nx, 28 * U + h + 3, w)
     h3 = note(d, "VSYS and PVDD are one net with 10 uF to PVSS1 (C27) and 10 uF to ground (C28). Never feed VSYS from "
                  "outside. Never power the application from VBAT: use VSYS or VOUT1 only (datasheet).",
               nx, 28 * U + h + h2 + 6, w)
-    h4 = note(d, "Battery: the pack must carry its own protection (over/under voltage, over current). A pack with an NTC goes "
-                 "on J4 pin 2. For a pack without NTC fit R17 (10 kOhm) and disable the NTC function in register "
-                 "BCHGDISABLESET. Thermistor type is chosen in software (10, 47 or 100 kOhm).",
+    h4 = note(d, "Iteration 1 runs from 5 V on the pogo pads with no battery: J4 is not fitted, R17 (10 kOhm) is fitted, "
+                 "firmware disables the NTC function (BCHGDISABLESET) and never enables the charger (no battery gives "
+                 "repeated charger events). When a pack with NTC goes on J4 pin 2, remove R17. The pack must carry its "
+                 "own protection (over/under voltage, over current). Thermistor type is chosen in software (10, 47 or 100 kOhm).",
               nx, 28 * U + h + h2 + h3 + 9, w)
     h5 = note(d, "SW1 on SHPHLD exits Ship mode (a charger on VBUS also does) and a 10 s hold resets the system. TWI "
                  "address is 0x6B. VDDIO is the 1.8 V rail and has its own 100 nF (C31). GPIO1 is the interrupt line "
                  "PMIC_IRQ; the other GPIOs, LED0..2 and SW2 are open. The I2C pull-ups are on the sensors sheet.",
               nx, 28 * U + h + h2 + h3 + h4 + 12, w)
-    h6 = note(d, "DECISION NEEDED (rail voltage): the nRF54L15 needs VDD of at least 1.75 V during power-on reset, but "
-                 "47 kOhm on VSET1 gives 1.8 V +/-5 %, which is 1.71 V at worst. MAX86141 allows 1.7 to 2.0 V. A 1.9 V rail "
-                 "(1.805 to 1.995 V) fits both. Options: keep R16 and have firmware set BUCK1NORMVOUT to 1.9 V at boot, or "
-                 "fit 68 kOhm (2.0 V default) and lower to 1.9 V in firmware. Net name stays +1V8.",
+    h6 = note(d, "DECIDED (rail voltage): the nRF54L15 needs VDD of at least 1.75 V during power-on reset, and 47 kOhm on "
+                 "VSET1 would give 1.8 V +/-5 %, which is 1.71 V at worst. 68 kOhm gives 2.0 V +/-5 % (1.9 to 2.1 V), "
+                 "inside the nRF54L15 limit and under the MAX86141 absolute maximum of 2.2 V. Firmware lowers the rail to "
+                 "1.9 V (BUCK1NORMVOUT) before the MAX86141 is used, which keeps it inside its 1.7 to 2.0 V operating range. "
+                 "Net name stays +1V8.",
               nx, 28 * U + h + h2 + h3 + h4 + h5 + 15, w)
     note(d, "Open items: battery cell and connector pin order (J4), button part (SW1), QFN32 exposed pad size (footprint "
             "EP 3.45 mm, datasheet 3.5 mm nominal).", nx, 28 * U + h + h2 + h3 + h4 + h5 + h6 + 18, w)

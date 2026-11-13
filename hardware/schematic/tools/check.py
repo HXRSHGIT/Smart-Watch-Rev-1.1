@@ -95,7 +95,7 @@ EXPECTED_2PIN = {
 }
 EXPECTED_VALUES = {"R12": "0R", "R13": "0R", "R11": "100k", "R14": "180R", "C14": "TBD", "L5": "1.0uH", "C6": "1.5pF",
                    "C9": "2.0pF", "C11": "0.3pF", "L2": "2.7nH", "L3": "3.5nH", "L4": "3.5nH", "C3": "10uF", "C13": "3.9pF",
-                   "R16": "47k", "L6": "2.2uH", "C25": "1uF", "C26": "1uF", "C27": "10uF", "C28": "10uF", "C29": "10uF", "C30": "2.2uF",
+                   "R16": "68k", "C24": "22uF", "L6": "2.2uH", "C25": "1uF", "C26": "1uF", "C27": "10uF", "C28": "10uF", "C29": "10uF", "C30": "2.2uF",
                    "C31": "100nF", "R17": "10k", "R18": "100k", "C32": "100nF"}
 EXPECTED_TP = {"TP1": "+1V8", "TP2": "VSYS", "TP3": "VLED", "TP4": "GND", "TP5": "GND", "TP6": "I2C_SDA", "TP7": "I2C_SCL",
                "TP8": "SPI_SCK", "TP9": "SPI_MOSI", "TP10": "SPI_MISO", "TP11": "PPG_INT"}
@@ -151,6 +151,13 @@ for ref, net in EXPECTED_TP.items():
 for ref, val in EXPECTED_VALUES.items():
     if ref in comp and (comp[ref].find("value").text or "") != val:
         problems.append(f"{ref}: value {comp[ref].find('value').text!r}, expected {val!r}")
+
+# Iteration 1 has no battery: J4 is not fitted and R17 (NTC substitute) must be fitted. C14 (antenna tuning slot) and
+# R13 (VLED from VSYS option) are DNP by design.
+EXPECTED_DNP = {"C14", "J4", "R13"}
+got_dnp = {r for r, c in comp.items() if c.find("property[@name='dnp']") is not None}
+if got_dnp != EXPECTED_DNP:
+    problems.append(f"do-not-populate parts are {sorted(got_dnp)}, expected {sorted(EXPECTED_DNP)}")
 
 # Two-pin parts have no pin order that matters: pick the orientation that agrees with nets already known, chain by chain.
 name_net = {}

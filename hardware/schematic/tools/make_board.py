@@ -47,7 +47,8 @@ for i, c in enumerate(root.findall("./components/comp")):
     fp.SetFPID(pcbnew.LIB_ID(nick, name))
     fp.SetReference(ref)
     fp.SetValue(value)
-    sp = c.find("sheetpath").get("tstamps", "/")
+    fp.SetDNP(c.find("property[@name='dnp']") is not None)   # keeps unfitted parts out of BOM and placement files
+    sp =c.find("sheetpath").get("tstamps", "/")
     fp.SetPath(pcbnew.KIID_PATH(sp + c.findtext("tstamps", "").split(",")[0]))
     fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(5 + (i % 12) * 7), pcbnew.FromMM(5 + (i // 12) * 7)))
     board.Add(fp)
