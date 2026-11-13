@@ -1,5 +1,7 @@
 # Fab capability request (draft, not sent)
 
+Status 2026-11-13: JLCPCB was chosen and the design rules are now in `JLCPCB_DESIGN_RULES.md`. This draft stays as the background and as a question list if JLCPCB has to confirm something in writing.
+
 Done by Harsh Thakur.
 
 Purpose: choose the PCB fab and its design rules before routing. Nothing here has been sent to a fab. The stack-up, via and trace rules in KiCad stay provisional until a fab confirms them in writing.

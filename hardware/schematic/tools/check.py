@@ -278,6 +278,23 @@ for ref, fp in (("U1", "Package_DFN_QFN.pretty/QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6
     if used.split(":")[-1] != Path(fp.lstrip("@")).name:
         problems.append(f"{ref}: schematic footprint {used!r} differs from the checked file {Path(fp.lstrip(chr(64))).name!r}")
 
+# ------------------------------------------------------------------ 5. project rules and board
+# KiCad's own Python API resets smartwatch.kicad_pro to defaults when it loads a board from this folder, so prove the JLCPCB rules are still there.
+pro = json.loads((PRJ / "smartwatch.kicad_pro").read_text(encoding="utf-8"))
+rules = pro.get("board", {}).get("design_settings", {}).get("rules", {})
+default = next((c for c in pro.get("net_settings", {}).get("classes", []) if c["name"] == "Default"), {})
+if (rules.get("min_clearance"), rules.get("min_track_width"), default.get("clearance")) != (0.09, 0.09, 0.1):
+    problems.append("smartwatch.kicad_pro does not hold the JLCPCB rules: run python tools/jlc_rules.py")
+# kicad-cli compares board and schematic only when the .kicad_sch sits beside the .kicad_pcb (a board in build/ is compared with nothing).
+board = PRJ / "smartwatch.kicad_pcb"
+if board.exists():
+    run("pcb", "drc", "--schematic-parity", "--format", "json", "--severity-all", "-o", str(PRJ / "build/drc.json"), str(board))
+    drc = json.loads((PRJ / "build/drc.json").read_text(encoding="utf-8"))
+    if drc["schematic_parity"]:
+        problems.append(f"smartwatch.kicad_pcb differs from the schematic in {len(drc['schematic_parity'])} places (see build/drc.json)")
+    print(f"board: {len(drc['violations'])} DRC violations, {len(drc['unconnected_items'])} unconnected, "
+          f"{len(drc['schematic_parity'])} schematic differences")
+
 print()
 if problems:
     print("PROBLEMS:")
