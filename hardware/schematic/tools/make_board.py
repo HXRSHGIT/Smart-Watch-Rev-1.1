@@ -2,7 +2,7 @@
 
 Run with KiCad's Python (it has pcbnew):
   "%LOCALAPPDATA%/Programs/KiCad/9.0/bin/python.exe" tools/make_board.py [out.kicad_pcb] [--force]
-Footprints are parked in a loose grid to the right of the 45 x 30 mm outline so nothing overlaps; placement is done afterwards.
+Footprints are parked in a loose grid to the right of the 34 x 23 mm outline so nothing overlaps; placement is done afterwards.
 This rebuilds the board from scratch, so it refuses to overwrite an existing board outside build/ unless --force is given:
 once placement has started, schematic changes go in with Update PCB from Schematic (F8) in KiCad.
 """
@@ -19,7 +19,7 @@ if os.path.exists(OUT) and "--force" not in sys.argv and os.path.dirname(os.path
 CLI = os.path.join(os.path.dirname(sys.executable), "kicad-cli.exe")
 KB = os.path.dirname(os.path.dirname(sys.executable))        # .../KiCad/9.0
 # JLCPCB 4-layer, 0.8 mm, ENIG (see hardware/JLCPCB_DESIGN_RULES.md); rules and net classes are in smartwatch.kicad_pro
-LAYERS, THICKNESS_MM, BOARD_MM = 4, 0.8, (45.0, 30.0)
+LAYERS, THICKNESS_MM, BOARD_MM = 4, 0.8, (34.0, 23.0)
 VARS = {"KIPRJMOD": PRJ, "KICAD9_FOOTPRINT_DIR": os.path.join(KB, "share", "kicad", "footprints")}
 
 

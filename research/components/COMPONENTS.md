@@ -1,6 +1,6 @@
 # HealthOS Band — Component Catalogue (Rev 1.1)
 
-> **Historical full-wearable candidate catalogue.** The owner approved a smaller USB-powered ESP32-C3 / MAX30102 / MAX30208 sensor-test PCB on 2026-10-18. Use [the Iteration 1 decision](../../docs/ITERATION_1_DECISION.md) as the current component baseline. This catalogue is retained for later research; its candidate parts are not automatically fitted or approved for Iteration 1.
+> **Historical full-wearable candidate catalogue.** The current Iteration 1 board is the battery-less nRF54L15 / nPM1300 / MAX86141 / BMI270 / MAX30208 design in [`hardware/schematic`](../../hardware/schematic/README.md) (it replaced the 2026-10-18 ESP32-C3 / MAX30102 baseline). This catalogue is retained for later research; its candidate parts are not automatically fitted or approved for Iteration 1.
 
 Every part named in brief §8, plus the alternatives worth evaluating before schematic freeze.
 

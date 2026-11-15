@@ -124,7 +124,7 @@ def tc2030():
                     ("6", "SWO", BI), None, None, ("5", "GND", "power_in")], width=12.7)
     return chip_symbol("smartwatch", "TC2030_SWD", "J", [u],
                        footprint="Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical",
-                       datasheet="Tag-Connect TC2030-CTX-NL cable (pin order to be confirmed)",
+                       datasheet="Tag-Connect TC2030-CTX-NL cable (pin order per the TC2030-CTX drawing)",
                        description="Tag-Connect TC2030 no-legs SWD pads. Pin order: 1 VTREF, 2 SWDIO, 3 nRESET, 4 SWDCLK, 5 GND, 6 SWO.")
 
 def npm1300():

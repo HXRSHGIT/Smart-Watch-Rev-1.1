@@ -548,7 +548,7 @@
 		(property "Reference" "J" (at 0 0 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "TC2030_SWD" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Datasheet" "Tag-Connect TC2030-CTX-NL cable (pin order to be confirmed)" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "Tag-Connect TC2030-CTX-NL cable (pin order per the TC2030-CTX drawing)" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Tag-Connect TC2030 no-legs SWD pads. Pin order: 1 VTREF, 2 SWDIO, 3 nRESET, 4 SWDCLK, 5 GND, 6 SWO." (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "ki_keywords" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(symbol "TC2030_SWD_1_1"

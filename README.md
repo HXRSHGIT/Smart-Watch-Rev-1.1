@@ -5,15 +5,11 @@ Source brief: [`docs/HARDWARE_ENGINEER_HANDOFF_REQUIREMENTS.md`](docs/HARDWARE_E
 
 Done by Harsh Thakur.
 
-## Current decision - Iteration 1
+## Current design - Iteration 1
 
-**Approved 2026-10-18:** build a USB-powered custom sensor-test PCB using **ESP32-C3-MINI-1-N4 + MAX30102 + MAX30208**. A board larger than the final band is acceptable. Use USB for raw-data logging and test BLE; the module's 4 MB flash is sufficient for firmware/settings and limited logs, so **no external flash is fitted**.
+The Iteration 1 board is a **battery-less, bench-powered engineering PCB** (5 V on two pogo pads or a 2.54 mm header, no cell fitted) built around **nRF54L15 + nPM1300 + MAX86141 (SFH 7016 emitters, 2 x VEMD8080 photodiodes) + BMI270 + MAX30208 + MX25R3235F flash + a Johanson chip antenna**. Firmware is flashed and debugged over SWD (Tag-Connect). The 10-page KiCad 9 schematic, its checks and the board file are in **[`hardware/schematic/`](hardware/schematic/README.md)**; the board is designed to JLCPCB's stated limits (4 layers, 0.8 mm, ENIG), see **[`hardware/JLCPCB_DESIGN_RULES.md`](hardware/JLCPCB_DESIGN_RULES.md)**. Layout (placement and routing) has not been done yet, and the design is not a fabrication-ready or sourcing-verified BOM.
 
-The authoritative scope, selected parts, power/interface circuits, deferred features and bring-up gates are in **[Iteration 1 decision](docs/ITERATION_1_DECISION.md)**. Temperature sensing is included; battery charging, display, haptics, motion/pressure sensors and NFC are deferred. This freezes the iteration's direction, not a fabrication-ready or sourcing-verified BOM.
-
-For the next engineering stage, see **[Iteration 1 schematic connection plan](docs/ITERATION_1_SCHEMATIC_FLOW.md)**: power and signal flow, proposed GPIO map, sensor interfaces, USB/boot/debug wiring and the checks required before schematic/layout release.
-
-The client-facing **[Component Selection](docs/COMPONENT_SELECTION.md)** explains every selected part, its purpose, implementation considerations and the features deferred from the first board.
+This replaces the earlier 2026-10-18 baseline (ESP32-C3-MINI-1 + MAX30102 + MAX30208, USB-powered). That baseline is kept only as history in [Iteration 1 decision](docs/ITERATION_1_DECISION.md), [Iteration 1 schematic connection plan](docs/ITERATION_1_SCHEMATIC_FLOW.md) and [Component Selection](docs/COMPONENT_SELECTION.md); those three documents describe parts that are no longer on the board.
 
 The documents under `research/` describe the earlier full-wearable investigations. Their parts and performance estimates are **not the current Iteration 1 BOM**. The original client brief remains intact as the longer-term product reference.
 

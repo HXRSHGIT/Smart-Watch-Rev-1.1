@@ -32,11 +32,11 @@ def draw(d):
         d.w((86 * U, py), (102 * U, py))
         d.put("Connector:TestPoint", 102 * U, py, 270, ref=f"TP{k + 1}", value=f"TP {rail}", footprint=TP_FP, prefix="TP", tside="L")
     nx = 126 * U
-    h = note(d, "Tag-Connect TC2030-NL pin order (to be confirmed against the cable drawing): 1 VTREF, 2 SWDIO, 3 nRESET, "
+    h = note(d, "Tag-Connect TC2030-NL pin order (matches the TC2030-CTX cable drawing): 1 VTREF, 2 SWDIO, 3 nRESET, "
                 "4 SWDCLK, 5 GND, 6 SWO. VTREF takes the 1.8 V rail so the programmer senses the target voltage.",
              nx, 28 * U, 50)
     h2 = note(d, "Test points are plain 1.0 mm pads. Put them on one side of the board where the production fixture can reach "
                  "them (research/storage-nfc-dft/DFT_PROGRAMMING.md). The bus test points sit on the sheets that own the bus: "
                  "I2C on the sensors sheet and SPI on the memory sheet.", nx, 28 * U + h + 3, 50)
-    note(d, "Open items: confirm the Tag-Connect pin order, and decide which test points stay on the final board.",
+    note(d, "Open item: decide which test points stay on the final board.",
          nx, 28 * U + h + h2 + 6, 50)

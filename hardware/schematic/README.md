@@ -65,6 +65,6 @@ python tools/dev.py mcu A3 110     # preview one sheet as build/dev/mcu.png
 ## Known open items (also in `../REQUIREMENTS_FROM_DATASHEETS.md` section 12)
 
 - nPM1300 and flash datasheets are not saved yet, so those two sheets and the power budget are not built.
-- Footprints marked CHECK: MAX30208 (pads scaled from a drawing), OCVPB21 (A1 orientation versus the package marking), VEMD8080 (pad numbering versus the reference board), pogo pad (placeholder diameter), Johanson pads (from the datasheet mounting drawing).
-- Tag-Connect TC2030 pin order is assumed (1 VTREF, 2 SWDIO, 3 nRESET, 4 SWDCLK, 5 GND, 6 SWO) and must be confirmed against the cable drawing.
+- Footprint status is in `../FOOTPRINT_AUDIT.md`. Still open: the OCVPB21 dot-to-A1 link (confirm on the first parts), the VEMD8080 anode pad (closed by decision, prove with a diode test on a sample part), the pogo pad size (dock vendor), J4 (not fitted).
+- Tag-Connect TC2030 pin order (1 VTREF, 2 SWDIO, 3 nRESET, 4 SWDCLK, 5 GND, 6 SWO) is confirmed against the TC2030-CTX cable drawing.
 - Passive part numbers are not chosen yet; values and ratings come from the datasheets.

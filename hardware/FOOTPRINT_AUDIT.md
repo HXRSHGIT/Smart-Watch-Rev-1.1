@@ -1,0 +1,32 @@
+# Footprint audit (2026-11-14)
+
+Done by Harsh Thakur.
+
+Every footprint on the board, what it was checked against, and what is still open. "Verified" means the pad or package numbers were compared with the vendor drawing; nothing here has been checked on a physical part.
+
+| Part | Footprint | Checked against | Status |
+|---|---|---|---|
+| U1 nRF54L15 QFN48 | KiCad `QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6mm` | nRF54L15 DS v1.0 table 83: body 6.0, pitch 0.40, pad width 0.20, length 0.40, exposed pad 4.5 to 4.7 | Verified |
+| U7 nPM1300 QFN32 | KiCad `QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm` | PS v1.3 mechanical: body 5.0, pitch 0.5, exposed pad 3.4 to 3.6 | Verified |
+| U5 TPS61240 | KiCad `WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm` | TI DRV0006A: 2 x 2, pitch 0.65, exposed pad 1.0 x 1.6 | Verified |
+| U3 BMI270 | KiCad `Bosch_LGA-14_3x2.5mm_P0.5mm` | Bosch DS section 8.1: 3.00 x 2.50, pitch 0.5, pad 0.25 wide (land is 0.675 long, 0.1 mm outside and inside the 0.475 package pad) | Verified (library footprint is written for the BMI160, same package) |
+| U4 MAX30208 | custom | ADI land pattern 90-100101 | Verified |
+| U8 flash | custom | Macronix rev 1.6 p.82: lead 0.30 x 0.60, pitch 0.8; Macronix gives no land pattern, land = lead plus 0.2 mm | Verified against the package outline; the land pattern is our choice |
+| U6 OCVPB21 | custom | DS13107 table 7: pad 0.2, mask 0.275; bump map figure 3 (bump side) and figure 10 (package outline) | Closed by decision 2026-11-14: the datasheet figures do not agree on the dot's corner (figure 11 puts it at a corner of the portrait top view, figure 10 puts it beside the A end, between rows 1 and 2) and ST's application note AN2348 could not be opened. What all sources share is that the dot is at the A end of the long axis (USB_DP, USB_DM, USB_IND side, away from RLIM and FLAG). A mirror image is physically impossible, so the A end fixes the orientation. Rule for assembly: dot end = column A end = the end of our footprint with the silkscreen marker. Check under a microscope on the first article and give JLCPCB this rule |
+| AE1 antenna | custom | Johanson 36S0021A p.3: pads 0.8 x 1.6, gap 2.6, span 4.2 | Verified; keep-out 6.5 x 6.5 applied |
+| D1 SFH 7016 | custom | OSRAM v1.5 p.13 and p.14: pads 0.4 x 0.4, gap 0.25, rows 0.75 apart, top-view pin numbers | Verified |
+| U2 MAX86141 | custom | ADI package drawing 21-100134 (opened 2026-11-14): 5 x 4 balls, 0.40 pitch, D1 1.20 x E1 1.60, body 1.848 x 2.048, ball 0.27, height 0.50 max; AN1891 (0.4 mm pitch): acceptable pad 0.20 to 0.26, recommended 0.25. Ours 0.21 is inside the acceptable range; 0.25 would put the mask openings 0.09 apart, under JLCPCB's 0.10 mask bridge, and would not leave room to escape | Verified (0.21 mm kept on purpose) |
+| PD1, PD2 VEMD8080 | custom | Vishay 84565 p.4 (rev 1.1): pads 0.54 x 0.55, columns 1.31 / 1.38 / 1.31, rows 2.38; numbering as Vishay's pinning top view (pin 1 at the marked corner, anode pin 5 diagonally across, next to the window notch) | Closed by decision: Vishay's drawings are consistent three ways and govern. The Maxim reference board numbers the pads the other way round (it uses the pinning bottom view as a footprint); that is the likely reason it shows the anode on its pin 4, but this is not proven. Proof on hardware: diode test on the first sample part before assembly |
+| X1 32.768 kHz | custom `Crystal_SMD_2012_SC-20S_2.05x1.2mm` | Seiko SC-20S datasheet (LCSC C97603): 2.05 x 1.2 x 0.6, recommended pads 0.7 x 1.4 at 1.5 mm centres; electrical 9 pF, +/-20 ppm, ESR 90 kOhm max, C0 1.3 pF typ, drive 0.5 uW max, against nRF54L15 LFXO limits (CL 6 to 9, C0 1 to 2 pF, ESR 100 kOhm max, drive 0.5 uW) | Verified |
+| X2 32 MHz | KiCad `Crystal_SMD_2016-4Pin_2.0x1.6mm` | NDK NX2016SA catalogue (opened 2026-11-14): 2.0 x 1.6 x 0.45, land pattern pads 0.85 x 0.75 on 1.35 x 1.05 centres (stock footprint 0.9 x 0.8 on 1.4 x 1.1, within 0.05 mm), #1 and #3 crystal, #2 and #4 ground, ESR 60 ohm max above 26 MHz. Part NX2016SA-32MHZ-EXS00A-CS06654 (LCSC C5441424): 8 pF, 60 ohm. nRF54L15 figure 17 allows about 94 ohm at C0 = 1 pF and about 70 ohm at 2 pF for CL 8 pF | Footprint and ESR verified; the part's C0 was not found (needs the NDK spec sheet; fine up to about 2.3 pF), first-article start-up test |
+| J3 Tag-Connect | KiCad `TC2030-IDC-NL` | Tag-Connect TC2030-IDC-NL footprint drawing (opened 2026-11-14): six 0.787 mm contacts on 1.27 mm pitch, three 0.991 mm non-plated alignment holes, no solder paste; pin order from the TC2030-CTX drawing. Stock pad and hole positions match | Verified. Routing rule: no track or via in the keep-out between the pads, nothing within 0.5 mm of a pad |
+| J1, J2 pogo pads | custom 2.6 mm round | Decided 2026-11-14: iteration 1 is charged through J5, the pads only prototype the final contact. The dock is built for this board, so pad size and spacing are our own spec: 2.6 mm round pad (1.7 x a 1.5 mm pin tip, so the dock may be off by 0.5 mm), pads 10.4 mm apart, ENIG | Closed as our own spec. ENIG gold is thin (1 to 3 microinch) and wears under repeated docking: the final band needs hard gold or stainless contacts |
+| SW1 | KiCad `SW_SPST_B3U-1000P` | Omron B3U datasheet, PCB pad drawing for B3U-1000P(M) (opened 2026-11-14): overall 4.2 +/-0.1, gap 2.6 +/-0.1, pad height 1.7 +/-0.1; stock pads 0.9 x 1.7 at +/-1.7 give 4.3 / 2.5, inside the tolerance | Verified |
+| J4 battery connector | KiCad `JST_SH_SM03B-SRSS-TB` | JST's own drawing could not be opened (access denied) and the search results gave no figure for this part. Not fitted in iteration 1 and the cell is not chosen | Not applicable this spin: re-audit when the cell and connector are chosen |
+| J5 header | KiCad 2.54 mm 1 x 2 | Standard | Fine |
+| C, R, L, FB, NT | KiCad 0201, 0402, 0603, 0805 | Standard sizes | Fine; part numbers not chosen |
+| TP1 to TP10 | KiCad 1.0 mm pad | Standard | Fine |
+
+## 3D bodies
+
+KiCad's library provides bodies for the passives, J4, J5, SW1, U3, U5, U7 and X2. The rest had none (two of KiCad's own stock footprints, the nRF54L15 and the 32 kHz crystal, point at files that are not installed). `tools/gen_3d.py` now draws a box of the datasheet package size and height for U1, U2, U4, U6, U8, D1, PD1, PD2, AE1, X1 and X2, and `tools/place_board.py` attaches them. They show size and height only. Heights come from the datasheets (MAX86141 0.50 mm max from ADI 21-100134, flash 0.6, antenna 1.3, SC-20S 0.6, NX2016SA 0.45). J3, the pogo pads and the test points are bare pads and have no body.

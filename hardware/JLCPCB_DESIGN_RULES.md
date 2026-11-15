@@ -8,10 +8,10 @@ Decision (2026-11-13): the board is made at JLCPCB and designed to what JLCPCB s
 
 | Item | Choice | Why |
 |---|---|---|
-| Layers | 4, rigid FR-4 | Enough for 92 parts on 45 x 30 mm. JLCPCB's automatic via-in-pad process starts at 6 layers, but plain via-in-pad needs a 0.30 mm pad (see 4), which does not fit our 0.21 mm pads, so 6 layers would add cost for nothing. |
+| Layers | 4, rigid FR-4 | Enough for 92 parts on 34 x 23 mm. JLCPCB's automatic via-in-pad process starts at 6 layers, but plain via-in-pad needs a 0.30 mm pad (see 4), which does not fit our 0.21 mm pads, so 6 layers would add cost for nothing. |
 | Thickness | 0.8 mm (+/- 0.1 mm) | Pod budget 0.6 to 0.8 mm. JLCPCB lists 0.4 / 0.6 / 0.8 / 1.0 mm for FR-4; whether 0.8 mm is offered for every layer count was not stated: check on the order page. |
 | Finish | ENIG | JLCPCB: 0.2 to 0.25 mm BGA pads require ENIG. Also flat for the WLP parts. |
-| Outline | 45 x 30 mm rectangle | First-spin engineering board (see `tools/make_board.py`). |
+| Outline | 34 x 23 mm rectangle | First-spin engineering board (see `tools/make_board.py`). |
 | Impedance | 50 ohm RF line, +/- 10 % | JLCPCB tolerance for 50 ohm and above. Stack-up and trace width come from JLCPCB's impedance calculator when the order is quoted. |
 
 ## 2. Rules (enforced in `smartwatch.kicad_pro`, written by `tools/jlc_rules.py`)
@@ -34,7 +34,7 @@ Decision (2026-11-13): the board is made at JLCPCB and designed to what JLCPCB s
 ## 3. Verified
 
 - `tools/check.py` fails if `smartwatch.kicad_pro` does not hold these rules, and fails if `smartwatch.kicad_pcb` differs from the schematic.
-- DRC against these rules: 0 clearance violations, 4 silkscreen warnings (PD1, PD2, U8 outlines over pads), 238 unconnected (nothing is routed yet).
+- DRC against these rules (2026-11-13, after the footprint fixes): 0 violations of any kind, 230 unconnected (nothing is routed yet). The body outlines of PD1, PD2, U8 and AE1 are no longer drawn on the silkscreen layer, so they do not run over pads.
 - Pad to pad 0.15 mm: a sweep with KiCad's default 0.2 mm clearance flagged only pad pairs at 0.18 and 0.19 mm, so the smallest gap in any footprint is 0.18 mm. This is a derived result: a custom `.kicad_dru` rule had no effect in `kicad-cli`, so none is shipped.
 
 ## 4. Fit of the fine-pitch parts
@@ -59,5 +59,5 @@ JLCPCB's two ways to put a via inside a pad do not fit a 0.21 mm pad on the plai
 
 - Board thickness 0.8 mm for 4 layers on the order page, and the exact JLCPCB stack-up for 50 ohm.
 - Hole-to-hole minimum; the page value was not read.
-- Antenna keep-out, placement, routing: not started.
+- Routing: not started. Antenna keep-out and first placement are done, see `PLACEMENT_RULES.md`.
 - A free JLCDFM check of the Gerber files is the cheapest proof that the finished layout fits their rules.

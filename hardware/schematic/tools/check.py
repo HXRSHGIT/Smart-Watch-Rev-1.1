@@ -257,7 +257,7 @@ CUSTOM = PRJ / "libs/smartwatch.pretty"
 for ref, fp in (("U1", "Package_DFN_QFN.pretty/QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6mm"),
                 ("U3", "Package_LGA.pretty/Bosch_LGA-14_3x2.5mm_P0.5mm"),
                 ("U5", "Package_SON.pretty/WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm"),
-                ("X2", "Crystal.pretty/Crystal_SMD_2016-4Pin_2.0x1.6mm"), ("X1", "Crystal.pretty/Crystal_SMD_2012-2Pin_2.0x1.2mm"),
+                ("X2", "Crystal.pretty/Crystal_SMD_2016-4Pin_2.0x1.6mm"), ("X1", "@Crystal_SMD_2012_SC-20S_2.05x1.2mm"),
                 ("J3", "Connector.pretty/Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"),
                 ("U7", "Package_DFN_QFN.pretty/QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm"), ("U8", "@MX25R3235F_USON-8_4x3mm_P0.8mm"),
                 ("J4", "Connector_JST.pretty/JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal"),

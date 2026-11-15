@@ -104,13 +104,13 @@ def draw(d):
 
     # ------------------------------------------------------------------ clocks (right)
     x2 = d.put("Device:Crystal_GND24", RX + 14 * U, ys(0) + 3 * U, 90, ref="X2", value="32MHz",
-               footprint="Crystal:Crystal_SMD_2016-4Pin_2.0x1.6mm", props={"Spec": "2.0x1.6 mm, CL 8 pF, total tol 40 ppm", "Source": NRF},
+               footprint="Crystal:Crystal_SMD_2016-4Pin_2.0x1.6mm", props={"Spec": "2.0x1.6 mm, CL 8 pF, total tol 40 ppm", "Source": NRF, "MPN": "NX2016SA-32MHZ-EXS00A-CS06654"},
                prefix="X", tside="L")
     d.w(u1.p("35"), (x2.p(3)[0], ys(0)))
     d.w(u1.p("34"), (x2.p(1)[0], ys(3)))
     d.gnd(*x2.p(2))
     x1 = d.put("Device:Crystal_Small", RX + 14 * U, ys(6), 270, ref="X1", value="32.768kHz",
-               footprint="Crystal:Crystal_SMD_2012-2Pin_2.0x1.2mm", props={"Spec": "2.0x1.2 mm, CL 9 pF, total tol 20 ppm", "Source": NRF},
+               footprint="smartwatch:Crystal_SMD_2012_SC-20S_2.05x1.2mm", props={"Spec": "2.05x1.2 mm, CL 9 pF, total tol 20 ppm", "Source": NRF, "MPN": "SC-20S 32.768kHz 9pF 20ppm"},
                prefix="X")
     d.w(u1.p("1"), (x1.p(1)[0], ys(5)))
     d.w(u1.p("2"), (x1.p(2)[0], ys(7)))

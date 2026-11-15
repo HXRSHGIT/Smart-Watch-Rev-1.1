@@ -244,18 +244,18 @@ Not counted yet: nPM1300 and its inductors and capacitors, the flash, the I2C pu
 | # | Item | Blocks |
 |---|---|---|
 | 1 | nPM1300 product specification PDF (pins, inductors, capacitors, charge settings, I2C address, NTC, ship mode). Not yet saved. | power sheet |
-| 2 | MX25R3235F datasheet PDF (pins, package, supply decoupling) | memory sheet |
+| 2 | MX25R3235F: rev 1.6 is saved and used. A newer rev 1.8 is said to exist; none was found online on 2026-11-13 (latest seen: 1.6 and older). Re-read the revision history when the part is ordered. | memory sheet |
 | 3 | Battery cell, battery connector and the cell's thermistor type | power sheet |
-| 4 | Passive part numbers: choose one MPN per value, get the series datasheet, check DC-bias derating | all sheets |
-| 5 | VEMD8080 pad numbering vs the reference footprint (`REFERENCE_DESIGNS.md`): our footprint follows Vishay's drawing | optical footprint |
+| 4 | Passive part numbers: choose one MPN per value, get the series datasheet, check DC-bias derating. Not done: choose at JLCPCB quote time from their parts library so that assembly stock decides; critical values are C24 22 uF (DC bias), C15 22 uF and C18 10 uF, the antenna and RF parts (Murata GJM and LQP series already named), L5 and L6. | all sheets |
+| 5 | VEMD8080 pad numbering: closed by decision 2026-11-14. Vishay's three drawings agree with our footprint; the Maxim reference board uses the bottom-view numbering as its footprint (clockwise), which is the likely reason it shows the anode on its pin 4 (not proven). Prove on the first sample part with a diode test before assembly. See `REFERENCE_DESIGNS.md`, `FOOTPRINT_AUDIT.md`. | optical footprint |
 | 6 | MAX86141 SCLK maximum: confirm the printed value in the electrical table (4 MHz or 8 MHz) | firmware only |
-| 7 | MAX86141 footprint: pads (0.21 mm round, 0.4 mm pitch) come from the MAXREFDES103 fab data. Confirm with ADI Application Note 1891 and package outline 21-100134. | footprint |
-| 8 | OCVPB21 operating range is -30 to +65 degC: confirm against the band's required range. Also confirm the A1 corner against the package marking. | client, footprint |
+| 7 | MAX86141 footprint: DONE 2026-11-14. Package drawing 21-100134 and AN1891 read; ball grid 1.60 x 1.20 mm at 0.4 mm matches; pad 0.21 mm is inside AN1891's 0.20 to 0.26 mm window (0.25 recommended, rejected: JLCPCB mask bridge and escape). | footprint |
+| 8 | OCVPB21 operating range is -30 to +65 degC: confirm against the band's required range. A1 closed by decision 2026-11-14: the dot is at the A end of the long axis (see `FOOTPRINT_AUDIT.md`); check on the first article. | client, footprint |
 | 9 | Display, haptic driver, pressure sensor and NFC reader are not in the selected-parts list and are not on these sheets | scope |
-| 10 | MAX30208 land pattern 90-100101: the footprint pads are scaled from the pin drawing and must be replaced | footprint |
-| 11 | Tag-Connect TC2030 pin order (assumed 1 VTREF, 2 SWDIO, 3 nRESET, 4 SWDCLK, 5 GND, 6 SWO): confirm against the cable drawing | test sheet |
-| 12 | Pogo pad diameter (2.6 mm is a placeholder) and pad spacing: dock contact vendor | footprint |
-| 13 | Crystal part numbers (32 MHz 2016 CL 8 pF, 32.768 kHz 2012 CL 9 pF) | BOM |
+| 10 | DONE 2026-11-13: MAX30208 pads now follow land pattern 90-100101 (side pads 0.55 x 0.40, centre pads 0.25 x 0.30) | footprint |
+| 11 | DONE 2026-11-13: Tag-Connect TC2030 pin order 1 VTREF (VCC), 2 SWDIO, 3 nRESET, 4 SWDCLK, 5 GND, 6 SWO matches the TC2030-CTX drawing | test sheet |
+| 12 | Pogo pads: closed 2026-11-14 as our own spec (2.6 mm round, 10.4 mm apart, ENIG); iteration 1 is charged through J5. Dock requirement: pin tip 1.5 mm or smaller, aligned to 0.5 mm, spring force set by the dock design; final band needs hard gold or stainless contacts. | footprint |
+| 13 | Crystal part numbers: chosen 2026-11-14. 32.768 kHz Seiko SC-20S (LCSC C97603), checked against the nRF54L15 LFXO limits; 32 MHz NDK NX2016SA-32MHZ-EXS00A-CS06654 (LCSC C5441424, 8 pF, 60 ohm, 2016 4-pad), ESR within figure 17; its C0 was not found, confirm with the NDK spec sheet and a start-up test. Abracon ABM12W (named on Nordic's forum) is a smaller package and does not fit our 2016 footprint. | BOM |
 
 ## 13. GPIO allocation (nRF54L15)
 

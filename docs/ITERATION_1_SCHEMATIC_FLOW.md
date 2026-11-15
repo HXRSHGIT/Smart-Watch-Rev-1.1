@@ -1,5 +1,7 @@
 # Iteration 1 - schematic connection plan
 
+> **Superseded.** This document describes the earlier ESP32-C3 + MAX30102 baseline (2026-10-18). The current Iteration 1 design is nRF54L15 + nPM1300 + MAX86141 + BMI270 + MAX30208; see `hardware/schematic/README.md` and the repository README. Kept as history only.
+
 Prepared 2026-10-18 from the [approved Iteration 1 decision](ITERATION_1_DECISION.md).
 
 This document defines schematic blocks, signal connections and capture/review requirements. It is not a CAD schematic or a verified package pin map. GPIO assignments and initial passive values are proposals. Match every physical pad and electrical limit to the exact manufacturer's datasheet before capture; live datasheet and sourcing verification remain outstanding.

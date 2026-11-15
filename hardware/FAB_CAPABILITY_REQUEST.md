@@ -16,7 +16,7 @@ Purpose: choose the PCB fab and its design rules before routing. Nothing here ha
 | Flat finish: ENIG | Wafer-level packages need a flat pad. | Reference board fab note |
 | Finished thickness 0.6 to 0.8 mm, 4 layers (6 if the fab needs it) | Pod height budget. | mechanical plan |
 | 50 ohm controlled impedance on the RF line (nRF54L15 to the Johanson antenna) | Antenna matching. | Johanson / Nordic reference |
-| Small boards (about 45 x 30 mm), prototype quantities | First spin. | |
+| Small boards (about 34 x 23 mm), prototype quantities | First spin. | |
 
 ## 2. What the reference board does (MAXREFDES103 sensor board, same MAX86141)
 
@@ -54,6 +54,6 @@ Suggested path: send the question list in section 5 to both JLCPCB (HDI orders g
 2. If laser microvias are needed: minimum laser via diameter, capture pad diameter, minimum prepreg thickness, and the stack-up you recommend for 0.8 mm.
 3. Minimum trace/space on the outer layers (can a trace pass between two 0.21 mm pads with a 0.19 mm gap?), and minimum solder mask dam / mask opening style for these pads (non-solder-mask-defined).
 4. Controlled impedance: 50 ohm single-ended on the top layer over layer 2, your stack-up and tolerance.
-5. Panelisation and minimum board size for 45 x 30 mm, and lead time and price for 5 and 20 boards.
+5. Panelisation and minimum board size for 34 x 23 mm, and lead time and price for 5 and 20 boards.
 6. Can you drill 0.1 mm (4 mil) through a 0.8 mm 4-layer board and fill and cap it, as the MAXREFDES103 sensor board does? If yes, is that cheaper than laser HDI?
 7. Can you assemble 0.4 mm pitch WLP/WLCSP parts, or do we place them ourselves?

@@ -1,5 +1,7 @@
 # Component Selection
 
+> **Superseded.** This document describes the earlier ESP32-C3 + MAX30102 baseline (2026-10-18). The current Iteration 1 design is nRF54L15 + nPM1300 + MAX86141 + BMI270 + MAX30208; see `hardware/schematic/README.md` and the repository README. Kept as history only.
+
 **Project:** HealthOS Band  
 **Hardware stage:** Iteration 1 - functional sensor prototype  
 **Decision date:** 18 October 2026  

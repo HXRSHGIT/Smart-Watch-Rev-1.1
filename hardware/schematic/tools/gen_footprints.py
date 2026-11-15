@@ -11,7 +11,7 @@ OUT = Path(__file__).resolve().parent.parent / "libs" / "smartwatch.pretty"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def fp(name, descr, pads, body, court, pin1=None, tags="", mask_margin=None, paste_margin=None):
+def fp(name, descr, pads, body, court, pin1=None, tags="", mask_margin=None, paste_margin=None, silk=True):
     """pads: list of (number, shape, x, y, w, h). body/court: (x1, y1, x2, y2). Coordinates in mm, y down."""
     L = [f'(footprint "{name}"\n\t(version 20241229)\n\t(generator "kigen")\n\t(generator_version "9.0")\n\t(layer "F.Cu")\n'
          f'\t(descr "{descr}")\n\t(tags "{tags}")\n'
@@ -22,7 +22,8 @@ def fp(name, descr, pads, body, court, pin1=None, tags="", mask_margin=None, pas
          f'\t(attr smd)\n']
     x1, y1, x2, y2 = body
     L.append(f'\t(fp_rect (start {x1} {y1}) (end {x2} {y2}) (stroke (width 0.1) (type solid)) (fill no) (layer "F.Fab"))\n')
-    L.append(f'\t(fp_rect (start {x1 - 0.1:.2f} {y1 - 0.1:.2f}) (end {x2 + 0.1:.2f} {y2 + 0.1:.2f}) (stroke (width 0.12) (type solid)) (fill no) (layer "F.SilkS"))\n')
+    if silk:   # False where the body outline would run over the pads (JLCPCB removes silk on pads anyway)
+        L.append(f'\t(fp_rect (start {x1 - 0.1:.2f} {y1 - 0.1:.2f}) (end {x2 + 0.1:.2f} {y2 + 0.1:.2f}) (stroke (width 0.12) (type solid)) (fill no) (layer "F.SilkS"))\n')
     cx1, cy1, cx2, cy2 = court
     L.append(f'\t(fp_rect (start {cx1} {cy1}) (end {cx2} {cy2}) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))\n')
     if pin1:
@@ -45,7 +46,7 @@ def fp(name, descr, pads, body, court, pin1=None, tags="", mask_margin=None, pas
 xs = [-2.0, -0.69, 0.69, 2.0]
 pads = [(i + 1, "rect", xs[i], 1.19, 0.54, 0.55) for i in range(4)] + [(8 - i, "rect", xs[i], -1.19, 0.54, 0.55) for i in range(4)]
 fp("VEMD8080_4.8x2.5mm", "Vishay VEMD8080 photodiode, pad 5 anode (top right), others cathode. Vishay footprint drawing 6.550-5354.01-4.",
-   pads, (-2.4, -1.25, 2.4, 1.25), (-2.7, -1.8, 2.7, 1.8), pin1=(-2.7, 1.5), tags="photodiode vishay")
+   pads, (-2.4, -1.25, 2.4, 1.25), (-2.7, -1.8, 2.7, 1.8), pin1=(-2.7, 1.5), tags="photodiode vishay", silk=False)
 
 # ---- ams OSRAM SFH 7016, recommended solder pad p.14: six 0.4 x 0.4 pads, 0.25 gap, rows 0.75 apart (inner gap).
 # Numbering from the package drawing (top view): top row 5 3 1, bottom row 6 4 2.
@@ -72,19 +73,19 @@ fp("OCVPB21-13F6_WLCSP-13_P0.4mm", "ST OCVPB21-13F6 WLCSP-13, 1.32 x 2.10 mm. Pa
    pads, (-1.05, -0.66, 1.05, 0.66), (-1.3, -0.9, 1.3, 0.9), pin1=(-1.15, -0.8), tags="wlcsp esd st",
    mask_margin=0.0375, paste_margin=0.025)
 
-# ---- ADI MAX30208 thin LGA-10 2 x 2 mm. CHECK: pad sizes scaled from the pin-configuration drawing (top view, p.5);
-# the vendor land pattern 90-100101 was not available.
-pads = [(1, "rect", -0.6, -0.64, 0.5, 0.4), (2, "rect", -0.6, 0.0, 0.5, 0.4), (3, "rect", -0.6, 0.64, 0.5, 0.4),
-        (6, "rect", 0.6, -0.64, 0.5, 0.4), (5, "rect", 0.6, 0.0, 0.5, 0.4), (4, "rect", 0.6, 0.64, 0.5, 0.4),
-        (7, "rect", 0.0, -0.75, 0.2, 0.3), (8, "rect", 0.0, -0.25, 0.2, 0.3), (9, "rect", 0.0, 0.25, 0.2, 0.3),
-        (10, "rect", 0.0, 0.75, 0.2, 0.3)]
-fp("MAX30208_TLGA-10_2x2mm", "ADI MAX30208 thin LGA-10 2x2 mm. CHECK: pads scaled from the datasheet pin drawing, replace with land pattern 90-100101.",
+# ---- ADI MAX30208 thin LGA-10 2 x 2 mm. Pads from the vendor land pattern 90-100101 (L1022, read 2026-11-13):
+# six side pads 0.55 x 0.40 at x +/-0.60, y 0 and +/-0.65 (1.30 between outer rows); four centre pads 0.25 x 0.30 on a 0.5 mm pitch (1.50 between outer ones).
+pads = [(1, "rect", -0.6, -0.65, 0.55, 0.4), (2, "rect", -0.6, 0.0, 0.55, 0.4), (3, "rect", -0.6, 0.65, 0.55, 0.4),
+        (6, "rect", 0.6, -0.65, 0.55, 0.4), (5, "rect", 0.6, 0.0, 0.55, 0.4), (4, "rect", 0.6, 0.65, 0.55, 0.4),
+        (7, "rect", 0.0, -0.75, 0.25, 0.3), (8, "rect", 0.0, -0.25, 0.25, 0.3), (9, "rect", 0.0, 0.25, 0.25, 0.3),
+        (10, "rect", 0.0, 0.75, 0.25, 0.3)]
+fp("MAX30208_TLGA-10_2x2mm", "ADI MAX30208 thin LGA-10 2x2 mm. Pads per vendor land pattern 90-100101.",
    pads, (-1.0, -1.0, 1.0, 1.0), (-1.3, -1.3, 1.3, 1.3), pin1=(-1.15, -1.15), tags="lga temperature adi")
 
 # ---- Johanson 2450AT18A0100001E, EIA 1206: overall pad pattern 4.2 mm, inner gap 2.6 mm, pad height 1.6 mm (DS p.3).
 fp("Johanson_2450AT18A0100001E_1206", "Johanson 2.45 GHz chip antenna 3.2x1.6x1.3. Pad 1 feed, pad 2 NC but must be soldered. Pads from DS 36S0021A p.3. Keep copper clear around the body.",
    [(1, "rect", -1.7, 0.0, 0.8, 1.6), (2, "rect", 1.7, 0.0, 0.8, 1.6)], (-1.6, -0.8, 1.6, 0.8), (-2.3, -1.1, 2.3, 1.1),
-   pin1=(-2.5, -1.0), tags="antenna ble")
+   pin1=(-2.5, -1.0), tags="antenna ble", silk=False)
 
 # ---- Pogo charging pad: PLACEHOLDER diameter until the dock contact vendor is chosen.
 fp("Pogo_Pad_D2.6mm", "Charging contact pad, 2.6 mm round. PLACEHOLDER size, set with the dock contact vendor (research/power-battery/POGO_CHARGING.md).",
@@ -94,7 +95,13 @@ fp("Pogo_Pad_D2.6mm", "Charging contact pad, 2.6 mm round. PLACEHOLDER size, set
 # The two exposed metal pads under the body are left without a pad (datasheet: float or ground, no vias or traces under them).
 xs = [-1.2, -0.4, 0.4, 1.2]
 pads = [(i + 1, "rect", xs[i], 1.3, 0.35, 0.9) for i in range(4)] + [(8 - i, "rect", xs[i], -1.3, 0.35, 0.9) for i in range(4)]
-fp("MX25R3235F_USON-8_4x3mm_P0.8mm", "Macronix MX25R3235F 8-land USON 4x3 mm, 0.8 mm pitch. Land size 0.35 x 0.9 mm CHECK against Macronix land pattern. No pad for the exposed metal under the body: keep copper and vias away.",
-   pads, (-2.0, -1.5, 2.0, 1.5), (-2.3, -1.9, 2.3, 1.9), pin1=(-2.2, 1.0), tags="flash nor macronix")
+fp("MX25R3235F_USON-8_4x3mm_P0.8mm", "Macronix MX25R3235F 8-land USON 4x3 mm, 0.8 mm pitch. Land 0.35 x 0.9 mm = lead 0.30 x 0.60 (package outline, rev 1.6 p.82) plus 0.2 mm outside; Macronix gives no land pattern. No pad for the exposed metal under the body: keep copper and vias away.",
+   pads, (-2.0, -1.5, 2.0, 1.5), (-2.3, -1.9, 2.3, 1.9), pin1=(-2.2, 1.0), tags="flash nor macronix", silk=False)
+
+# ---- Seiko SC-20S 32.768 kHz crystal, 2.05 x 1.2 x 0.6 mm: recommended soldering pattern from the SC-20S datasheet
+# (pads 0.7 x 1.4, 1.5 mm centres). No copper under the crystal.
+fp("Crystal_SMD_2012_SC-20S_2.05x1.2mm", "Seiko SC-20S 32.768 kHz crystal 2.05x1.2 mm. Pads per the datasheet's recommended soldering pattern (0.7 x 1.4, 1.5 mm centres). No pattern under the body.",
+   [(1, "rect", -0.75, 0.0, 0.7, 1.4), (2, "rect", 0.75, 0.0, 0.7, 1.4)], (-1.025, -0.6, 1.025, 0.6), (-1.45, -0.95, 1.45, 0.95),
+   pin1=(-1.5, -0.8), tags="crystal 32khz", silk=False)
 
 print("footprints written:", len(list(OUT.glob("*.kicad_mod"))))
