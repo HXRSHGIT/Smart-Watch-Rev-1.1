@@ -12,8 +12,9 @@ import pcbnew
 HERE = os.path.dirname(os.path.abspath(__file__))
 PRJ = os.path.dirname(HERE)
 BOARD = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(PRJ, "smartwatch.kicad_pcb")
-W, H = 34.0, 23.0            # board, mm (also BOARD_MM in make_board.py)
+W, H = 40.0, 27.0            # board, mm (also BOARD_MM in make_board.py); grown from 34 x 23 on 2026-11-15 so the board routes
 EDGE = 0.3                   # courtyard to board edge
+GAP = 0.25                   # free space kept around every automatically placed part (routing channels)
 ANT_BOX = (0.0, 0.0, 6.5, 6.5)   # Johanson 2450AT18A0100001E ground clearance, no parts or copper pour on any layer
 
 # ref: (centre x, centre y, rotation, side); centre = centre of the footprint's courtyard. side "T" top (away from skin), "B" bottom (skin)
@@ -21,18 +22,19 @@ FIXED = {
     # antenna corner, top left. Pad 1 (feed) must face +x: rotation 180. Tee slots (R3, C14, R2) at the clearance edge.
     "AE1": (2.4, 2.5, 180, "T"), "R3": (5.9, 2.5, 180, "T"), "C14": (7.05, 4.5, 90, "T"), "R2": (8.2, 2.5, 180, "T"),
     # processor with its RF / crystal side facing the antenna (left); pi network from pin 31 leftwards
-    "U1": (13.5, 11.0, 180, "T"), "L2": (9.0, 11.2, 180, "T"), "L3": (7.4, 11.2, 180, "T"), "L4": (5.8, 11.2, 180, "T"),
-    "X2": (7.6, 14.9, 0, "T"), "X1": (19.2, 14.6, 0, "T"),
-    "U8": (17.5, 4.4, 0, "T"), "U3": (22.5, 9.5, 0, "T"),
-    "U5": (23.2, 4.2, 0, "T"), "U7": (24.6, 16.6, 0, "T"),
-    # connectors and switch on the board edges
-    "J5": (29.0, 2.3, 90, "T"), "J4": (30.2, 9.0, 90, "T"), "SW1": (31.2, 19.6, 0, "T"), "J3": (16.4, 20.0, 0, "T"),
+    "U1": (14.5, 11.5, 180, "T"), "L2": (10.0, 11.7, 180, "T"), "L3": (8.4, 11.7, 180, "T"), "L4": (6.8, 11.7, 180, "T"),
+    "X2": (8.6, 15.6, 180, "T"), "X1": (20.5, 15.6, 0, "T"),
+    # IMU next to U1's I2C / interrupt pins (top-left side), flash next to the SPI pins (top-right)
+    "U3": (9.8, 6.2, 0, "T"), "U8": (21.6, 4.8, 0, "T"),
+    "U5": (26.0, 5.0, 0, "T"), "U7": (31.0, 19.5, 0, "T"),
+    # connectors and switch on the board edges; Tag-Connect on the top edge right above U1's SWD pins
+    "J5": (34.5, 2.3, 90, "T"), "J4": (36.2, 10.5, 90, "T"), "SW1": (37.0, 24.9, 0, "T"), "J3": (15.2, 2.4, 0, "T"),
     # bottom (skin): optics and skin temperature in the middle of the back face, charging pads on the right edge
-    "PD1": (10.5, 11.5, 0, "B"), "D1": (17.0, 11.5, 0, "B"), "PD2": (23.5, 11.5, 0, "B"), "U2": (17.0, 14.2, 0, "B"),
-    "U4": (23.5, 15.45, 0, "B"), "U6": (28.2, 11.5, 0, "B"), "J1": (32.0, 6.6, 0, "B"), "J2": (32.0, 17.0, 0, "B"),
+    "PD1": (13.5, 13.5, 0, "B"), "D1": (20.0, 13.5, 0, "B"), "PD2": (26.5, 13.5, 0, "B"), "U2": (20.0, 16.5, 0, "B"),
+    "U4": (26.5, 17.6, 0, "B"), "U6": (33.0, 13.5, 0, "B"), "J1": (38.0, 8.3, 0, "B"), "J2": (38.0, 18.7, 0, "B"),
 }
 for i in range(10):          # test points on the bottom-left edge of the top face, two rows of five
-    FIXED[f"TP{i + 1}"] = (2.0 + 2.35 * (i % 5), 21.4 - 2.5 * (i // 5), 0, "T")
+    FIXED[f"TP{i + 1}"] = (2.0 + 2.35 * (i % 5), H - 1.6 - 2.5 * (i // 5), 0, "T")
 THT = {"J5"}                 # occupies both faces
 PASSIVE = ("C", "R", "L", "FB", "NT")
 BIG_NETS = 40                # nets with more pads (ground, main rails) do not anchor anything
@@ -146,7 +148,8 @@ def spot(ref, tx, ty, side):
             for rot in (0, 90):
                 w, h, ox, oy = shape(ref, rot, side)
                 r = (cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2)
-                if free(r, side):
+                rg = (r[0] - GAP, r[1] - GAP, r[2] + GAP, r[3] + GAP)
+                if free(r, side) and free(rg, side, edge=EDGE - GAP):
                     return cx, cy, rot, r
     return None
 

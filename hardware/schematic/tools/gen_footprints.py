@@ -75,8 +75,10 @@ fp("OCVPB21-13F6_WLCSP-13_P0.4mm", "ST OCVPB21-13F6 WLCSP-13, 1.32 x 2.10 mm. Pa
 
 # ---- ADI MAX30208 thin LGA-10 2 x 2 mm. Pads from the vendor land pattern 90-100101 (L1022, read 2026-11-13):
 # six side pads 0.55 x 0.40 at x +/-0.60, y 0 and +/-0.65 (1.30 between outer rows); four centre pads 0.25 x 0.30 on a 0.5 mm pitch (1.50 between outer ones).
-pads = [(1, "rect", -0.6, -0.65, 0.55, 0.4), (2, "rect", -0.6, 0.0, 0.55, 0.4), (3, "rect", -0.6, 0.65, 0.55, 0.4),
-        (6, "rect", 0.6, -0.65, 0.55, 0.4), (5, "rect", 0.6, 0.0, 0.55, 0.4), (4, "rect", 0.6, 0.65, 0.55, 0.4),
+# Side pads trimmed to 0.36 mm tall (vendor: 0.40) so pads 8 / 9 (SDA / SCL) can escape between them with
+# a 0.09 mm track and 0.10 mm clearance (channel 0.29 mm); see tools/fix_u4_escape.py.
+pads = [(1, "rect", -0.6, -0.65, 0.55, 0.36), (2, "rect", -0.6, 0.0, 0.55, 0.36), (3, "rect", -0.6, 0.65, 0.55, 0.36),
+        (6, "rect", 0.6, -0.65, 0.55, 0.36), (5, "rect", 0.6, 0.0, 0.55, 0.36), (4, "rect", 0.6, 0.65, 0.55, 0.36),
         (7, "rect", 0.0, -0.75, 0.25, 0.3), (8, "rect", 0.0, -0.25, 0.25, 0.3), (9, "rect", 0.0, 0.25, 0.25, 0.3),
         (10, "rect", 0.0, 0.75, 0.25, 0.3)]
 fp("MAX30208_TLGA-10_2x2mm", "ADI MAX30208 thin LGA-10 2x2 mm. Pads per vendor land pattern 90-100101.",

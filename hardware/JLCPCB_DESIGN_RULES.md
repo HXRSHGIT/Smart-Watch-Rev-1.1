@@ -12,7 +12,15 @@ Decision (2026-11-13): the board is made at JLCPCB and designed to what JLCPCB s
 | Thickness | 0.8 mm (+/- 0.1 mm) | Pod budget 0.6 to 0.8 mm. JLCPCB lists 0.4 / 0.6 / 0.8 / 1.0 mm for FR-4; whether 0.8 mm is offered for every layer count was not stated: check on the order page. |
 | Finish | ENIG | JLCPCB: 0.2 to 0.25 mm BGA pads require ENIG. Also flat for the WLP parts. |
 | Outline | 34 x 23 mm rectangle | First-spin engineering board (see `tools/make_board.py`). |
-| Impedance | 50 ohm RF line, +/- 10 % | JLCPCB tolerance for 50 ohm and above. Stack-up and trace width come from JLCPCB's impedance calculator when the order is quoted. |
+| Impedance | 50 ohm RF line, +/- 10 % | JLCPCB tolerance (capabilities page). Stack-up and width: see section 1a. |
+
+### 1a. Stack-up for the 50 ohm line (read from jlcpcb.com/impedance on 2026-11-15)
+
+JLCPCB lists 0.8 mm, 1 oz outer, 0.5 oz inner, 4-layer impedance stack-ups: JLC04081H-7628 (prepreg 0.2104 mm), **JLC04081H-3313 (prepreg 0.0994 mm, core 0.50 mm)**, JLC04081H-2116B (0.1164 mm) and JLC04081H-1080 (0.0764 mm). Prepreg dielectric constants on the same page: 7628 4.4, 3313 4.1, 2116 4.16, 1080 3.91.
+
+Chosen: **JLC04081H-3313** (JLCPCB's calculator, set to 4 layers, 0.8 mm, 1 oz outer, 0.5 oz inner, 50 ohm single ended on L1 over L2, lists it as "Standard / recommend", finished thickness 0.80 +/- 0.10 mm; the "Special" stack-ups are not standard). Reason for 3313 over 7628, the other standard one: the 0.0994 mm prepreg gives a narrow line (about 0.17 mm against about 0.36 mm), so the 0.2 mm wide QFN pin 31 and the 0201 pads of the pi network (0.40 mm wide) need no wide stub, and the copper pour next to the line only has to be kept back a few tenths of a millimetre.
+
+Width, my calculation (Hammerstad-Jensen microstrip formula from the JLCPCB prepreg values above, 35 um copper, no solder mask): 7628 0.36 mm, 3313 0.17 mm, 2116B 0.20 mm, 1080 0.13 mm. The solder mask lowers the impedance by a few ohms, so the true width is a little smaller. **This number is not from JLCPCB: their calculator opened, listed the stack-ups, but its Trace Width column stayed empty in this session.** The routing script keeps the RF width in one constant, so replacing it with JLCPCB's number is a one-line change. The width has to be confirmed (calculator in another browser, or JLCPCB support) before the order is paid.
 
 ## 2. Rules (enforced in `smartwatch.kicad_pro`, written by `tools/jlc_rules.py`)
 
@@ -57,7 +65,7 @@ JLCPCB's two ways to put a via inside a pad do not fit a 0.21 mm pad on the plai
 
 ## 6. Not decided or not checked
 
-- Board thickness 0.8 mm for 4 layers on the order page, and the exact JLCPCB stack-up for 50 ohm.
-- Hole-to-hole minimum; the page value was not read.
+- Board thickness 0.8 mm for 4 layers: JLCPCB's impedance page lists four 0.8 mm 4-layer stack-ups (section 1a), so it is offered with impedance control; confirm ENIG with it on the order page.
+- Hole-to-hole minimum: not on the capabilities page; 0.25 mm kept (conservative); the free JLCDFM check is the proof.
 - Routing: not started. Antenna keep-out and first placement are done, see `PLACEMENT_RULES.md`.
 - A free JLCDFM check of the Gerber files is the cheapest proof that the finished layout fits their rules.
